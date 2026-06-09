@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台股AI產業鏈週報 | 2026/06/05</title>
+<style>
+  :root{
+    --bg1:#0a0e1a; --bg2:#0f172a; --bg3:#131c30;
+    --card:#16203a; --card2:#1b2745;
+    --gold:#f5c542; --goldsoft:#d4af37;
+    --txt:#e8edf7; --muted:#9fb0cc; --dim:#6b7c9c;
+    --green:#34d399; --red:#fb7185; --blue:#60a5fa; --purple:#c084fc;
+    --line:#243352;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",-apple-system,sans-serif;
+    background:linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 45%,var(--bg3) 100%);
+    background-attachment:fixed;
+    color:var(--txt); font-size:20px; line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  /* progress bar */
+  #progress{position:fixed;top:0;left:0;height:4px;width:0%;
+    background:linear-gradient(90deg,var(--gold),var(--purple));z-index:1000;transition:width .1s}
+  /* TOC nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:900;
+    background:rgba(10,14,26,.82);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);padding:14px 20px 10px;}
+  nav .brand{color:var(--gold);font-weight:800;font-size:17px;letter-spacing:1px;margin-right:8px}
+  nav .toc{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  nav a{color:var(--muted);text-decoration:none;font-size:13px;
+    padding:4px 11px;border-radius:20px;border:1px solid var(--line);
+    transition:.2s;white-space:nowrap}
+  nav a:hover{color:#0a0e1a;background:var(--gold);border-color:var(--gold)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  /* cover */
+  header.cover{min-height:88vh;display:flex;flex-direction:column;justify-content:center;
+    padding-top:120px;padding-bottom:60px}
+  .eyebrow{color:var(--gold);font-size:18px;letter-spacing:4px;font-weight:700;margin-bottom:18px}
+  h1.title{font-size:64px;font-weight:900;line-height:1.08;
+    background:linear-gradient(120deg,#fff 10%,var(--gold) 60%,var(--purple) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:18px}
+  .subtitle{font-size:30px;color:var(--muted);font-weight:600;margin-bottom:28px}
+  .subtitle b{color:var(--txt)}
+  .tagrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .tag{font-size:15px;padding:8px 15px;border-radius:30px;font-weight:600;
+    background:rgba(245,197,66,.10);border:1px solid rgba(245,197,66,.35);color:var(--gold)}
+  .tag.alt{background:rgba(96,165,250,.10);border-color:rgba(96,165,250,.35);color:var(--blue)}
+  .tag.alt2{background:rgba(192,132,252,.10);border-color:rgba(192,132,252,.35);color:var(--purple)}
+  .tag.alt3{background:rgba(52,211,153,.10);border-color:rgba(52,211,153,.35);color:var(--green)}
+  .covernote{margin-top:38px;font-size:15px;color:var(--dim);border-left:3px solid var(--line);padding-left:14px;max-width:760px}
+  /* section heading */
+  .secthead{margin:60px 0 26px}
+  .secthead h2{font-size:30px;font-weight:800;color:var(--txt)}
+  .secthead .ln{height:3px;width:72px;background:linear-gradient(90deg,var(--gold),transparent);margin-top:10px;border-radius:3px}
+  /* theme card */
+  .card{background:linear-gradient(160deg,var(--card),var(--card2));
+    border:1px solid var(--line);border-radius:16px;padding:30px 30px 26px;
+    margin-bottom:34px;box-shadow:0 18px 44px rgba(0,0,0,.42);scroll-margin-top:130px}
+  .card .num{font-size:14px;color:var(--gold);font-weight:800;letter-spacing:2px}
+  .card h3{font-size:30px;font-weight:850;margin:6px 0 8px;display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+  .reason{font-size:18px;color:var(--muted);margin-bottom:16px}
+  .reason b{color:var(--txt)}
+  .badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:20px}
+  .chip{font-size:13px;font-weight:700;padding:5px 13px;border-radius:20px;border:1px solid var(--line)}
+  .chip.mat{background:rgba(96,165,250,.12);color:var(--blue);border-color:rgba(96,165,250,.3)}
+  .chip.moat{background:rgba(52,211,153,.12);color:var(--green);border-color:rgba(52,211,153,.3)}
+  .chip.moat.mid{background:rgba(245,197,66,.12);color:var(--gold);border-color:rgba(245,197,66,.3)}
+  .chip.moat.low{background:rgba(251,113,133,.12);color:var(--red);border-color:rgba(251,113,133,.3)}
+  .chip.rate{background:rgba(245,197,66,.14);color:var(--gold);border-color:rgba(245,197,66,.35)}
+  /* table */
+  table{width:100%;border-collapse:collapse;margin:6px 0 8px;font-size:18px}
+  thead th{font-size:14px;color:var(--dim);text-align:right;font-weight:700;
+    padding:8px 10px;border-bottom:1px solid var(--line);letter-spacing:.5px}
+  thead th:first-child,thead th:nth-child(2){text-align:left}
+  tbody td{padding:11px 10px;text-align:right;border-bottom:1px solid rgba(36,51,82,.5)}
+  tbody td:first-child{text-align:left;color:var(--dim);font-variant-numeric:tabular-nums}
+  tbody td:nth-child(2){text-align:left;font-weight:700;color:var(--txt)}
+  tbody tr:hover{background:rgba(96,165,250,.05)}
+  td.up{color:var(--green);font-weight:700}
+  td.down{color:var(--red);font-weight:700}
+  td.star{color:var(--gold);letter-spacing:1px;font-size:15px}
+  .price{font-variant-numeric:tabular-nums;font-weight:600}
+  .pick{display:inline-block;background:rgba(245,197,66,.16);color:var(--gold);
+    font-size:12px;font-weight:800;padding:1px 7px;border-radius:6px;margin-left:7px;vertical-align:middle}
+  /* claude box */
+  .claude{margin-top:20px;border:1.5px solid var(--goldsoft);border-radius:14px;
+    background:linear-gradient(165deg,rgba(245,197,66,.07),rgba(245,197,66,.02));
+    padding:22px 24px;position:relative;box-shadow:inset 0 0 30px rgba(245,197,66,.04)}
+  .claude .hd{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--gold);
+    font-size:18px;margin-bottom:14px;letter-spacing:.5px}
+  .claude .hd .ai{font-size:22px}
+  .claude .blk{margin-bottom:14px}
+  .claude .blk:last-child{margin-bottom:0}
+  .claude .lbl{font-size:14px;font-weight:800;letter-spacing:1px;display:block;margin-bottom:4px}
+  .claude .lbl.pickL{color:var(--gold)}
+  .claude .lbl.missL{color:var(--red)}
+  .claude .lbl.watchL{color:var(--blue)}
+  .claude p{font-size:17px;color:#dde6f5;line-height:1.72}
+  .claude p b{color:#fff}
+  /* footer sections */
+  .alloc{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:10px 0 8px}
+  .allocbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .allocbox .pct{font-size:34px;font-weight:900;color:var(--gold)}
+  .allocbox .nm{font-size:16px;font-weight:700;margin:3px 0 6px}
+  .allocbox .ds{font-size:14px;color:var(--muted)}
+  .listcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-bottom:18px}
+  .listcard h4{font-size:20px;color:var(--gold);margin-bottom:12px;font-weight:800}
+  .listcard ul{list-style:none}
+  .listcard li{padding:9px 0;border-bottom:1px solid rgba(36,51,82,.5);font-size:17px;color:#d4def0}
+  .listcard li:last-child{border:none}
+  .listcard li b{color:var(--txt)}
+  .risk{border-left:3px solid var(--red)}
+  .risk h4{color:var(--red)}
+  .disclaimer{margin:40px 0 70px;padding:22px 24px;background:rgba(251,113,133,.05);
+    border:1px solid rgba(251,113,133,.25);border-radius:12px;font-size:15px;color:var(--muted);line-height:1.7}
+  .disclaimer b{color:var(--red)}
+  footer.end{text-align:center;padding:34px 0 60px;color:var(--dim);font-size:14px;border-top:1px solid var(--line)}
+  @media(max-width:680px){
+    h1.title{font-size:42px}.subtitle{font-size:22px}
+    body{font-size:18px}table{font-size:15px}thead th{font-size:12px}
+    .card{padding:22px 18px}.card h3{font-size:24px}
+    nav .toc{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <span class="brand">🤖 台股AI週報</span>
+  <span style="color:var(--dim);font-size:13px">2026/06/05</span>
+  <div class="toc">
+    <a href="#t1">伺服器ODM</a>
+    <a href="#t2">先進封裝</a>
+    <a href="#t3">CPO矽光子</a>
+    <a href="#t4">液冷散熱</a>
+    <a href="#t5">ABF載板</a>
+    <a href="#t6">PCB/CCL</a>
+    <a href="#t7">ASIC</a>
+    <a href="#t8">網通Switch</a>
+    <a href="#t9">重電電力</a>
+    <a href="#t10">HBM記憶體</a>
+    <a href="#summary">配置總結</a>
+    <a href="#risk">尾部風險</a>
+  </div>
+</nav>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="eyebrow">TAIWAN AI SUPPLY CHAIN · WEEKLY</div>
+    <h1 class="title">台股AI產業鏈週報</h1>
+    <div class="subtitle">動態題材版 · <b>2026/06/01 – 06/05</b> · COMPUTEX & GTC Taipei 特別週</div>
+    <p class="reason" style="max-width:820px">本週主軸：<b>NVIDIA GTC Taipei（6/1–6/4）+ COMPUTEX 2026（6/2–6/5）</b> 雙展同步登場，黃仁勳確認 <b>Vera Rubin Q3 量產出貨</b>、發表 <b>RTX Spark（聯發科合作）</b>，並以「Marvell 下一個兆元企業」一句話點燃矽光子族群漲停潮。資金主軸從 GPU 擴散至光通訊、ABF 載板、液冷與重電基建。</p>
+    <div class="tagrow">
+      <span class="tag">① AI伺服器ODM</span>
+      <span class="tag alt">② 先進封裝CoWoS</span>
+      <span class="tag alt2">③ CPO矽光子🔥</span>
+      <span class="tag alt3">④ 液冷散熱</span>
+      <span class="tag">⑤ ABF載板</span>
+      <span class="tag alt">⑥ 高速PCB/CCL</span>
+      <span class="tag alt2">⑦ ASIC🔥</span>
+      <span class="tag alt3">⑧ 網通Switch</span>
+      <span class="tag">⑨ 重電電力</span>
+      <span class="tag alt">⑩ HBM記憶體</span>
+    </div>
+    <p class="covernote">本週入選 10 個最具動能題材，依「新訂單 / 法人買超 / 券商上調 / 本週催化劑」綜合篩選。所有股價為 2026/06/05 當週收盤實際數據彙整，分析框為 Claude 獨立判斷，含逆向觀點。<br>⚠️ 本報告為公開資料彙整與 AI 分析，僅供研究參考，<b>不構成任何投資建議</b>。</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="secthead"><h2>本週入選題材</h2><div class="ln"></div></div>
+
+<!-- ===== 1 AI伺服器ODM ===== -->
+<section class="card" id="t1">
+  <div class="num">THEME 01</div>
+  <h3>AI 伺服器 ODM — 「老AI」補漲回神 🐘</h3>
+  <p class="reason">入選理由：<b>鴻海領頭、外資兩日回補近 6 萬張</b>，廣達/緯創/緯穎同步補漲，營收創波段新高與籌碼面共振；Vera Rubin 機櫃放量在即，ODM 為直接受益的「鏟子股」。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：主升段</span>
+    <span class="chip moat mid">護城河：中</span>
+    <span class="chip rate">配置評級：★★★★ 標配</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>2317</td><td>鴻海 <span class="pick">首選</span></td><td class="price">284.5</td><td class="price">400 (高盛)</td><td class="up">+40.6%</td><td class="star">★★★★★</td></tr>
+      <tr><td>6669</td><td>緯穎 <span class="pick">首選</span></td><td class="price">~6,900</td><td class="price">7,500 (大摩)</td><td class="up">+8.7%</td><td class="star">★★★★</td></tr>
+      <tr><td>2382</td><td>廣達</td><td class="price">390.5</td><td class="price">385 (大摩)</td><td class="down">-1.4%</td><td class="star">★★★</td></tr>
+      <tr><td>3231</td><td>緯創</td><td class="price">171.0</td><td class="price">210 (大摩)</td><td class="up">+22.8%</td><td class="star">★★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>鴻海（2317）</b>：在 ODM 同業裡毛利率最不性感，卻是 Vera Rubin 整櫃（含 NVL72 機櫃、Bluefield、CPO 交換機櫃）系統整合與垂直整合最完整者，鴻海同時握有連接器（鴻準）、電源、機構件內製。高盛 400 元是外資最高，市場仍低估其「整櫃出貨 ASP 跳升」的營收槓桿。<b>緯穎（6669）</b>則是大摩首選，純度最高、直供北美 CSP，本益比相對乾淨。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>市場把「ODM 補漲」當成普漲行情，但 <b>VR200 毛利率傳跌破 2%</b> 是真實風險——整櫃化讓營收暴衝、毛利率卻被壓縮，廣達現價已貼著大摩目標價、上檔有限。我不同意「老AI 全面齊漲」，這是<b>個股分化行情</b>：純度高、系統整合深者（鴻海、緯穎）續強，純組裝者（部分品牌廠）只是跌深反彈。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① 鴻海 6 月營收年增率是否維持三位數；② 外資 ODM 買超是否續命兩日以上（避免一日行情）；③ VR200 整櫃毛利率官方/供應鏈確認數字。</p></div>
+  </div>
+</section>
+
+<!-- ===== 2 先進封裝 ===== -->
+<section class="card" id="t2">
+  <div class="num">THEME 02</div>
+  <h3>先進封裝 CoWoS / SoIC — 算力的真護城河</h3>
+  <p class="reason">入選理由：黃仁勳本週確認 <b>Vera Rubin Q3 大規模出貨</b>，台積電為全球唯一具 CoWoS 大規模量產能力者，<b>2026 年底月產能上看 7.5 萬片</b>；COUPE 矽光子製程世界首創，封裝為 Rubin 整體升級核心。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：主升段</span>
+    <span class="chip moat">護城河：高</span>
+    <span class="chip rate">配置評級：★★★★★ 滿倉核心</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>2330</td><td>台積電 <span class="pick">首選</span></td><td class="price">2,365</td><td class="price">3,000 (外資)</td><td class="up">+26.8%</td><td class="star">★★★★★</td></tr>
+      <tr><td>3711</td><td>日月光投控</td><td class="price">~205</td><td class="price">230</td><td class="up">+12.2%</td><td class="star">★★★★</td></tr>
+      <tr><td>2449</td><td>京元電子</td><td class="price">~140</td><td class="price">165</td><td class="up">+17.9%</td><td class="star">★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>台積電（2330）</b>：本週股東會魏哲家對唱衰者嗆「做夢」，底氣來自 CoWoS 供不應求與 COUPE 矽光子製程獨家性。這是整份報告護城河最高、波動最低的核心持股——它同時是 Rubin、ASIC（聯發科/世芯）、CPO 三條主線的共同上游，<b>無論題材如何輪動都收稅</b>。現價對 3,000 元目標仍有 27% 空間，本益比在大型權值中並不貴。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>市場過度聚焦下游零組件的「彈性」，卻給上游壟斷者偏低評價。真正的稀缺不是散熱或機殼（可被多家分食），而是<b>CoWoS 與矽光子封裝的產能瓶頸</b>。京元電的測試站需求隨 TDP 上升而結構性成長，是被低估的二線受益者，但題材純度與定價權遠不如台積電。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① CoWoS 2026 下半年擴產進度與客戶分配；② 台積電 6 月營收（驗證 Rubin 拉貨）；③ 美國對先進製程出口/關稅政策變化。</p></div>
+  </div>
+</section>
+
+<!-- ===== 3 CPO ===== -->
+<section class="card" id="t3">
+  <div class="num">THEME 03</div>
+  <h3>CPO / 矽光子 — 本週最強催化劑 🔥</h3>
+  <p class="reason">入選理由：<b>6/3 黃仁勳一句「Marvell 將是下一個兆元企業」，矽光子族群集體鎖漲停</b>。Rubin 搭配 NVLink 6 / ConnectX-9 / Spectrum-6，光通訊由 800G 邁向 1.6T、CPO/NPO 兩年內加速導入，台積電 COUPE 直接背書。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：加速成長（剛起爆）</span>
+    <span class="chip moat mid">護城河：中（族群分散）</span>
+    <span class="chip rate">配置評級：★★★ 輕倉（追高風險）</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>3081</td><td>聯亞 <span class="pick">首選</span></td><td class="price">2,830</td><td class="price">3,200</td><td class="up">+13.1%</td><td class="star">★★★★</td></tr>
+      <tr><td>3363</td><td>上詮 <span class="pick">首選</span></td><td class="price">908</td><td class="price">1,100</td><td class="up">+21.1%</td><td class="star">★★★★</td></tr>
+      <tr><td>3163</td><td>波若威</td><td class="price">1,085</td><td class="price">1,300</td><td class="up">+19.8%</td><td class="star">★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>上詮（3363）</b>：法人首選，深耕光連接與光引擎組裝，最貼近台積電 COUPE/CPO 封裝供應鏈，是「製程綁定」而非「概念綁定」者。<b>聯亞（3081）</b>握有自有磊晶/雷射二極體晶粒（EML），在矽光子向 1.6T 升級時是上游關鍵料，技術門檻高於純模組廠。這兩檔的護城河在「料源稀缺」，比下游組裝更耐殺。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>這是本週最危險的題材——<b>一句話三檔漲停，是情緒不是基本面</b>。CPO 真正放量在 2027，現價已把明後年想像力打進去。市場誤把「黃仁勳點名 Marvell」直接等價於台廠營收，但台廠多為次階供應、認證週期長。<b>我的逆向看法：追漲停是賭博，要等回檔分批、且只買有自有晶粒/製程綁定者</b>，純題材股（無實質出貨）下週若沒量價背離就會打回原形。故評級僅輕倉。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① 漲停隔週是否量縮上漲（真突破）或爆量下殺（出貨）；② 各廠 CPO/光引擎是否有實質訂單或認證公告；③ Marvell、台積電 COUPE 後續供應鏈名單揭露。</p></div>
+  </div>
+</section>
+
+<!-- ===== 4 液冷 ===== -->
+<section class="card" id="t4">
+  <div class="num">THEME 04</div>
+  <h3>液冷 / 散熱 — 單櫃破百 kW 的必需品</h3>
+  <p class="reason">入選理由：本週大摩報告指 <b>Q2 又是散熱廠營收創紀錄季</b>，Vera Rubin POD 機櫃種類增加（VR NVL72、CPO 交換器櫃等）全採液冷；單櫃功率破 100kW 讓氣冷退位。大摩<b>調升奇鋐至 2,750</b>、富世達至 2,150，但<b>調降雙鴻至 1,080</b>。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：主升段</span>
+    <span class="chip moat mid">護城河：中</span>
+    <span class="chip rate">配置評級：★★★★ 標配（選股分化）</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>3017</td><td>奇鋐 <span class="pick">首選</span></td><td class="price">2,600</td><td class="price">2,750 (大摩↑)</td><td class="up">+5.8%</td><td class="star">★★★★</td></tr>
+      <tr><td>6805</td><td>富世達</td><td class="price">1,950</td><td class="price">2,150 (大摩↑)</td><td class="up">+10.3%</td><td class="star">★★★★</td></tr>
+      <tr><td>3324</td><td>雙鴻</td><td class="price">1,110</td><td class="price">1,080 (大摩↓)</td><td class="down">-2.7%</td><td class="star">★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>奇鋐（3017）</b>：Q1 EPS 20.17 元創歷史新高、營收年增 110%，大摩本週逆勢調升目標價，看的是「液冷滲透率提升帶動產品組合優化」。它在風冷與液冷雙線都有份額，是散熱廠裡基本面最扎實者。富世達（轉軸/快接頭）則受惠液冷快接需求被同步調升，是隱形受益者。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>外資對散熱「不同調」本身就是訊號——<b>雙鴻被降評，理由是 Vera Rubin 平台能見度仍不明朗</b>。市場常把散熱當鐵板一塊齊漲，但液冷的勝負取決於「拿到哪一代機櫃的設計權」。我的判斷：散熱已從 beta 普漲進入 <b>alpha 選股期</b>，題材成熟但個股估值偏高（奇鋐對目標價僅剩 6% 空間），追高 CP 值下降，宜逢回布局龍頭、避開降評標的。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① Vera Rubin 機櫃液冷設計權花落誰家；② 各散熱廠 Q2 接單能見度與 2027 液冷占比；③ 雙鴻能否扭轉外資看法（VR 能見度）。</p></div>
+  </div>
+</section>
+
+<!-- ===== 5 ABF ===== -->
+<section class="card" id="t5">
+  <div class="num">THEME 05</div>
+  <h3>ABF 載板 — 味之素鬆口、缺料漲價</h3>
+  <p class="reason">入選理由：本週 <b>味之素鬆口、IBIDEN 擴產</b>消息發酵，ABF 載板 Q2 報價續漲；<b>景碩取得 Vera CPU 載板訂單、市佔上看 5 成</b>，欣興為台灣唯一/全球唯二高階 GPU 載板量產廠。外資近期買超景碩、欣興。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：初升段轉加速</span>
+    <span class="chip moat">護城河：高（寡占）</span>
+    <span class="chip rate">配置評級：★★★★ 標配</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>3189</td><td>景碩 <span class="pick">首選</span></td><td class="price">712</td><td class="price">850</td><td class="up">+19.4%</td><td class="star">★★★★</td></tr>
+      <tr><td>3037</td><td>欣興 <span class="pick">首選</span></td><td class="price">~233</td><td class="price">285</td><td class="up">+22.3%</td><td class="star">★★★★</td></tr>
+      <tr><td>8046</td><td>南電</td><td class="price">~215</td><td class="price">250</td><td class="up">+16.3%</td><td class="star">★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>欣興（3037）</b>：高階 GPU ABF 載板全球僅兩家能量產，欣興是 GB200 第二大供應商、有望成 Rubin 主力，<b>護城河來自材料+製程+認證三重壁壘</b>，新進者兩年內難切入。<b>景碩（3189）</b>本週題材最純——拿下 Vera CPU 載板、市佔可達 5 成，加上資本支出大增 70% 擴產，是 Rubin CPU 端的最大單一受益者。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>市場記憶猶新 2022–2023 ABF 庫存崩跌，對載板「狼來了」仍半信半疑、給的本益比偏保守。但這輪不同：<b>供給端（味之素 ABF 膜、IBIDEN）才剛鬆口擴產，意味供需吃緊至少持續到 2027</b>。質疑「載板現在才拉資本支出來不來得及」反而是利多——產能落後保證了漲價持續性。我認為這是被低估的高護城河題材，分歧點在進場時機而非方向。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① ABF 載板 Q3 報價是否再調漲；② 味之素/IBIDEN 擴產時程；③ 景碩 Vera CPU 載板認證/出貨進度。</p></div>
+  </div>
+</section>
+
+<!-- ===== 6 PCB/CCL ===== -->
+<section class="card" id="t6">
+  <div class="num">THEME 06</div>
+  <h3>高速 PCB / CCL — 從配角變成效能核心材料</h3>
+  <p class="reason">入選理由：高盛指 AI PCB/CCL <b>4 月已調漲 10–40%、下半年續漲</b>，並上調台光電（→4,020）、金像電（→1,380）、台燿（→1,165）等目標價；本土法人喊台光電 5,100–5,300。CCL 三雄股價同創新高、能見度直達 2028。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：主升段（估值偏高）</span>
+    <span class="chip moat">護城河：高（台光電）</span>
+    <span class="chip rate">配置評級：★★★ 輕倉</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>2383</td><td>台光電 <span class="pick">首選</span></td><td class="price">4,885</td><td class="price">5,300 (統一)</td><td class="up">+8.5%</td><td class="star">★★★★</td></tr>
+      <tr><td>2368</td><td>金像電</td><td class="price">1,315</td><td class="price">1,380 (高盛)</td><td class="up">+4.9%</td><td class="star">★★★</td></tr>
+      <tr><td>6274</td><td>台燿</td><td class="price">1,610</td><td class="price">1,165 (高盛)</td><td class="down">-27.6%</td><td class="star">★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>台光電（2383）</b>：CCL 龍頭地位難撼動，是 AI 伺服器訊號完整性的決定性材料，本土法人目標價上看 5,100–5,300。它的護城河在於「高速 CCL 配方 know-how + 與下游 PCB 廠的綁定」，CSP 對其成本極不敏感（占資本支出僅 0.8–1.4%），<b>議價力極強</b>，是這條材料鏈最該長抱的核心。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>注意我把台燿評為 ★★：<b>現價 1,610 已遠高於高盛目標價 1,165（隱含 -27%）</b>——這是全報告最明顯的「股價跑在基本面前面」訊號。市場把整個 CCL 族群當同一個故事齊買，但券商目標價已對部分二線股發出降溫警告。我的逆向觀點：材料端漲價趨勢為真，但<b>價格已透支</b>，金像電對目標價也僅剩個位數空間。寧抱龍頭台光電，不追估值已滿的二線。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① CCL Q3 報價調漲幅度；② 台光電月營收與毛利率；③ 二線 PCB 股是否出現券商目標價下修（估值修正起點）。</p></div>
+  </div>
+</section>
+
+<!-- ===== 7 ASIC ===== -->
+<section class="card" id="t7">
+  <div class="num">THEME 07</div>
+  <h3>ASIC / 自研晶片 — 雙主流時代來臨 🔥</h3>
+  <p class="reason">入選理由：本週 <b>RTX Spark（NVIDIA × 聯發科，台積電 3nm）正式發表</b>，加上聯發科法說將全年 AI ASIC 營收目標<b>從 10 億→20 億美元倍增</b>，外資齊調目標價、美系喊 5,000 元。玉山投顧：2026 起 GPU 與 ASIC 走向雙主流。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：加速成長</span>
+    <span class="chip moat">護城河：高（設計+先進製程）</span>
+    <span class="chip rate">配置評級：★★★★★ 滿倉核心</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>2454</td><td>聯發科 <span class="pick">首選</span></td><td class="price">~4,100</td><td class="price">5,000 (美系)</td><td class="up">+22.0%</td><td class="star">★★★★★</td></tr>
+      <tr><td>3661</td><td>世芯-KY <span class="pick">首選</span></td><td class="price">4,285</td><td class="price">5,200</td><td class="up">+21.4%</td><td class="star">★★★★</td></tr>
+      <tr><td>3443</td><td>創意</td><td class="price">~2,900</td><td class="price">3,300</td><td class="up">+13.8%</td><td class="star">★★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>聯發科（2454）</b>：本週雙催化——RTX Spark 讓它睽違十年重返 Windows PC 市場，ASIC 營收目標倍增至 20 億美元。它是台股少數「消費 IC 現金牛 + ASIC 成長期權」兼具者，估值重估空間最大、外資全面翻多。<b>世芯-KY（3661）</b>純度更高：北美 CSP 大客戶 3nm Q2 量產爬坡、貢獻上看 40 億美元，2nm 接力，2026–2029 成長能見度極佳。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>日系外資對聯發科「降評至中立」與美系「喊 5,000」並存——分歧點在<b>ASIC 毛利率是否會稀釋本業</b>。市場短線只看到營收倍增的興奮，但 ASIC 是低毛利、重綁定的生意，單一客戶集中度是世芯/創意的隱憂。我的判斷：ASIC 是結構性趨勢（CSP 去 NVIDIA 化），方向確定且護城河高，但<b>別把它當高毛利成長股估值，要當「綁定 CSP 的代工型成長股」</b>，回檔才是好買點。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① RTX Spark 上市銷售/備貨反應；② 聯發科 ASIC 客戶數與毛利率指引；③ 世芯大客戶 3nm 量產爬坡實際出貨。</p></div>
+  </div>
+</section>
+
+<!-- ===== 8 網通 ===== -->
+<section class="card" id="t8">
+  <div class="num">THEME 08</div>
+  <h3>網通 Switch — 800G 放量、1.6T 接棒</h3>
+  <p class="reason">入選理由：Rubin 的 scale-out 大量採用 <b>800G 交換器</b>，1.6T 自 2026H2 崛起；智邦 4 月營收創史高、AI 加速卡產品線前三季年增 361%、占比衝 63%。大和將智邦目標價<b>由 1,820 大幅上調至 3,222</b>。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：主升段</span>
+    <span class="chip moat">護城河：高（白牌交換器龍頭）</span>
+    <span class="chip rate">配置評級：★★★★ 標配</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>2345</td><td>智邦 <span class="pick">首選</span></td><td class="price">2,490</td><td class="price">3,222 (大和)</td><td class="up">+29.4%</td><td class="star">★★★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>智邦（2345）</b>：白牌交換器全球龍頭，直接吃 CSP scale-out 網路升級財。最關鍵的是產品結構質變——<b>AI 加速卡相關產品占比一年內從 34% 跳到 63%</b>，意味它已從「網通設備商」轉型為「AI 基礎設施供應商」，全年營收看增 30–40%。對大和 3,222 目標價仍有近 30% 空間，是本週上檔空間最大的高護城河標的之一。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>市場擔心 <b>CPO 交換器（光直連）長線會取代傳統可插拔光模組交換器</b>，因而對智邦的長期成長打折。但我認為這被誤讀：CPO 普及在 2027 後，且智邦本身也卡位 CPO/冷卻系統，是技術轉換的參與者而非受害者。短期 800G 放量、1.6T 接棒的能見度遠比市場擔心的「被顛覆」更實在。族群內競爭者少、護城河高，是它與散熱/CPO 題材最大的差異。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① 智邦月營收能否續創高；② 1.6T 交換器/光模組出貨時程；③ CSP 網路資本支出（scale-out vs scale-up 配置）。</p></div>
+  </div>
+</section>
+
+<!-- ===== 9 重電 ===== -->
+<section class="card" id="t9">
+  <div class="num">THEME 09</div>
+  <h3>重電 / 電力基礎設施 — AI 吃電怪獸的賣鏟人</h3>
+  <p class="reason">入選理由：本週 <b>股東會旺季催化</b>——華城揭露打入美國德州 <b>Stargate 計畫、拿 20 億元變壓器訂單</b>；中興電 6/3 攻漲停。重電四雄在手訂單能見度普遍延伸至 <b>2028–2030</b>，受惠 AI 資料中心自建電廠 + 台電強韌電網 + 美國電網汰換三動能。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：加速成長（長景氣循環）</span>
+    <span class="chip moat">護城河：高（在地寡占+長交期）</span>
+    <span class="chip rate">配置評級：★★★★ 標配</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>1519</td><td>華城 <span class="pick">首選</span></td><td class="price">~930</td><td class="price">1,200</td><td class="up">+29.0%</td><td class="star">★★★★</td></tr>
+      <tr><td>1513</td><td>中興電</td><td class="price">184.5</td><td class="price">230</td><td class="up">+24.7%</td><td class="star">★★★★</td></tr>
+      <tr><td>1503</td><td>士電</td><td class="price">~165</td><td class="price">200</td><td class="up">+21.2%</td><td class="star">★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>華城（1519）</b>：台廠打進美國 AI 供應鏈最具代表性的重電業者，累積訂單逾 150 億元，本週再添 Stargate 20 億訂單。它的護城河與 AI 半導體完全不同——<b>變壓器是長交期、在地化、認證綁定的生意，產能即護城河</b>，AI 資料中心缺電已是實體瓶頸而非概念。訂單能見度看到 2028–2030，是「賣鏟人」中現金流最確定的一群。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>市場把重電當「傳產 + AI 概念蹭熱度」，給的本益比仍帶傳產折價。但我認為這嚴重低估其<b>訂單的結構性與持續性</b>——這不是一次性 AI 訂單，而是疊加美國電網汰換（數十年資產週期）+ 台灣電力需求年均 1.7% 成長的長循環。真正風險不在需求，而在<b>毛利率（原物料銅價、海外建廠執行）與交期遞延</b>。逆向看，股價回檔時反而是布局實質受益者的機會，而非題材退燒。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① 各廠股東會釋出的新訂單/海外擴產；② 台電 500 億標案得標分配；③ 銅價與海外建廠進度（毛利率變數）。</p></div>
+  </div>
+</section>
+
+<!-- ===== 10 HBM ===== -->
+<section class="card" id="t10">
+  <div class="num">THEME 10</div>
+  <h3>HBM / 記憶體 — 漲價循環 + 客製化卡位</h3>
+  <p class="reason">入選理由：本週 <b>南亞科單日爆量大漲（成交逾 11 萬張）</b>，外資/投信同步買超；Rubin 搭載 288GB HBM4，記憶體漲價循環延燒，南亞科為唯一切入 DDR5 與客製化 AI UWIO 寬頻記憶體台廠，Q1 營收年增 582.9%。SK 海力士會長本週喊產能翻倍、深化與台廠合作。</p>
+  <div class="badges">
+    <span class="chip mat">成熟度：加速成長（漲價週期）</span>
+    <span class="chip moat mid">護城河：中（受三星/海力士夾擊）</span>
+    <span class="chip rate">配置評級：★★★ 輕倉（波動大）</span>
+  </div>
+  <table>
+    <thead><tr><th>代號</th><th>名稱</th><th>本週收盤</th><th>法人目標價</th><th>潛在空間</th><th>評級</th></tr></thead>
+    <tbody>
+      <tr><td>2408</td><td>南亞科 <span class="pick">首選</span></td><td class="price">360</td><td class="price">480</td><td class="up">+33.3%</td><td class="star">★★★★</td></tr>
+      <tr><td>6239</td><td>力成</td><td class="price">~145</td><td class="price">170</td><td class="up">+17.2%</td><td class="star">★★★</td></tr>
+    </tbody>
+  </table>
+  <div class="claude">
+    <div class="hd"><span class="ai">🤖</span>Claude 分析</div>
+    <div class="blk"><span class="lbl pickL">首選個股理由</span>
+      <p><b>南亞科（2408）</b>：本週題材最猛的轉機股——DRAM 漲價循環 + 唯一切入客製化 AI UWIO 寬頻記憶體的台廠，Q1 營收年增近 6 倍是實打實的營運反轉。SK 海力士會長本週在台喊深化合作、產能翻倍，整個記憶體鏈水漲船高。它是 Rubin HBM4 浪潮中，台股少數能直接沾邊記憶體本體（而非僅封測）的標的。</p></div>
+    <div class="blk"><span class="lbl missL">市場可能誤判之處</span>
+      <p>記憶體是高 beta、強週期股，市場容易在漲價初期過度線性外推。要清醒看到：<b>南亞科在 HBM 本體上仍落後三星/海力士/美光一個世代</b>，它的爆發主要來自標準 DRAM 漲價 + 利基型客製品，而非主流 HBM4 的直接份額。逆向提醒：這檔波動極大、單日可暴漲暴跌，<b>是「漲價週期的彈性部位」而非「護城河核心持股」</b>，宜輕倉控制部位、嚴設停利，不適合重押。</p></div>
+    <div class="blk"><span class="lbl watchL">下週觀察指標</span>
+      <p>① DRAM 現貨/合約報價走勢；② 南亞科月營收與客製化記憶體客戶進展；③ 三星/海力士 HBM4 量產時程（對台廠的擠壓或外溢）。</p></div>
+  </div>
+</section>
+
+<!-- ===== SUMMARY ===== -->
+<div class="secthead" id="summary"><h2>整體配置建議</h2><div class="ln"></div></div>
+<p class="reason" style="margin-bottom:8px">以「護城河 × 題材成熟度 × 本週催化劑強度」綜合給出建議配置比例（示意，非投資建議）：</p>
+<div class="alloc">
+  <div class="allocbox"><div class="pct">40%</div><div class="nm">核心持股</div><div class="ds">台積電(2330)、聯發科(2454)、智邦(2345)、欣興(3037)<br>高護城河、輪動收稅、波動低</div></div>
+  <div class="allocbox"><div class="pct">35%</div><div class="nm">標配成長</div><div class="ds">鴻海/緯穎、奇鋐、景碩、世芯、華城<br>主升段、訂單能見度長</div></div>
+  <div class="allocbox"><div class="pct">15%</div><div class="nm">輕倉題材</div><div class="ds">台光電、南亞科、CPO族群<br>趨勢對但估值偏高/波動大</div></div>
+  <div class="allocbox"><div class="pct">10%</div><div class="nm">衛星/現金</div><div class="ds">矽光子追漲段、二線載板<br>嚴控部位、賺波段</div></div>
+</div>
+<p class="reason" style="margin-top:14px;font-size:16px;color:var(--dim)">配置邏輯：本週題材輪動快（散熱→矽光子→記憶體），核心應壓在「無論誰漲都收稅」的上游壟斷者（台積電、CoWoS、ABF、CCL龍頭），題材股只做衛星部位賺彈性。<b style="color:var(--gold)">追漲停（尤其 CPO）是本週最大紀律考驗。</b></p>
+
+<!-- 未入選 -->
+<div class="secthead"><h2>本週未入選但值得關注的題材</h2><div class="ln"></div></div>
+<div class="listcard">
+  <h4>📋 觀察名單（催化劑未到位 / 估值已滿 / 輪到休息）</h4>
+  <ul>
+    <li><b>AI 電源管理（台達電 2308、光寶科 2301）</b>：48V/800V HVDC 供電是 Rubin 長線剛需，台達電橫跨電源+散熱全端方案；本週未有新催化劑、股價相對沉澱，<b>屬「隨時可升格核心」的潛在標的</b>，等法說或訂單訊號。</li>
+    <li><b>被動元件（國巨 2327、華新科 2492）</b>：投信本週買超國巨，AI 伺服器用量增，但題材動能本週被光通訊/記憶體蓋過，缺單一強催化劑，列觀察。</li>
+    <li><b>AI 機殼 / 機架（勤誠 8210、川湖 2059）</b>：整櫃化直接受益，但估值已反映明後年獲利、本益比歷史高位，本週無新增訂單，<b>暫時降溫</b>。</li>
+    <li><b>AI PC / 終端（仁寶 2324、和碩 4938、聯詠 3034）</b>：RTX Spark 雖點火 AI PC 想像，但換機潮 2026 才剛起步、終端品牌毛利低；本週仁寶反遭外資賣超，題材尚未成主流。</li>
+    <li><b>AI 機器人（上銀 2049、台達電）</b>：GTC 有物理 AI/機器人議程，但台廠實質訂單仍少、純概念階段，<b>有催化劑才選</b>，本週不入選。</li>
+    <li><b>CoWoS 二線封測（京元電已入選）/ 矽光子設備</b>：題材純度與確定性不足，列追蹤。</li>
+  </ul>
+</div>
+
+<!-- 風險 -->
+<div class="secthead" id="risk"><h2>三大尾部風險</h2><div class="ln"></div></div>
+<div class="listcard risk">
+  <h4>⚠️ Tail Risks</h4>
+  <ul>
+    <li><b>① 估值透支與獲利了結</b>：多數散熱、機殼、CCL二線股已把 2027 獲利打進股價（台燿現價甚至高於券商目標價 27%）。一旦 Rubin 拉貨不如預期或財報略低於高標，<b>高本益比股殺幅會最猛</b>。本週美股那斯達克單日重挫 4%、半導體蒸發逾 1 兆美元的雜訊，已是警訊。</li>
+    <li><b>② 題材輪動「一日行情」風險</b>：CPO 因黃仁勳一句話集體漲停，這類情緒驅動的急拉缺乏基本面支撐，<b>追高者易套在最高點</b>；本週「老AI」也曾上演籌碼快進快出。情緒題材的隔週量價背離需高度警戒。</li>
+    <li><b>③ 資金與地緣面</b>：AI 大廠與券商同步向銀行大舉融資（聯貸上看千億），資金面趨緊；外資本週一度單日賣超 756 億、買賣超劇烈擺盪。疊加美國對先進製程/AI 晶片的出口與關稅政策不確定性，任一風吹草動都可能引發系統性回檔。</li>
+  </ul>
+</div>
+
+<div class="disclaimer">
+  <b>免責聲明：</b>本報告由 AI（Claude）依據截至 2026/06/05 之公開網路資料彙整與分析製作，所有股價、目標價、財務數據均來自公開新聞與行情平台之彙整，部分個股本週收盤價為近似值（以「~」標示），可能存在誤差或時間落差，請以證交所/櫃買中心官方數據及各券商正式報告為準。文中之題材評級、配置比例、首選個股、逆向觀點等，均為 AI 模型之分析推論，<b>僅供研究與學習參考，不構成任何投資建議、要約或保證</b>。投資具風險，過往績效不代表未來表現，投資人應自行判斷並承擔投資決策之全部風險。
+</div>
+
+</main>
+
+<footer class="end">
+  🤖 台股AI產業鏈週報 · 動態題材版 · 2026/06/05<br>
+  Generated by Claude · 公開資料彙整與 AI 分析 · 不構成投資建議
+</footer>
+
+<script>
+  // progress bar
+  const bar=document.getElementById('progress');
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    bar.style.width=sc+'%';
+  });
+  // active toc highlight
+  const links=[...document.querySelectorAll('nav a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  window.addEventListener('scroll',()=>{
+    let cur=null;
+    secs.forEach(s=>{if(s.getBoundingClientRect().top<160)cur=s;});
+    links.forEach(a=>a.style.background='');
+    if(cur){const l=links.find(a=>a.getAttribute('href')==='#'+cur.id);
+      if(l){l.style.background='rgba(245,197,66,.18)';l.style.color='#f5c542';}}
+  });
+</script>
+</body>
+</html>
