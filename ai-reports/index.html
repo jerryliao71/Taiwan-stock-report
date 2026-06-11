@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>台股 AI 排程研究報告</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6f8;
+      --paper: #ffffff;
+      --ink: #1d2430;
+      --muted: #637083;
+      --line: #dce2ea;
+      --accent: #0f6b5f;
+      --accent-2: #1d4f91;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    main {
+      width: min(920px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 44px 0 56px;
+    }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: clamp(22px, 4vw, 36px);
+      margin-bottom: 16px;
+    }
+    header { border-top: 6px solid var(--accent); }
+    h1, h2 { margin: 0 0 12px; line-height: 1.2; }
+    h1 { font-size: clamp(30px, 5vw, 48px); }
+    h2 { font-size: 22px; }
+    p { margin: 0; color: var(--muted); }
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(29, 79, 145, .25);
+    }
+    .report {
+      display: grid;
+      gap: 10px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+    .report:first-of-type { border-top: 0; padding-top: 0; }
+    .title { font-weight: 800; font-size: 19px; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 9px;
+      background: #fbfcfd;
+    }
+    .note { font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>台股 AI 排程研究報告</h1>
+      <p>這裡放置 Codex 排程產出的 AI 核心與外溢題材研究報告。根目錄首頁維持原本網站，不在此頁覆蓋。</p>
+    </header>
+
+    <section>
+      <h2>最新報告</h2>
+      <article class="report">
+        <a class="title" href="./taiwan_ai_core_spillover_report_2026-06-11.html">台股 AI 核心與外溢研究報告 2026-06-11</a>
+        <div class="meta">
+          <span class="chip">報告日期：2026-06-11</span>
+          <span class="chip">市場資料基準：2026-06-10 完整收盤</span>
+          <span class="chip">繁體中文 HTML</span>
+        </div>
+        <p class="note">後續排程報告可繼續新增在此目錄，並把最新版本列在最上方。</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>台股 AI 核心與外溢研究報告 2026-06-11</title>
+  <style>
+    :root {
+      --bg: #f6f7f8;
+      --paper: #ffffff;
+      --ink: #1d2430;
+      --muted: #5b6675;
+      --line: #d9dee7;
+      --green: #0f6b5f;
+      --blue: #1d4f91;
+      --amber: #9a5d16;
+      --red: #9a2635;
+      --soft: #f3f6f9;
+      --green-soft: #e6f4ef;
+      --blue-soft: #eaf1fb;
+      --amber-soft: #fff3df;
+      --red-soft: #fae8ea;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.58;
+    }
+    a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(29,79,145,.25); }
+    .page { width: min(1220px, calc(100% - 28px)); margin: 0 auto; padding: 24px 0 48px; }
+    .hero, .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: clamp(22px, 4vw, 40px);
+      margin-bottom: 16px;
+    }
+    .hero {
+      border-top: 7px solid var(--green);
+      background: linear-gradient(180deg, #fff 0%, #f9fbfc 100%);
+    }
+    h1, h2, h3 { margin: 0 0 14px; line-height: 1.18; }
+    h1 { font-size: clamp(32px, 5vw, 58px); max-width: 1040px; }
+    h2 { font-size: clamp(24px, 3vw, 34px); }
+    h3 { font-size: 18px; }
+    p, li { margin: 0; }
+    .lead { max-width: 1040px; font-size: clamp(18px, 2vw, 23px); color: #2b3442; }
+    .meta, .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .grid { display: grid; gap: 14px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fff;
+      min-width: 0;
+    }
+    .kpi { border-top: 4px solid var(--green); }
+    .kpi.blue { border-top-color: var(--blue); }
+    .kpi.amber { border-top-color: var(--amber); }
+    .kpi.red { border-top-color: var(--red); }
+    .num { font-size: clamp(26px, 3vw, 40px); line-height: 1; font-weight: 800; margin-bottom: 8px; }
+    .note { color: var(--muted); font-size: 13px; }
+    .small { font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 9px 8px; text-align: left; vertical-align: top; }
+    th { background: var(--soft); color: var(--muted); font-weight: 700; }
+    th.numcol, td.numcol { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .rating {
+      display: inline-flex;
+      min-width: 44px;
+      justify-content: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .rating.a { background: var(--green-soft); color: var(--green); }
+    .rating.b { background: var(--blue-soft); color: var(--blue); }
+    .rating.c { background: var(--amber-soft); color: #80500e; }
+    .rating.d { background: var(--red-soft); color: var(--red); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .sector {
+      display: grid;
+      grid-template-columns: 1.05fr 1.25fr .9fr 1fr;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 13px;
+    }
+    .sector > div { padding: 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+    .sector > div:nth-child(4n) { border-right: none; }
+    .sector .head { background: var(--soft); color: var(--muted); font-weight: 700; }
+    .keep { background: var(--green-soft) !important; }
+    .watch { background: var(--amber-soft) !important; }
+    .risk { background: var(--red-soft) !important; }
+    ul.compact { display: grid; gap: 8px; padding-left: 18px; }
+    .callout {
+      border-left: 5px solid var(--amber);
+      background: #fffaf1;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+    .footer { color: var(--muted); font-size: 12px; padding: 6px 2px 18px; }
+    @media (max-width: 900px) {
+      .grid.two, .grid.three, .grid.four { grid-template-columns: 1fr; }
+      .sector { grid-template-columns: 1fr; }
+      .sector > div { border-right: none; }
+      table { font-size: 12.5px; }
+      th:nth-child(6), td:nth-child(6),
+      th:nth-child(8), td:nth-child(8) { display: none; }
+    }
+    @media print {
+      body { background: #fff; }
+      .hero, .section { break-inside: avoid; }
+      .page { width: 100%; padding: 0; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="chips">
+        <span class="chip">報告日期：2026-06-11</span>
+        <span class="chip">主估值基準：2026-06-10 完整收盤</span>
+        <span class="chip">補充資料：少數個股 2026-06-11 / 停牌前 2026-06-09</span>
+        <span class="chip">語言：繁體中文</span>
+      </div>
+      <h1>AI 主線沒有退潮，但買點從「概念廣度」轉向「EPS 與良率證據」</h1>
+      <p class="lead">本輪重新建立股票池後，核心仍落在 AI 伺服器 ODM、先進製程/封裝、800VDC/高階電源、液冷與高速網通；但 CPO、CCL/PCB 與高估值散熱股已出現明顯的主流退場風險。結論是：緯穎、緯創、廣達與台積電保留核心；台達電因 800VDC 證據升為高品質外溢；CPO 與高本益比 PCB/散熱股改以衛星或觀察名單處理。</p>
+      <div class="grid four" style="margin-top: 26px;">
+        <div class="card kpi">
+          <div class="num">4</div>
+          <div>核心持有候選</div>
+          <div class="note">6669 / 3231 / 2382 / 2330</div>
+        </div>
+        <div class="card kpi blue">
+          <div class="num">3</div>
+          <div>高品質外溢</div>
+          <div class="note">2308 / 3017 / 2345，價格敏感</div>
+        </div>
+        <div class="card kpi amber">
+          <div class="num">6</div>
+          <div>衛星或交易型題材</div>
+          <div class="note">CPO、PCB、連接器與高估值散熱</div>
+        </div>
+        <div class="card kpi red">
+          <div class="num">3</div>
+          <div>本輪主要風險</div>
+          <div class="note">CPO 時程、零組件缺料、估值壓縮</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>執行結論</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>可留在核心的條件更嚴格</h3>
+          <p>AI 伺服器需求仍被公司與產業新聞確認，但市場已開始分辨「有訂單、有產能、有 EPS」與「只有新名詞」。緯穎、緯創、廣達、台積電仍是最能把 AI 基建轉成財報的台股核心。台達電因 800VDC/電力櫃時程更清楚，升為核心外溢，但 2026-06-10 的歷史本益比已接近 89 倍，不適合作為低估值標的。</p>
+        </div>
+        <div class="card">
+          <h3>CPO 與高估值零組件要降槓桿</h3>
+          <p>最新外資與 SemiAnalysis 相關報導指出，CPO 量產與良率預期需重校，2026-2028 更可能是光收發模組、CPO/NPO 與銅互連並存的過渡期。這使光聖、上詮、萬潤等 CPO 交易降為衛星；台光電、金像電、欣興雖受 AI PCB/CCL 資本支出支撐，但估值已高，追價風險大於基本面確定性。</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>市場資料說明：</strong>本環境無法直接解析 TWSE/TPEx 官方 OpenAPI 的全量 JSON；本報告以可驗證公開頁面為主，玩股網頁面註明資料來源含 TWSE/TPEx。大多數收盤價、股淨比與本益比資料為 2026-06-10 完整收盤；光聖頁面已顯示 2026-06-11 收盤；貿聯-KY 因重大訊息停牌，頁面仍停在 2026-06-09；欣興頁面顯示 2026-06-11 09:44 盤中截點，未作完整收盤評價核心依據。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>動態題材地圖</h2>
+      <div class="sector">
+        <div class="head">產業線</div>
+        <div class="head">本輪證據</div>
+        <div class="head">納入 / 降級</div>
+        <div class="head">主流退場條件</div>
+
+        <div class="keep">AI 伺服器 ODM / 機櫃</div>
+        <div>緯穎表示北美新廠需求優於預期、GPU/CPU/ASIC 伺服器需求並進；外媒也報導 NVIDIA 對緯創竹北 AI 伺服器產能有長單。</div>
+        <div>保留核心：6669、3231、2382；2317 因業務較複雜列高品質外溢。</div>
+        <div>客戶拉貨遞延、零組件由代工廠承擔導致毛利率下修、CSP capex 轉弱。</div>
+
+        <div class="keep">先進製程 / 封裝 / CoWoS</div>
+        <div>AI GPU/ASIC 仍依賴台積電製程與先進封裝；CPO 長線亦需要 PIC/SoIC 等能力，但良率成為短期不確定因素。</div>
+        <div>2330 保留核心；3711、6223、6515列觀察，不因 CPO 情緒直接追高。</div>
+        <div>先進封裝擴產延遲、良率不及預期、客戶轉單或價格壓力升高。</div>
+
+        <div class="keep">800VDC / 高階電源 / 液冷</div>
+        <div>美系大行與業界報導指出 800VDC 方向未變，台達電被點名為首家 800V DC 供應商；液冷與高功率散熱仍受 AI rack power density 推動。</div>
+        <div>2308 升級為高品質外溢；3017、3324保留 B/B+；3653 因估值過高降衛星。</div>
+        <div>800VDC 放量時程延後、液冷標準變動、估值先行反映兩年以上成長。</div>
+
+        <div class="watch">高速網通 / CPO / 光通訊</div>
+        <div>CPO 長線需求仍在，但 Morgan Stanley/SemiAnalysis 相關報導顯示市場過度樂觀，短期量產與良率預期被下修。</div>
+        <div>2345 保留 B+；6442、3363、6187降為衛星；避免用 CPO 單一敘事追高。</div>
+        <div>良率停在 20%-50%、光引擎出貨不達市場預期、2028年前仍由銅纜/光收發模組主導。</div>
+
+        <div class="watch">PCB / CCL / 連接器</div>
+        <div>AI 帶動 PCB/ABF/CCL 資本支出，臻鼎、欣興、景碩、南電等投資規模擴大；但部分股價已預支毛利與出貨斜率。</div>
+        <div>2383、2368、3533列 B-/C+，只適合回檔或 EPS 上修時加分；3037暫列觀察。</div>
+        <div>ABF/CCL 供需反轉、客戶議價、擴產後價格下滑、本益比維持三位數。</div>
+
+        <div class="watch">資料中心電力 / 工程</div>
+        <div>台灣半導體與 AI data center 用電需求上升，電力設備、智慧電網與機電工程有外溢；但收入確認與專案毛利不一定同步。</div>
+        <div>中興電、華城、亞力、漢唐、亞翔列觀察，不放入核心排名。</div>
+        <div>輸配電/資料中心案延後、政策補助變動、專案毛利低於預期。</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>股票池與評等</h2>
+      <p class="note" style="margin-bottom: 12px;">評等是研究排序，不是個人化投資建議。角色代表在 AI 主題中的位置；評等同時考慮成長、估值與退場風險。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>評等</th>
+            <th>角色</th>
+            <th>股票</th>
+            <th>本輪判斷</th>
+            <th>估值紀律</th>
+            <th>相對前次</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rating a">A</span></td>
+            <td>核心 AI</td>
+            <td>6669 緯穎</td>
+            <td>北美新廠、CSP 訂單、GPU/CPU/ASIC 伺服器同時具備能見度；本益比 16.98 倍相對整體 AI 股不高。</td>
+            <td>若零組件缺料導致毛利率下修，A 評等需降。</td>
+            <td>維持 A</td>
+          </tr>
+          <tr>
+            <td><span class="rating a">A-</span></td>
+            <td>核心 AI</td>
+            <td>3231 緯創</td>
+            <td>NVIDIA/Blackwell 伺服器產能與集團供應鏈地位仍強；估值 16.6 倍合理，但 ODM margin 彈性低於緯穎。</td>
+            <td>適合核心中低估值部位，不適合把它當成高毛利零組件股。</td>
+            <td>維持 A- / A</td>
+          </tr>
+          <tr>
+            <td><span class="rating a">A-</span></td>
+            <td>核心 AI</td>
+            <td>2382 廣達</td>
+            <td>AI 伺服器與資料中心客戶基礎深，本益比 18.85 倍仍有估值支撐；但股淨比接近 7 倍，價格不算便宜。</td>
+            <td>回檔後優先度高於追價。</td>
+            <td>維持 A-</td>
+          </tr>
+          <tr>
+            <td><span class="rating a">A-</span></td>
+            <td>核心基礎設施</td>
+            <td>2330 台積電</td>
+            <td>製程、CoWoS 與 CPO/矽光子長線仍是 AI 供應鏈底座；2026-06-10 歷史本益比 30.99 倍，不是便宜股，但品質最高。</td>
+            <td>以長線核心持有看待，短線價差需留意 ADR/費半壓力。</td>
+            <td>維持 A-</td>
+          </tr>
+          <tr>
+            <td><span class="rating b">B+</span></td>
+            <td>高品質外溢</td>
+            <td>2308 台達電</td>
+            <td>800VDC/電力櫃證據轉強，資料中心 power chain 最具代表性。</td>
+            <td>PE 89.05、PB 20.94 已非常昂貴，評等受價格限制。</td>
+            <td>升級至高品質外溢</td>
+          </tr>
+          <tr>
+            <td><span class="rating b">B+</span></td>
+            <td>高品質外溢</td>
+            <td>2345 智邦</td>
+            <td>AI 資料中心高速交換器與網通主線仍在；CPO 延後反而讓傳統 switch / optical transceiver 過渡期更長。</td>
+            <td>PE 46.8、PB 21.18 偏高，需 EPS 上修配合。</td>
+            <td>維持 B+</td>
+          </tr>
+          <tr>
+            <td><span class="rating b">B</span></td>
+            <td>散熱 / 液冷</td>
+            <td>3017 奇鋐</td>
+            <td>AI rack power density 推升液冷與高階散熱；相對健策估值較可解釋。</td>
+            <td>PE 41.82、PB 22.12 已反映高成長，低於 B+ 是因估值。</td>
+            <td>維持 B</td>
+          </tr>
+          <tr>
+            <td><span class="rating b">B</span></td>
+            <td>大型外溢</td>
+            <td>2317 鴻海</td>
+            <td>AI server / rack 供應鏈地位強，集團規模與客戶廣度佳；但非 AI 業務佔比高，純度低於緯穎/緯創/廣達。</td>
+            <td>PE 19.71、PB 2.18 合理，適合偏防守的 AI 曝險。</td>
+            <td>維持 B</td>
+          </tr>
+          <tr>
+            <td><span class="rating b">B-</span></td>
+            <td>液冷衛星</td>
+            <td>3324 雙鴻</td>
+            <td>液冷題材仍有需求支撐，但 6/10 跌停附近顯示市場正在降低高 beta 風險。</td>
+            <td>PE 32.03、PB 7.70；可觀察但不追高。</td>
+            <td>維持 / 偏保守</td>
+          </tr>
+          <tr>
+            <td><span class="rating c">C+</span></td>
+            <td>高估值散熱</td>
+            <td>3653 健策</td>
+            <td>產品地位佳，但 PE 108.85、PB 27.26 對任何 EPS 或毛利率失誤都很敏感。</td>
+            <td>除非 EPS 明確再上修，否則只列衛星。</td>
+            <td>降為 C+</td>
+          </tr>
+          <tr>
+            <td><span class="rating c">C+</span></td>
+            <td>CPO / 光通訊衛星</td>
+            <td>6442 光聖、3363 上詮</td>
+            <td>CPO 長線故事未變，但最新報導顯示 2027 光引擎出貨與良率預期被下修；上詮 PE 無法有效呈現，PS 高達 48.82。</td>
+            <td>只適合事件驅動交易，不能列核心。</td>
+            <td>由 B 降至 C+</td>
+          </tr>
+          <tr>
+            <td><span class="rating c">C+</span></td>
+            <td>AI PCB / CCL 衛星</td>
+            <td>2383 台光電、2368 金像電、3037 欣興</td>
+            <td>AI PCB/CCL 資本支出證據仍強，但台光電 PE 109.87、金像電 PE 67.49、欣興頁面 PE 130，估值容錯低。</td>
+            <td>等 EPS 上修或價格大幅修正後再提高權重。</td>
+            <td>升題材、降追價</td>
+          </tr>
+          <tr>
+            <td><span class="rating c">C</span></td>
+            <td>策略併購衛星</td>
+            <td>3665 貿聯-KY</td>
+            <td>收購 Interplex Datacom 強化資料中心互連與基礎設施布局；但交易整合、融資與停牌後價格重估仍需觀察。</td>
+            <td>使用 2026-06-09 停牌前資料，PE 43.49、PB 9.01。</td>
+            <td>升入衛星</td>
+          </tr>
+          <tr>
+            <td><span class="rating d">D</span></td>
+            <td>避免追價</td>
+            <td>無法量化 AI 曝險者</td>
+            <td>只有「AI、CPO、800V」名詞，沒有訂單、營收比重、毛利或客戶證據者，本輪不納入。</td>
+            <td>若 EPS 被下修或量產時程延後，直接移出股票池。</td>
+            <td>新規則</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>估值與市場資料</h2>
+      <p class="note" style="margin-bottom: 12px;">交易所/公開頁面的本益比、股淨比多為歷史口徑；除非另有明確來源，本報告不把 forward PE 當作硬性估值。殖利率未能從同一批頁面穩定取得，因此未納入表格排序。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>股票</th>
+            <th>資料日期</th>
+            <th class="numcol">收盤/成交價</th>
+            <th class="numcol">漲跌幅</th>
+            <th class="numcol">市值(億)</th>
+            <th class="numcol">PB</th>
+            <th class="numcol">PE</th>
+            <th>估值解讀</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2330 台積電</td><td>2026-06-10</td><td class="numcol">2,255</td><td class="numcol">-2.17%</td><td class="numcol">584,774.95</td><td class="numcol">10.15</td><td class="numcol">30.99</td><td>品質最高但不便宜，適合核心而非短線低估值。</td></tr>
+          <tr><td>6669 緯穎</td><td>2026-06-10</td><td class="numcol">5,065</td><td class="numcol">-4.43%</td><td class="numcol">9,412.84</td><td class="numcol">6.72</td><td class="numcol">16.98</td><td>在 AI 核心股中估值最有支撐。</td></tr>
+          <tr><td>3231 緯創</td><td>2026-06-10</td><td class="numcol">158</td><td class="numcol">-4.53%</td><td class="numcol">5,025.05</td><td class="numcol">2.77</td><td class="numcol">16.60</td><td>估值合理，純度與毛利率不如緯穎。</td></tr>
+          <tr><td>2382 廣達</td><td>2026-06-10</td><td class="numcol">380.5</td><td class="numcol">+1.47%</td><td class="numcol">14,697.30</td><td class="numcol">6.97</td><td class="numcol">18.85</td><td>估值仍可接受，需看 AI server margin。</td></tr>
+          <tr><td>2317 鴻海</td><td>2026-06-10</td><td class="numcol">263</td><td class="numcol">-5.23%</td><td class="numcol">36,828.95</td><td class="numcol">2.18</td><td class="numcol">19.71</td><td>大型防守型 AI 曝險，業務混雜壓低評等。</td></tr>
+          <tr><td>2308 台達電</td><td>2026-06-10</td><td class="numcol">2,200</td><td class="numcol">-8.90%</td><td class="numcol">57,145.95</td><td class="numcol">20.94</td><td class="numcol">89.05</td><td>基本面故事強，但估值要求完美執行。</td></tr>
+          <tr><td>3017 奇鋐</td><td>2026-06-10</td><td class="numcol">2,360</td><td class="numcol">-7.27%</td><td class="numcol">9,255.42</td><td class="numcol">22.12</td><td class="numcol">41.82</td><td>液冷主線，需 EPS 上修承接高 PB。</td></tr>
+          <tr><td>3324 雙鴻</td><td>2026-06-10</td><td class="numcol">1,010</td><td class="numcol">-9.01%</td><td class="numcol">940.08</td><td class="numcol">7.70</td><td class="numcol">32.03</td><td>修正後仍需觀察液冷出貨與毛利率。</td></tr>
+          <tr><td>3653 健策</td><td>2026-06-10</td><td class="numcol">3,800</td><td class="numcol">-3.43%</td><td class="numcol">5,575.85</td><td class="numcol">27.26</td><td class="numcol">108.85</td><td>估值過高，基本面不容出錯。</td></tr>
+          <tr><td>2345 智邦</td><td>2026-06-10</td><td class="numcol">2,365</td><td class="numcol">-4.44%</td><td class="numcol">13,270.44</td><td class="numcol">21.18</td><td class="numcol">46.80</td><td>網通主線仍強，但估值高於一般核心 ODM。</td></tr>
+          <tr><td>6442 光聖</td><td>2026-06-11</td><td class="numcol">1,820</td><td class="numcol">-3.70%</td><td class="numcol">1,420.93</td><td class="numcol">20.88</td><td class="numcol">71.29</td><td>CPO 情緒降溫後仍偏貴，列衛星。</td></tr>
+          <tr><td>3363 上詮</td><td>2026-06-10</td><td class="numcol">747</td><td class="numcol">-10.00%</td><td class="numcol">848.90</td><td class="numcol">16.45</td><td class="numcol">--</td><td>PE 不適用，PS 48.82；只看事件交易。</td></tr>
+          <tr><td>3665 貿聯-KY</td><td>2026-06-09</td><td class="numcol">2,155</td><td class="numcol">0.00%</td><td class="numcol">4,203.94</td><td class="numcol">9.01</td><td class="numcol">43.49</td><td>停牌前資料，需等併購後價格與財務結構重估。</td></tr>
+          <tr><td>2383 台光電</td><td>2026-06-10</td><td class="numcol">4,940</td><td class="numcol">-2.47%</td><td class="numcol">17,701.06</td><td class="numcol">37.86</td><td class="numcol">109.87</td><td>AI CCL 極強但估值極滿。</td></tr>
+          <tr><td>2368 金像電</td><td>2026-06-10</td><td class="numcol">1,420</td><td class="numcol">-5.02%</td><td class="numcol">7,342.07</td><td class="numcol">21.92</td><td class="numcol">67.49</td><td>PCB 主線仍在，追價風險偏高。</td></tr>
+          <tr><td>3533 嘉澤</td><td>2026-06-10</td><td class="numcol">2,175</td><td class="numcol">-6.85%</td><td class="numcol">2,447.63</td><td class="numcol">6.25</td><td class="numcol">32.81</td><td>連接器品質佳，AI 純度需更多量化證據。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>主流退場風險</h2>
+      <div class="grid three">
+        <div class="card">
+          <h3>CPO 預期重估</h3>
+          <ul class="compact">
+            <li>外資與 SemiAnalysis 相關報導指出 CPO 量產時程與 2027 出貨規模可能低於市場樂觀預期。</li>
+            <li>SoIC 良率、下游組裝良率與散熱問題可能讓 CPO 先從交易主線退到長線選擇權。</li>
+            <li>上詮、光聖、萬潤、旺矽等若只有 CPO 情緒而未有營收/毛利證據，應降槓桿。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>零組件缺料與毛利率</h3>
+          <ul class="compact">
+            <li>緯穎指出記憶體、MLCC、PCB、電源等高階規格零組件缺貨，代工廠可能需要協調 consignment 模式。</li>
+            <li>缺料短期支撐供應鏈 ASP，卻也可能壓縮 ODM 毛利率與出貨節奏。</li>
+            <li>若 EPS 上修跟不上股價，市場會先砍高 PB/high PE 股票。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>AI capex 與電力限制</h3>
+          <ul class="compact">
+            <li>資料中心電力與台灣供電壓力使電力設備、HVDC 與工程外溢受惠，但案場時程可能慢於股價。</li>
+            <li>若美國 CSP capex 指引轉弱、客戶垂直整合或轉向二供，ODM 與零組件同時受壓。</li>
+            <li>台股短線已出現高 beta AI 股同步修正，主流退潮時成交量退散會比基本面更快。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>來源連結</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>產業與新聞</h3>
+          <ul class="compact">
+            <li><a href="https://money.udn.com/money/story/5612/9525107">經濟日報：緯穎衝 AI 基建、北美擴產與 GPU/CPU/ASIC 需求</a></li>
+            <li><a href="https://money.udn.com/money/story/5612/9525112">經濟日報：緯穎談記憶體、MLCC、PCB、電源缺料與毛利率影響</a></li>
+            <li><a href="https://money.udn.com/money/story/5607/9522680">經濟日報：AI 效應推升 PCB/ABF 資本支出</a></li>
+            <li><a href="https://money.udn.com/money/story/5612/9557749">經濟日報：貿聯-KY 收購 Interplex Datacom 強化資料中心互連</a></li>
+            <li><a href="https://money.udn.com/money/story/5607/9560490">經濟日報：大摩/SemiAnalysis 對 CPO 出貨與良率預期降溫</a></li>
+            <li><a href="https://money.udn.com/money/story/5612/9559435">經濟日報：800V DC 與 CPO 時程，美系大行點名台達電</a></li>
+            <li><a href="https://money.udn.com/money/story/5607/9558613">經濟日報：業界認為 CPO 與 800VDC 需求方向未變</a></li>
+            <li><a href="https://www.tomshardware.com/desktops/servers/nvidia-books-entire-server-plant-capacity-through-2026-pushing-out-other-potential-customers-to-build-blackwell-and-rubin-ai-servers">Tom's Hardware：NVIDIA/緯創 AI server 產能長單報導</a></li>
+            <li><a href="https://www.tomshardware.com/pc-components/dram/dram-and-nand-contract-prices-to-climb-again-in-q2">Tom's Hardware / TrendForce：AI server 需求推升 DRAM/NAND 價格</a></li>
+            <li><a href="https://www.tomshardware.com/tech-industry/taiwan-expects-power-demand-to-increase-by-more-than-5gw-by-2030-enough-to-power-nearly-4-million-homes-rise-in-electricity-consumption-driven-by-semiconductor-manufacturing-and-ai-data-center-deployments">Tom's Hardware：台灣 AI data center / 半導體用電需求壓力</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>市場資料頁</h3>
+          <ul class="compact">
+            <li><a href="https://www.wantgoo.com/stock/2330/technical-chart">玩股網 2330 台積電</a>、<a href="https://www.wantgoo.com/stock/6669/technical-chart">6669 緯穎</a>、<a href="https://www.wantgoo.com/stock/3231/technical-chart">3231 緯創</a>、<a href="https://www.wantgoo.com/stock/2382/technical-chart">2382 廣達</a></li>
+            <li><a href="https://www.wantgoo.com/stock/2317/technical-chart">2317 鴻海</a>、<a href="https://www.wantgoo.com/stock/2308/technical-chart">2308 台達電</a>、<a href="https://www.wantgoo.com/stock/3017/technical-chart">3017 奇鋐</a>、<a href="https://www.wantgoo.com/stock/3324/technical-chart">3324 雙鴻</a></li>
+            <li><a href="https://www.wantgoo.com/stock/3653/technical-chart">3653 健策</a>、<a href="https://www.wantgoo.com/stock/2345/technical-chart">2345 智邦</a>、<a href="https://www.wantgoo.com/stock/6442/technical-chart">6442 光聖</a>、<a href="https://www.wantgoo.com/stock/3363/technical-chart">3363 上詮</a></li>
+            <li><a href="https://www.wantgoo.com/stock/3665/technical-chart">3665 貿聯-KY</a>、<a href="https://www.wantgoo.com/stock/2383/technical-chart">2383 台光電</a>、<a href="https://www.wantgoo.com/stock/2368/technical-chart">2368 金像電</a>、<a href="https://www.wantgoo.com/stock/3037/technical-chart">3037 欣興</a>、<a href="https://www.wantgoo.com/stock/3533/technical-chart">3533 嘉澤</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>研究限制與免責</h2>
+      <ul class="compact">
+        <li>本報告為公開資料研究整理，非個人化投資建議，未考慮任何讀者的風險承受度、成本、稅務或資金需求。</li>
+        <li>股票池每次會依當前證據重新建立，未來不保證同一批股票仍留在核心或衛星名單。</li>
+        <li>本益比、股淨比為公開頁面歷史口徑；forward PE、目標價與 EPS 修正只在有清楚來源時才納入文字判斷。</li>
+        <li>本環境的 shell DNS 無法解析 TWSE/TPEx 官方 OpenAPI，因此未能自動下載完整官方全市場 JSON；已用可開啟的公開頁面和新聞來源交叉驗證，並逐檔標示資料日期。</li>
+        <li>部分高價股在 2026-06-10 至 2026-06-11 出現劇烈波動；若以 2026-06-11 盤後官方全量估值重算，評等可能需要再次微調。</li>
+      </ul>
+    </section>
+
+    <div class="footer">
+      產出時間：2026-06-11 Asia/Taipei。檔名：taiwan_ai_core_spillover_report_2026-06-11.html。
+    </div>
+  </main>
+</body>
+</html>
