@@ -3,6 +3,8 @@
 :root {
   --background: #f3f5f1;
   --foreground: #17201d;
+  --font-geist-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+  --font-geist-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 @theme inline {

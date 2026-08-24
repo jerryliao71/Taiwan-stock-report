@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://taiwan-stock-radar-jerry.jerry1982.chatgpt.site'),
+  metadataBase: new URL('https://jerryliao71.github.io/Taiwan-stock-report/'),
   title: '台股估值雷達',
-  description: '自動更新台股行情、EPS 財測、本益比與參考價的投資研究工作台。',
+  description: '分欄呈現 Excel 原表、官方實績與規則型 EPS／PE 情境的台股研究工作台。',
   openGraph: {
     type: 'website',
     locale: 'zh_TW',

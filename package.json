@@ -9,7 +9,10 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "vinext start",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern gh-pages-dist",
+    "update:data": "tsx scripts/update-static-data.mts",
+    "build:github": "vite build --config vite.github.config.ts",
+    "preview:github": "vite preview --config vite.github.config.ts"
   },
   "dependencies": {
     "next": "16.2.6",
@@ -30,6 +33,7 @@
     "eslint-config-next": "16.2.6",
     "react-server-dom-webpack": "19.2.6",
     "tailwindcss": "4.2.1",
+    "tsx": "^4.20.6",
     "typescript": "5.9.3",
     "vinext": "1.0.0-beta.3",
     "vite": "8.0.13",
