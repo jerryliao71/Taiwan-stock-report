@@ -1,0 +1,3002 @@
+[
+  {
+    "code": "2454",
+    "name": "聯發科",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 3765,
+    "lowPe": 18,
+    "highPe": 40,
+    "note": null,
+    "forecastAsOf": "2026.8.4",
+    "eps": {
+      "2024": 66.92,
+      "2025": 65.88,
+      "2026": 73.92,
+      "2027": 155.4,
+      "2028": 269.41
+    },
+    "epsOld": {
+      "2025": 75.13,
+      "2026": 74.12,
+      "2027": 97.65,
+      "2028": 177.38
+    }
+  },
+  {
+    "code": "2436",
+    "name": "偉詮電",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 63.2,
+    "lowPe": 16,
+    "highPe": 26,
+    "note": null,
+    "forecastAsOf": "2026.5.28",
+    "eps": {
+      "2024": 1.57,
+      "2025": 3.02,
+      "2026": 4.61,
+      "2027": 6,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3443",
+    "name": "創意",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 5365,
+    "lowPe": 30,
+    "highPe": 40,
+    "note": null,
+    "forecastAsOf": "2026.6.24",
+    "eps": {
+      "2024": 25.75,
+      "2025": 27.95,
+      "2026": 44.04,
+      "2027": 124.37,
+      "2028": 189.5
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 43,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3661",
+    "name": "世芯-KY",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 3735,
+    "lowPe": 22,
+    "highPe": 40,
+    "note": null,
+    "forecastAsOf": "2026.3.6",
+    "eps": {
+      "2024": 81.34,
+      "2025": 69.2,
+      "2026": 127.76,
+      "2027": 168.28,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 81.08,
+      "2026": 134.75,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6531",
+    "name": "愛普",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 845,
+    "lowPe": 30,
+    "highPe": 40,
+    "note": null,
+    "forecastAsOf": "2026.8.7",
+    "eps": {
+      "2024": 9.73,
+      "2025": 7.73,
+      "2026": 15.2,
+      "2027": 24.12,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 10.96,
+      "2027": 17.36,
+      "2028": null
+    }
+  },
+  {
+    "code": "2379",
+    "name": "瑞昱",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 716,
+    "lowPe": 13,
+    "highPe": 23,
+    "note": null,
+    "forecastAsOf": "2026.5.4",
+    "eps": {
+      "2024": 29.82,
+      "2025": 28.77,
+      "2026": 33.3,
+      "2027": 36,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 33.51,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6719",
+    "name": "力智",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 191.5,
+    "lowPe": 17,
+    "highPe": 27,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": 2.42,
+      "2025": 6.58,
+      "2026": 9.44,
+      "2027": 11.88,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2330",
+    "name": "台積電",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 2375,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.7.18",
+    "eps": {
+      "2024": 45.25,
+      "2025": 66.2,
+      "2026": 109.8,
+      "2027": 148.6,
+      "2028": 210.6
+    },
+    "epsOld": {
+      "2025": 59.18,
+      "2026": 61.8,
+      "2027": 130,
+      "2028": null
+    }
+  },
+  {
+    "code": "2303",
+    "name": "聯電",
+    "market": "上市",
+    "group": "IC設計",
+    "fallbackPrice": 123.5,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.7.30",
+    "eps": {
+      "2024": 3.76,
+      "2025": 3.31,
+      "2026": 7.35,
+      "2027": 6.77,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2404",
+    "name": "漢唐",
+    "market": "上市",
+    "group": "廠務",
+    "fallbackPrice": 1065,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": 32.94,
+      "2025": 48.08,
+      "2026": 75,
+      "2027": 95,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 82.5,
+      "2027": 110,
+      "2028": null
+    }
+  },
+  {
+    "code": "6944",
+    "name": "兆聯實業",
+    "market": "上市",
+    "group": "廠務",
+    "fallbackPrice": 705,
+    "lowPe": 12,
+    "highPe": 22,
+    "note": null,
+    "forecastAsOf": "2026.4.17",
+    "eps": {
+      "2024": 22.33,
+      "2025": 32.29,
+      "2026": 42.5,
+      "2027": 55,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6937",
+    "name": "天虹",
+    "market": "上市",
+    "group": "廠務",
+    "fallbackPrice": 260.5,
+    "lowPe": 30,
+    "highPe": 50,
+    "note": null,
+    "forecastAsOf": "2026.7.20",
+    "eps": {
+      "2024": 6.03,
+      "2025": 5.5,
+      "2026": 8.5,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 7.5,
+      "2026": 8.5,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6830",
+    "name": "汎銓",
+    "market": "上市",
+    "group": "廠務",
+    "fallbackPrice": 446.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": null,
+    "eps": {
+      "2024": 1.34,
+      "2025": 6.7,
+      "2026": 9.84,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3711",
+    "name": "日月光",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 592,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.7.2",
+    "eps": {
+      "2024": 7.52,
+      "2025": 8.9,
+      "2026": 14.5,
+      "2027": 28.5,
+      "2028": 36.6
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": 20.7,
+      "2028": null
+    }
+  },
+  {
+    "code": "6239",
+    "name": "力成",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 269.5,
+    "lowPe": 12,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.7.30",
+    "eps": {
+      "2024": 9.09,
+      "2025": 7.48,
+      "2026": 13.69,
+      "2027": 17.94,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 11.83,
+      "2026": 9.43,
+      "2027": 20.08,
+      "2028": null
+    }
+  },
+  {
+    "code": "2441",
+    "name": "超豐",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 113.5,
+    "lowPe": 6,
+    "highPe": 16,
+    "note": null,
+    "forecastAsOf": "2026.7.30",
+    "eps": {
+      "2024": 4.39,
+      "2025": 4.31,
+      "2026": 7.33,
+      "2027": 10,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3413",
+    "name": "京鼎",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 284.5,
+    "lowPe": 9,
+    "highPe": 15,
+    "note": null,
+    "forecastAsOf": "2025.12.26",
+    "eps": {
+      "2024": 25.22,
+      "2025": 21.47,
+      "2026": 22.8,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2449",
+    "name": "京元電",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 239,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.5.11",
+    "eps": {
+      "2024": 6.36,
+      "2025": 9.1,
+      "2026": 10.07,
+      "2027": 14.66,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 10,
+      "2027": 14.4,
+      "2028": null
+    }
+  },
+  {
+    "code": "2360",
+    "name": "致茂",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 2070,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.5.4",
+    "eps": {
+      "2024": 12.49,
+      "2025": 20.3,
+      "2026": 39.87,
+      "2027": 55.57,
+      "2028": 65.07
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 26.86,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2467",
+    "name": "志聖",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 533,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.7.20",
+    "eps": {
+      "2024": 4.8,
+      "2025": 5.5,
+      "2026": 15.5,
+      "2027": 20.5,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 8.5,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "1560",
+    "name": "中砂",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 680,
+    "lowPe": 20,
+    "highPe": 35,
+    "note": null,
+    "forecastAsOf": "2026.5.17",
+    "eps": {
+      "2024": 7.1,
+      "2025": 8.74,
+      "2026": 14.27,
+      "2027": 18.93,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 8.12,
+      "2026": 11.63,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "5434",
+    "name": "崇越",
+    "market": "上市",
+    "group": "封裝",
+    "fallbackPrice": 521,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.6.24",
+    "eps": {
+      "2024": 18.88,
+      "2025": 21.59,
+      "2026": 26.87,
+      "2027": 30,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "5222",
+    "name": "全訊",
+    "market": "上市",
+    "group": "國防",
+    "fallbackPrice": 105.5,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.4.8",
+    "eps": {
+      "2024": 4.84,
+      "2025": 2.72,
+      "2026": 4.06,
+      "2027": 6.16,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 2.93,
+      "2026": 4.05,
+      "2027": 6.54,
+      "2028": null
+    }
+  },
+  {
+    "code": "3004",
+    "name": "豐達科",
+    "market": "上市",
+    "group": "航太",
+    "fallbackPrice": 120,
+    "lowPe": 15,
+    "highPe": 21,
+    "note": null,
+    "forecastAsOf": "2026.5.10",
+    "eps": {
+      "2024": 6.88,
+      "2025": 5.95,
+      "2026": 8.64,
+      "2027": 11,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 6.76,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8016",
+    "name": "矽創",
+    "market": "上市",
+    "group": "航太",
+    "fallbackPrice": 295.5,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.7.10",
+    "eps": {
+      "2024": 15.39,
+      "2025": 14.53,
+      "2026": 20.49,
+      "2027": 22.98,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2327",
+    "name": "國巨",
+    "market": "上市",
+    "group": "被動元件",
+    "fallbackPrice": 551,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.19",
+    "eps": {
+      "2024": 38.13,
+      "2025": 11.51,
+      "2026": 18.95,
+      "2027": 27.53,
+      "2028": 47.26
+    },
+    "epsOld": {
+      "2025": 11.06,
+      "2026": 17.07,
+      "2027": 30,
+      "2028": 46.9
+    }
+  },
+  {
+    "code": "2472",
+    "name": "立隆電",
+    "market": "上市",
+    "group": "被動元件",
+    "fallbackPrice": 220,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.6.2",
+    "eps": {
+      "2024": 7.01,
+      "2025": 8.03,
+      "2026": 10.23,
+      "2027": 16.11,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 10.5,
+      "2027": 15,
+      "2028": null
+    }
+  },
+  {
+    "code": "2492",
+    "name": "華新科",
+    "market": "上市",
+    "group": "被動元件",
+    "fallbackPrice": 265,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.5.29",
+    "eps": {
+      "2024": 6.15,
+      "2025": 4.74,
+      "2026": 5.76,
+      "2027": 10,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3026",
+    "name": "禾伸堂",
+    "market": "上市",
+    "group": "被動元件",
+    "fallbackPrice": 643,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.19",
+    "eps": {
+      "2024": 5.87,
+      "2025": 6.58,
+      "2026": 15.11,
+      "2027": 38.09,
+      "2028": 70
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 10.86,
+      "2027": 16,
+      "2028": null
+    }
+  },
+  {
+    "code": "6449",
+    "name": "鈺邦",
+    "market": "上市",
+    "group": "被動元件",
+    "fallbackPrice": 210.5,
+    "lowPe": 12,
+    "highPe": 22,
+    "note": null,
+    "forecastAsOf": "2026.5.31",
+    "eps": {
+      "2024": 6.08,
+      "2025": 7.38,
+      "2026": 11.14,
+      "2027": 18,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 7.45,
+      "2026": 11.88,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3665",
+    "name": "貿聯-KY",
+    "market": "上市",
+    "group": "被動元件",
+    "fallbackPrice": 2050,
+    "lowPe": 15,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.4.8",
+    "eps": {
+      "2024": 25.41,
+      "2025": 46.5,
+      "2026": 71.9,
+      "2027": 101.9,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 38,
+      "2026": 62,
+      "2027": 85.06,
+      "2028": null
+    }
+  },
+  {
+    "code": "3563",
+    "name": "牧德",
+    "market": "上市",
+    "group": "被動元件",
+    "fallbackPrice": 665,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.7.2",
+    "eps": {
+      "2024": 5.52,
+      "2025": 15.8,
+      "2026": 21,
+      "2027": 33,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2493",
+    "name": "揚博",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 174,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.7.15",
+    "eps": {
+      "2024": 6.05,
+      "2025": 4.36,
+      "2026": 9,
+      "2027": 15,
+      "2028": 20
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 7.5,
+      "2027": 9.5,
+      "2028": null
+    }
+  },
+  {
+    "code": "3167",
+    "name": "大量",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 665,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.4.7",
+    "eps": {
+      "2024": 1.48,
+      "2025": 8.13,
+      "2026": 19.53,
+      "2027": 30.59,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "7795",
+    "name": "長廣",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 568,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.6.29",
+    "eps": {
+      "2024": 4.22,
+      "2025": 3.11,
+      "2026": 4.473,
+      "2027": 17.053,
+      "2028": 22.759
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3037",
+    "name": "欣興",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 1075,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.7.30",
+    "eps": {
+      "2024": 3.34,
+      "2025": 4.38,
+      "2026": 21.9,
+      "2027": 30.65,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 3.25,
+      "2026": 9.27,
+      "2027": 27.5,
+      "2028": null
+    }
+  },
+  {
+    "code": "2313",
+    "name": "華通",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 212.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.7.21",
+    "eps": {
+      "2024": 4.7,
+      "2025": 5.51,
+      "2026": 6.81,
+      "2027": 14.24,
+      "2028": 17
+    },
+    "epsOld": {
+      "2025": 5.6,
+      "2026": 6.38,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "4958",
+    "name": "臻鼎-KY",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 435.5,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.8.13",
+    "eps": {
+      "2024": 9.67,
+      "2025": 8.7,
+      "2026": 14.02,
+      "2027": 20.68,
+      "2028": 40.58
+    },
+    "epsOld": {
+      "2025": 10.83,
+      "2026": 10.31,
+      "2027": 18,
+      "2028": null
+    }
+  },
+  {
+    "code": "3715",
+    "name": "定穎",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 108,
+    "lowPe": 10,
+    "highPe": 18,
+    "note": null,
+    "forecastAsOf": "2026.6.2",
+    "eps": {
+      "2024": 3.78,
+      "2025": 3.67,
+      "2026": 5.94,
+      "2027": 17.89,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 4.33,
+      "2026": 7.5,
+      "2027": 12.5,
+      "2028": null
+    }
+  },
+  {
+    "code": "2368",
+    "name": "金像電",
+    "market": "上市",
+    "group": "PCB",
+    "fallbackPrice": 948,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.8.13",
+    "eps": {
+      "2024": 11.4,
+      "2025": 17.5,
+      "2026": 38.3,
+      "2027": 55.1,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 14.7,
+      "2026": 20.5,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2383",
+    "name": "台光電",
+    "market": "上市",
+    "group": "CCL",
+    "fallbackPrice": 5430,
+    "lowPe": 25,
+    "highPe": 35,
+    "note": null,
+    "forecastAsOf": "2026.7.30",
+    "eps": {
+      "2024": 27.6,
+      "2025": 45.48,
+      "2026": 113.09,
+      "2027": 227.75,
+      "2028": 286.42
+    },
+    "epsOld": {
+      "2025": 41.5,
+      "2026": 51.3,
+      "2027": 110.97,
+      "2028": 221.53
+    }
+  },
+  {
+    "code": "4764",
+    "name": "雙鍵",
+    "market": "上市",
+    "group": "CCL",
+    "fallbackPrice": 206.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": null,
+    "eps": {
+      "2024": 0.27,
+      "2025": 0.61,
+      "2026": 8.28,
+      "2027": 20.21,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "5243",
+    "name": "乙盛-KY",
+    "market": "上市",
+    "group": "CCL",
+    "fallbackPrice": 89.3,
+    "lowPe": 10,
+    "highPe": 15,
+    "note": null,
+    "forecastAsOf": "2026.7.16",
+    "eps": {
+      "2024": 3.36,
+      "2025": 4.4,
+      "2026": 7.59,
+      "2027": 10.03,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "4906",
+    "name": "正文",
+    "market": "上市",
+    "group": "網通",
+    "fallbackPrice": 34,
+    "lowPe": 14,
+    "highPe": 20,
+    "note": "景氣循環股",
+    "forecastAsOf": "2026.5.31",
+    "eps": {
+      "2024": 1.56,
+      "2025": -0.23,
+      "2026": 0.4,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 1.93,
+      "2026": 1.55,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6285",
+    "name": "啟碁",
+    "market": "上市",
+    "group": "網通",
+    "fallbackPrice": 230.5,
+    "lowPe": 12,
+    "highPe": 20,
+    "note": "景氣循環股",
+    "forecastAsOf": "2026.6.2",
+    "eps": {
+      "2024": 7.26,
+      "2025": 5.36,
+      "2026": 11.01,
+      "2027": 13,
+      "2028": 16.39
+    },
+    "epsOld": {
+      "2025": 7.24,
+      "2026": 7.3,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "5388",
+    "name": "中磊",
+    "market": "上市",
+    "group": "網通",
+    "fallbackPrice": 77.6,
+    "lowPe": 10,
+    "highPe": 17,
+    "note": null,
+    "forecastAsOf": "2026.3.29",
+    "eps": {
+      "2024": 7.74,
+      "2025": 5.29,
+      "2026": 4.37,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 3.78,
+      "2026": 6.18,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2345",
+    "name": "智邦",
+    "market": "上市",
+    "group": "網通",
+    "fallbackPrice": 2070,
+    "lowPe": 23.5,
+    "highPe": 35,
+    "note": null,
+    "forecastAsOf": "2026.7.2",
+    "eps": {
+      "2024": 21.49,
+      "2025": 47.13,
+      "2026": 80.5,
+      "2027": 111.9,
+      "2028": 154
+    },
+    "epsOld": {
+      "2025": 35.51,
+      "2026": 47.2,
+      "2027": 80,
+      "2028": 147.13
+    }
+  },
+  {
+    "code": "2455",
+    "name": "全新",
+    "market": "上市",
+    "group": "光通",
+    "fallbackPrice": 381.5,
+    "lowPe": 20,
+    "highPe": 40,
+    "note": null,
+    "forecastAsOf": "2026.8.4",
+    "eps": {
+      "2024": 3.63,
+      "2025": 2.97,
+      "2026": 5.55,
+      "2027": 8.55,
+      "2028": 10.5
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 4.73,
+      "2027": 7.23,
+      "2028": null
+    }
+  },
+  {
+    "code": "6257",
+    "name": "矽格",
+    "market": "上市",
+    "group": "光通",
+    "fallbackPrice": 197.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.13",
+    "eps": {
+      "2024": 5.89,
+      "2025": 6.14,
+      "2026": 10.38,
+      "2027": 14.05,
+      "2028": 18
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 7.74,
+      "2027": 11.26,
+      "2028": null
+    }
+  },
+  {
+    "code": "2308",
+    "name": "台達電",
+    "market": "上市",
+    "group": "電源供應",
+    "fallbackPrice": 1735,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.7.31",
+    "eps": {
+      "2024": 13.56,
+      "2025": 23.14,
+      "2026": 43.68,
+      "2027": 79.56,
+      "2028": 120
+    },
+    "epsOld": {
+      "2025": 18.1,
+      "2026": 24.2,
+      "2027": 60.3,
+      "2028": 109.42
+    }
+  },
+  {
+    "code": "2301",
+    "name": "光寶科",
+    "market": "上市",
+    "group": "電源供應",
+    "fallbackPrice": 287,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.7.31",
+    "eps": {
+      "2024": 5.21,
+      "2025": 6.82,
+      "2026": 10.38,
+      "2027": 16.5,
+      "2028": 19.91
+    },
+    "epsOld": {
+      "2025": 6.43,
+      "2026": 8.98,
+      "2027": 12,
+      "2028": null
+    }
+  },
+  {
+    "code": "6412",
+    "name": "群電",
+    "market": "上市",
+    "group": "電源供應",
+    "fallbackPrice": 77.7,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.2.6",
+    "eps": {
+      "2024": 8.24,
+      "2025": 5.2,
+      "2026": 9.3,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 7.06,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6781",
+    "name": "AES-KY",
+    "market": "上市",
+    "group": "電源供應",
+    "fallbackPrice": 1045,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.19",
+    "eps": {
+      "2024": 25.39,
+      "2025": 38.2,
+      "2026": 51.38,
+      "2027": 73.01,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 52.5,
+      "2027": 68.45,
+      "2028": null
+    }
+  },
+  {
+    "code": "6525",
+    "name": "捷敏-KY",
+    "market": "上市",
+    "group": "電源供應",
+    "fallbackPrice": 137,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": 5.15,
+      "2025": 5.88,
+      "2026": 8.52,
+      "2027": 9.75,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "7788",
+    "name": "松川精密",
+    "market": "上市",
+    "group": "電源供應",
+    "fallbackPrice": 253,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.13",
+    "eps": {
+      "2024": 6.95,
+      "2025": 3.63,
+      "2026": 12.48,
+      "2027": 16.29,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 7.74,
+      "2027": 12,
+      "2028": null
+    }
+  },
+  {
+    "code": "2481",
+    "name": "強茂",
+    "market": "上市",
+    "group": "功率元件",
+    "fallbackPrice": 134,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.5.28",
+    "eps": {
+      "2024": 2.4,
+      "2025": 3.12,
+      "2026": 4.59,
+      "2027": 6.5,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6415",
+    "name": "矽力-KY",
+    "market": "上市",
+    "group": "功率元件",
+    "fallbackPrice": 450,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": null,
+    "eps": {
+      "2024": 5.95,
+      "2025": 6.4,
+      "2026": 10,
+      "2027": 16,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8261",
+    "name": "富鼎",
+    "market": "上市",
+    "group": "功率元件",
+    "fallbackPrice": 177.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": 4.8,
+      "2025": 5.73,
+      "2026": 7.81,
+      "2027": 10.62,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": 12,
+      "2028": null
+    }
+  },
+  {
+    "code": "2351",
+    "name": "順德",
+    "market": "上市",
+    "group": "功率元件",
+    "fallbackPrice": 200.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.13",
+    "eps": {
+      "2024": 3.71,
+      "2025": 1.66,
+      "2026": 6.9,
+      "2027": 9.61,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 6,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3533",
+    "name": "嘉澤",
+    "market": "上市",
+    "group": "功率元件",
+    "fallbackPrice": 1610,
+    "lowPe": 13,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.4",
+    "eps": {
+      "2024": 82.77,
+      "2025": 70.17,
+      "2026": 85.21,
+      "2027": 124.99,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3017",
+    "name": "奇鋐",
+    "market": "上市",
+    "group": "散熱",
+    "fallbackPrice": 2855,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.8.13",
+    "eps": {
+      "2024": 21.21,
+      "2025": 49.8,
+      "2026": 105.02,
+      "2027": 154.6,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 46.51,
+      "2026": 63.26,
+      "2027": 120,
+      "2028": null
+    }
+  },
+  {
+    "code": "6805",
+    "name": "富世達",
+    "market": "上市",
+    "group": "散熱",
+    "fallbackPrice": 1710,
+    "lowPe": 17,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.8.7",
+    "eps": {
+      "2024": 17.9,
+      "2025": 30.77,
+      "2026": 60.25,
+      "2027": 94.22,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 54.76,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8996",
+    "name": "高力",
+    "market": "上市",
+    "group": "散熱",
+    "fallbackPrice": 1145,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.6.18",
+    "eps": {
+      "2024": 6.56,
+      "2025": 9.07,
+      "2026": 23.05,
+      "2027": 42.75,
+      "2028": 73.84
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 33.9,
+      "2027": 63.73,
+      "2028": 90
+    }
+  },
+  {
+    "code": "2357",
+    "name": "華碩",
+    "market": "上市",
+    "group": "散熱",
+    "fallbackPrice": 923,
+    "lowPe": 7,
+    "highPe": 18,
+    "note": null,
+    "forecastAsOf": "2025.8.29",
+    "eps": {
+      "2024": 42.27,
+      "2025": 52.06,
+      "2026": 55.4,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2344",
+    "name": "華邦電",
+    "market": "上市",
+    "group": "記憶體",
+    "fallbackPrice": 177,
+    "lowPe": 5,
+    "highPe": 10,
+    "note": "無法評估PE範圍",
+    "forecastAsOf": "2026.8.7",
+    "eps": {
+      "2024": 0.14,
+      "2025": 0.5,
+      "2026": 19,
+      "2027": 28,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 0.2,
+      "2026": 1.5,
+      "2027": 2.5,
+      "2028": null
+    }
+  },
+  {
+    "code": "2451",
+    "name": "創見",
+    "market": "上市",
+    "group": "記憶體",
+    "fallbackPrice": 316,
+    "lowPe": 11,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2025.11.7",
+    "eps": {
+      "2024": 5.39,
+      "2025": 9.58,
+      "2026": 14.23,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2337",
+    "name": "旺宏",
+    "market": "上市",
+    "group": "記憶體",
+    "fallbackPrice": 124,
+    "lowPe": 5,
+    "highPe": 15,
+    "note": null,
+    "forecastAsOf": "2026.7.30",
+    "eps": {
+      "2024": -1.73,
+      "2025": -1.77,
+      "2026": 5,
+      "2027": 15,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8150",
+    "name": "南茂",
+    "market": "上市",
+    "group": "記憶體",
+    "fallbackPrice": 87.7,
+    "lowPe": 15,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.7.10",
+    "eps": {
+      "2024": 1.95,
+      "2025": 0.7,
+      "2026": 3.82,
+      "2027": 6.47,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2059",
+    "name": "川湖",
+    "market": "上市",
+    "group": "記憶體",
+    "fallbackPrice": 14410,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.5.10",
+    "eps": {
+      "2024": 64.59,
+      "2025": 92.71,
+      "2026": 187.07,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 85.91,
+      "2026": 127.43,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2317",
+    "name": "鴻海",
+    "market": "上市",
+    "group": "伺服器組裝",
+    "fallbackPrice": 243.5,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.5.28",
+    "eps": {
+      "2024": 11.01,
+      "2025": 14.33,
+      "2026": 17.94,
+      "2027": 21.46,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 14.68,
+      "2026": 19.23,
+      "2027": 25,
+      "2028": null
+    }
+  },
+  {
+    "code": "3231",
+    "name": "緯創",
+    "market": "上市",
+    "group": "伺服器組裝",
+    "fallbackPrice": 175.5,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2025.12.26",
+    "eps": {
+      "2024": 6.11,
+      "2025": 9.34,
+      "2026": 12.29,
+      "2027": 12.68,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 14.22,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2382",
+    "name": "廣達",
+    "market": "上市",
+    "group": "伺服器組裝",
+    "fallbackPrice": 325,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.4.10",
+    "eps": {
+      "2024": 15.49,
+      "2025": 19.45,
+      "2026": 24.86,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 17.66,
+      "2026": 20,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3706",
+    "name": "神達",
+    "market": "上市",
+    "group": "伺服器組裝",
+    "fallbackPrice": 92.1,
+    "lowPe": 9,
+    "highPe": 18,
+    "note": null,
+    "forecastAsOf": "2025.7.23",
+    "eps": {
+      "2024": 3.28,
+      "2025": 6.5,
+      "2026": 9,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3376",
+    "name": "新日興",
+    "market": "上市",
+    "group": "伺服器組裝",
+    "fallbackPrice": 186.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.6.17",
+    "eps": {
+      "2024": 7.15,
+      "2025": 1.63,
+      "2026": 9.49,
+      "2027": 16.73,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6505",
+    "name": "台塑化",
+    "market": "上市",
+    "group": "伺服器組裝",
+    "fallbackPrice": 69.9,
+    "lowPe": 14,
+    "highPe": 22,
+    "note": null,
+    "forecastAsOf": "2026.7.20",
+    "eps": {
+      "2024": 0.63,
+      "2025": 1.49,
+      "2026": 7.31,
+      "2027": 3.97,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "1723",
+    "name": "中碳",
+    "market": "上市",
+    "group": "伺服器組裝",
+    "fallbackPrice": 88.4,
+    "lowPe": 16,
+    "highPe": 23,
+    "note": null,
+    "forecastAsOf": "2026.3.29",
+    "eps": {
+      "2024": 0.2,
+      "2025": 2.65,
+      "2026": 5.21,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6768",
+    "name": "志強-KY",
+    "market": "上市",
+    "group": "紡織",
+    "fallbackPrice": 65.9,
+    "lowPe": 10,
+    "highPe": 16,
+    "note": null,
+    "forecastAsOf": "2025.11.5",
+    "eps": {
+      "2024": 8.15,
+      "2025": 7.37,
+      "2026": 8.29,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 10.32,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6890",
+    "name": "來億-KY",
+    "market": "上市",
+    "group": "紡織",
+    "fallbackPrice": 163.5,
+    "lowPe": 9,
+    "highPe": 18,
+    "note": null,
+    "forecastAsOf": "2026.5.17",
+    "eps": {
+      "2024": 16.13,
+      "2025": 13.02,
+      "2026": 9.71,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 16.97,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "9802",
+    "name": "鈺齊-KY",
+    "market": "上市",
+    "group": "紡織",
+    "fallbackPrice": 72.2,
+    "lowPe": 9,
+    "highPe": 15,
+    "note": null,
+    "forecastAsOf": "2025.6.12",
+    "eps": {
+      "2024": 7.23,
+      "2025": 8.66,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "9914",
+    "name": "美利達",
+    "market": "上市",
+    "group": "自行車",
+    "fallbackPrice": 84.5,
+    "lowPe": 8,
+    "highPe": 15,
+    "note": null,
+    "forecastAsOf": "2026.7.18",
+    "eps": {
+      "2024": -2.34,
+      "2025": 5.8,
+      "2026": 6.06,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 5.32,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "5306",
+    "name": "桂盟",
+    "market": "上市",
+    "group": "自行車",
+    "fallbackPrice": 94.6,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.2.25",
+    "eps": {
+      "2024": 7.27,
+      "2025": 7.46,
+      "2026": 8.04,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 7.65,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3680",
+    "name": "家登",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 464.5,
+    "lowPe": 25,
+    "highPe": 40,
+    "note": null,
+    "forecastAsOf": "2026.7.4",
+    "eps": {
+      "2024": 12.32,
+      "2025": 9.43,
+      "2026": 14.91,
+      "2027": 18.74,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 18.61,
+      "2026": 12.49,
+      "2027": 20,
+      "2028": null
+    }
+  },
+  {
+    "code": "3211",
+    "name": "順達",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 385,
+    "lowPe": 12,
+    "highPe": 24,
+    "note": null,
+    "forecastAsOf": "2026.4.24",
+    "eps": {
+      "2024": 17.59,
+      "2025": 8.95,
+      "2026": 13.06,
+      "2027": 19.81,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "4931",
+    "name": "新盛力",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 267,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": 2.5,
+      "2025": 3.13,
+      "2026": 9.28,
+      "2027": 21.43,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 7.73,
+      "2027": 12.56,
+      "2028": null
+    }
+  },
+  {
+    "code": "6409",
+    "name": "旭隼",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 977,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.6.24",
+    "eps": {
+      "2024": 48.13,
+      "2025": 40.23,
+      "2026": 30.79,
+      "2027": 40.45,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "4772",
+    "name": "台特化",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 273,
+    "lowPe": null,
+    "highPe": null,
+    "note": "無法評估PE範圍",
+    "forecastAsOf": null,
+    "eps": {
+      "2024": 2.74,
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3324",
+    "name": "雙鴻",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 1075,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.6.19",
+    "eps": {
+      "2024": 21.23,
+      "2025": 27.72,
+      "2026": 64.06,
+      "2027": 96.82,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 23.96,
+      "2026": 42.56,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6275",
+    "name": "元山",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 48.6,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.7.7",
+    "eps": {
+      "2024": 2.87,
+      "2025": 2.81,
+      "2026": 1.91,
+      "2027": 3.39,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3357",
+    "name": "台慶科",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 212,
+    "lowPe": 13,
+    "highPe": 23,
+    "note": null,
+    "forecastAsOf": "2026.4.27",
+    "eps": {
+      "2024": 7.33,
+      "2025": 10.33,
+      "2026": 13.42,
+      "2027": 17,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 11.85,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3675",
+    "name": "德微",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 311,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": 8.34,
+      "2025": 2.67,
+      "2026": 10.49,
+      "2027": 15.33,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3081",
+    "name": "聯亞",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 2540,
+    "lowPe": 30,
+    "highPe": 50,
+    "note": null,
+    "forecastAsOf": "2026.8.13",
+    "eps": {
+      "2024": -0.59,
+      "2025": 4.66,
+      "2026": 20.03,
+      "2027": 46.67,
+      "2028": 65
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 12.05,
+      "2027": 40,
+      "2028": null
+    }
+  },
+  {
+    "code": "3105",
+    "name": "穩懋",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 524,
+    "lowPe": 25,
+    "highPe": 40,
+    "note": null,
+    "forecastAsOf": "2026.7.25",
+    "eps": {
+      "2024": 1.81,
+      "2025": 4,
+      "2026": 7.78,
+      "2027": 13,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 6.08,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "4749",
+    "name": "新應材",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 877,
+    "lowPe": 25,
+    "highPe": 45,
+    "note": null,
+    "forecastAsOf": "2026.6.23",
+    "eps": {
+      "2024": 8.5,
+      "2025": 11.23,
+      "2026": 17.62,
+      "2027": 23.86,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3131",
+    "name": "弘塑",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 3000,
+    "lowPe": 20,
+    "highPe": 35,
+    "note": null,
+    "forecastAsOf": "2026.7.10",
+    "eps": {
+      "2024": 29.07,
+      "2025": 42.5,
+      "2026": 64.16,
+      "2027": 109.67,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 39.65,
+      "2026": 57.5,
+      "2027": 145,
+      "2028": null
+    }
+  },
+  {
+    "code": "3455",
+    "name": "由田",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 270,
+    "lowPe": 9,
+    "highPe": 18,
+    "note": null,
+    "forecastAsOf": "2026.4.8",
+    "eps": {
+      "2024": 3.38,
+      "2025": 5.5,
+      "2026": 8.5,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 10,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3551",
+    "name": "世禾",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 217.5,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.5.28",
+    "eps": {
+      "2024": 6.63,
+      "2025": 8.36,
+      "2026": 9.92,
+      "2027": 12.45,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3485",
+    "name": "敘豐",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 222,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.19",
+    "eps": {
+      "2024": 7.14,
+      "2025": 5.9,
+      "2026": 9,
+      "2027": 19,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 18.96,
+      "2027": 25,
+      "2028": null
+    }
+  },
+  {
+    "code": "6664",
+    "name": "群翊",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 424,
+    "lowPe": 10,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.4.28",
+    "eps": {
+      "2024": 16.97,
+      "2025": 15.06,
+      "2026": 21,
+      "2027": 27,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 19,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "7853",
+    "name": "政美應用",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 111,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.7.30",
+    "eps": {
+      "2024": null,
+      "2025": null,
+      "2026": 6.5,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 6.5,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3491",
+    "name": "昇達科",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 394,
+    "lowPe": 22,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": null,
+    "eps": {
+      "2024": 8.59,
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6488",
+    "name": "環球晶",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 1485,
+    "lowPe": 17,
+    "highPe": 27,
+    "note": null,
+    "forecastAsOf": "2026.7.2",
+    "eps": {
+      "2024": 21.06,
+      "2025": 15.29,
+      "2026": 32.89,
+      "2027": 75,
+      "2028": 131.04
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6584",
+    "name": "南俊國際",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 317,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2025.11.20",
+    "eps": {
+      "2024": 2.94,
+      "2025": 5.62,
+      "2026": 15.67,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "4991",
+    "name": "環宇-KY",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 554,
+    "lowPe": 20,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": null,
+      "2025": 0.14,
+      "2026": 6.77,
+      "2027": 16.25,
+      "2028": 30
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 6.21,
+      "2027": 16.97,
+      "2028": null
+    }
+  },
+  {
+    "code": "5289",
+    "name": "宜鼎",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 1530,
+    "lowPe": 5,
+    "highPe": 15,
+    "note": null,
+    "forecastAsOf": "2026.7.10",
+    "eps": {
+      "2024": 12.2,
+      "2025": 21.72,
+      "2026": 367.43,
+      "2027": 335.31,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "2221",
+    "name": "大甲",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 52.8,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.6.19",
+    "eps": {
+      "2024": 2.02,
+      "2025": 2.31,
+      "2026": 3.66,
+      "2027": 5,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6826",
+    "name": "和淞",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 631,
+    "lowPe": 10,
+    "highPe": 22,
+    "note": null,
+    "forecastAsOf": "2026.8.11",
+    "eps": {
+      "2024": 28.11,
+      "2025": 27.33,
+      "2026": 32.5,
+      "2027": 47.5,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": 50,
+      "2028": null
+    }
+  },
+  {
+    "code": "5536",
+    "name": "聖暉",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 1140,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.6.4",
+    "eps": {
+      "2024": 21.09,
+      "2025": 28.42,
+      "2026": 56.23,
+      "2027": 72.1,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 57.8,
+      "2027": 71.4,
+      "2028": null
+    }
+  },
+  {
+    "code": "5274",
+    "name": "信驊",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 12950,
+    "lowPe": 30,
+    "highPe": 50,
+    "note": null,
+    "forecastAsOf": "2026.6.7",
+    "eps": {
+      "2024": 68.04,
+      "2025": 103.92,
+      "2026": 176.1,
+      "2027": 251.95,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6894",
+    "name": "衛司特",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 331,
+    "lowPe": 19,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.3.16",
+    "eps": {
+      "2024": 8.5,
+      "2025": 11.87,
+      "2026": 20.51,
+      "2027": 30,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 14.79,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "3587",
+    "name": "閎康",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 342,
+    "lowPe": 15,
+    "highPe": 26,
+    "note": null,
+    "forecastAsOf": "2026.5.24",
+    "eps": {
+      "2024": 10.39,
+      "2025": 6.1,
+      "2026": 12.72,
+      "2027": 20,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 6.86,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6274",
+    "name": "台燿",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 1340,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.4",
+    "eps": {
+      "2024": 9.5,
+      "2025": 11.81,
+      "2026": 36.43,
+      "2027": 67.49,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 11.71,
+      "2026": 16,
+      "2027": 28.7,
+      "2028": null
+    }
+  },
+  {
+    "code": "6727",
+    "name": "亞泰金屬",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 367.5,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.4.27",
+    "eps": {
+      "2024": 5.69,
+      "2025": 6.8,
+      "2026": 15.09,
+      "2027": 40,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": 20.66,
+      "2028": null
+    }
+  },
+  {
+    "code": "5425",
+    "name": "台半",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 88.8,
+    "lowPe": 10,
+    "highPe": 20,
+    "note": null,
+    "forecastAsOf": "2026.6.12",
+    "eps": {
+      "2024": 1.87,
+      "2025": 1.66,
+      "2026": 4.73,
+      "2027": 7.95,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 4.16,
+      "2027": 6,
+      "2028": null
+    }
+  },
+  {
+    "code": "6913",
+    "name": "鴻呈",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 153.5,
+    "lowPe": 21.5,
+    "highPe": 35,
+    "note": null,
+    "forecastAsOf": "2025.7.31",
+    "eps": {
+      "2024": 4.78,
+      "2025": 7,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8027",
+    "name": "鈦昇",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 215.5,
+    "lowPe": 15,
+    "highPe": 30,
+    "note": null,
+    "forecastAsOf": "2025.12.22",
+    "eps": {
+      "2024": -0.51,
+      "2025": 0.5,
+      "2026": 3.5,
+      "2027": 7.5,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "7712",
+    "name": "博盛半導體",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 180,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.6.18",
+    "eps": {
+      "2024": 8.39,
+      "2025": 5.42,
+      "2026": 8.24,
+      "2027": 9.54,
+      "2028": 11
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8042",
+    "name": "金山電",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 117.5,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.5.13",
+    "eps": {
+      "2024": 0.6,
+      "2025": 0.89,
+      "2026": 5.15,
+      "2027": 9.14,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "6173",
+    "name": "信昌電",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 194,
+    "lowPe": 15,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.5.25",
+    "eps": {
+      "2024": 2.91,
+      "2025": 3.26,
+      "2026": 6.18,
+      "2027": 12,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8069",
+    "name": "元太",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 195.5,
+    "lowPe": 14,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.3.13",
+    "eps": {
+      "2024": 7.75,
+      "2025": 9.14,
+      "2026": 10.2,
+      "2027": 11.45,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 10.5,
+      "2026": 11.5,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "1785",
+    "name": "光洋科",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 104.5,
+    "lowPe": 10,
+    "highPe": 18,
+    "note": null,
+    "forecastAsOf": "2026.6.29",
+    "eps": {
+      "2024": 3.21,
+      "2025": 3.14,
+      "2026": 10.17,
+      "2027": 13.68,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 8,
+      "2027": 11,
+      "2028": null
+    }
+  },
+  {
+    "code": "8299",
+    "name": "群聯",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 2400,
+    "lowPe": 6,
+    "highPe": 14,
+    "note": null,
+    "forecastAsOf": "2026.6.19",
+    "eps": {
+      "2024": 38.95,
+      "2025": 41.98,
+      "2026": 401.94,
+      "2027": 374.8,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 23.53,
+      "2026": 34.94,
+      "2027": 79.16,
+      "2028": null
+    }
+  },
+  {
+    "code": "8255",
+    "name": "朋程",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 118,
+    "lowPe": 17.5,
+    "highPe": 26,
+    "note": null,
+    "forecastAsOf": "2025.9.4",
+    "eps": {
+      "2024": 8.24,
+      "2025": 5.55,
+      "2026": 6.3,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": 7.89,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8358",
+    "name": "金居",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 289,
+    "lowPe": 10,
+    "highPe": 25,
+    "note": null,
+    "forecastAsOf": "2026.8.11",
+    "eps": {
+      "2024": 3.65,
+      "2025": 4.2,
+      "2026": 9.5,
+      "2027": 16,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": 9.5,
+      "2027": 17,
+      "2028": null
+    }
+  },
+  {
+    "code": "8086",
+    "name": "宏捷科",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 155,
+    "lowPe": 24,
+    "highPe": 34,
+    "note": null,
+    "forecastAsOf": "2026.5.12",
+    "eps": {
+      "2024": 2.65,
+      "2025": 3.36,
+      "2026": 5.63,
+      "2027": 6.54,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  },
+  {
+    "code": "8936",
+    "name": "國統",
+    "market": "上櫃",
+    "group": null,
+    "fallbackPrice": 57.8,
+    "lowPe": 10,
+    "highPe": 18,
+    "note": null,
+    "forecastAsOf": "2026.6.24",
+    "eps": {
+      "2024": 3.37,
+      "2025": 4.08,
+      "2026": 4.3,
+      "2027": null,
+      "2028": null
+    },
+    "epsOld": {
+      "2025": null,
+      "2026": null,
+      "2027": null,
+      "2028": null
+    }
+  }
+]
