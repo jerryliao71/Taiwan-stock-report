@@ -414,6 +414,7 @@ export default function StockDashboard({ initialData, dataUrl = '/api/stocks' }:
         </section>
 
         <footer className="mt-8 border-t border-[#dbe1d9] py-6 text-[10px] leading-5 text-[#7f8984]">
+          <div className="mb-3 flex flex-wrap gap-3"><a className="font-medium text-[#294b3f] underline decoration-[#b5c2bb] underline-offset-2" href="ai-reports/">歷史 AI 產業報告</a><a className="font-medium text-[#294b3f] underline decoration-[#b5c2bb] underline-offset-2" href="legacy-home.html">部署前舊首頁</a></div>
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between"><p>資料來源：<a className="underline decoration-[#b5c2bb] underline-offset-2 hover:text-[#294b3f]" href="https://openapi.twse.com.tw/" target="_blank" rel="noreferrer">臺灣證券交易所</a>、<a className="underline decoration-[#b5c2bb] underline-offset-2 hover:text-[#294b3f]" href="https://www.tpex.org.tw/openapi/" target="_blank" rel="noreferrer">證券櫃檯買賣中心</a>、公開資訊觀測站與原始工作簿。</p><p className="max-w-xl lg:text-right">本網站為資料整理與情境比較工具，不構成投資建議。負 EPS、轉盈／轉虧或缺值時不計算 PE；資料充分度不是投資評等。</p></div>
         </footer>
       </div>
