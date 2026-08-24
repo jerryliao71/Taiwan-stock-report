@@ -437,17 +437,24 @@ export function createBaselineDashboard(): DashboardData {
 }
 
 async function fetchArray(url: string): Promise<Record<string, unknown>[]> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12_000);
-  try {
-    const response = await fetch(url, { headers: { Accept: 'application/json' }, signal: controller.signal });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const payload: unknown = await response.json();
-    if (!Array.isArray(payload)) throw new Error('Unexpected payload');
-    return payload as Record<string, unknown>[];
-  } finally {
-    clearTimeout(timeout);
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15_000);
+    try {
+      const response = await fetch(url, { headers: { Accept: 'application/json', 'User-Agent': 'Taiwan-Stock-Report/1.0' }, signal: controller.signal });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const payload: unknown = await response.json();
+      if (!Array.isArray(payload)) throw new Error('Unexpected payload');
+      return payload as Record<string, unknown>[];
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 750));
+    } finally {
+      clearTimeout(timeout);
+    }
   }
+  throw lastError instanceof Error ? lastError : new Error('Official source fetch failed');
 }
 
 function latestDate(values: Array<string | null>): string | null {
