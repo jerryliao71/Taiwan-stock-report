@@ -13,8 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://taiwan-stock-radar-jerry.jerry1982.chatgpt.site'),
   title: '台股估值雷達',
   description: '自動更新台股行情、EPS 財測、本益比與參考價的投資研究工作台。',
+  openGraph: {
+    type: 'website',
+    locale: 'zh_TW',
+    url: '/',
+    siteName: '台股估值雷達',
+    title: '台股估值雷達',
+    description: '自動更新行情、EPS 財測與估值訊號。',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: '台股估值雷達' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '台股估值雷達',
+    description: '自動更新行情、EPS 財測與估值訊號。',
+    images: ['/og.png'],
+  },
 };
 
 export default function RootLayout({
