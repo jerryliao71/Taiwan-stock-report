@@ -40,11 +40,11 @@ tbtn.addEventListener('click', () => {
   const stale = DATA.filter(r => r.stale).length;
   const cells = [
     ['追蹤標的', DATA.length + '', '上市 81 · 上櫃 44'],
-    ['中位數上檔空間', fp(med), '模型校準目標 +12%'],
+    ['中位數上檔空間', fp(med), '校準常數 ×' + (META.cal ? META.cal.k.toFixed(3) : '—')],
     ['顯著低估 / 顯著高估', cheap + ' / ' + rich, '門檻 ±30% 與 −25%'],
-    ['與原表觀點分歧', div + '', '倍數差異超過 25%'],
-    ['數據待確認', flagged + '', '財測數量級異常'],
-    ['財測更新逾半年', stale + '', '需重新檢視']
+    ['vs 人工財測分歧', DATA.filter(r => r.sheet_gap != null && Math.abs(r.sheet_gap) > 0.35).length + '', '差異超過 35%'],
+    ['虧損不評價', DATA.filter(r => r.unpriceable).length + '', '本益比對負 EPS 無意義'],
+    ['人工校正生效', (META.overrides_active || 0) + '', (META.overrides_expired || 0) + ' 筆已過期']
   ];
   $('#kpis').innerHTML = cells.map(c =>
     `<div class="kpi"><span class="l">${c[0]}</span><span class="v">${esc(c[1])}</span><span class="n">${esc(c[2])}</span></div>`

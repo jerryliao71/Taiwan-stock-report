@@ -75,7 +75,8 @@ function paceCell(r) {
 }
 function rowHTML(r, i) {
   const t = tone(r.upside), col = t === 'cheap' ? 'var(--cheap)' : t === 'rich' ? 'var(--rich)' : 'var(--mid)';
-  const stripe = r.suspect ? 'var(--warn)' : r.upside == null ? 'var(--line-2)' : col;
+  const stripe = (r.override && !r.override.expired && Object.keys(r.override.applied || {}).length)
+    ? 'var(--accent)' : r.unpriceable ? 'var(--warn)' : r.upside == null ? 'var(--line-2)' : col;
   const w = r.upside == null ? 0 : Math.min(50, Math.abs(r.upside) / MAXUP * 50);
   const bar = r.upside == null ? '' :
     `<span class="upbar" style="background:${col};${r.upside >= 0 ? 'left:50%' : 'right:50%'};width:${w.toFixed(1)}%"></span>`;
@@ -88,7 +89,8 @@ function rowHTML(r, i) {
     <td class="l"><span class="sect">${esc(r.sector)}</span>${r.sector_fixed ? '<span class="fixmark" title="本頁重新分類">✎</span>' : ''}</td>
     <td>${fprice(r.price)}${r.chg != null ? `<span class="chg ${r.chg >= 0 ? 'u' : 'd'}">${r.chg >= 0 ? '+' : ''}${fx(r.chg, 2)}%</span>` : ''}</td>
     <td>${fx(r.base_eps, 2)}<span class="subv">${r.base_yr ?? ''}${
-        r.base_src === '原表財測' ? ' 人工' : ''}${r.low_conf ? ' ⚠' : ''}</span></td>
+        r.base_src === '人工校正' ? ' <b style="color:var(--accent)">校正</b>'
+        : r.base_src === '原表財測' ? ' 人工' : ''}${r.low_conf ? ' ⚠' : ''}</span></td>
     <td>${r.pe_now == null ? '—' : fx(r.pe_now) + 'x'}</td>
     <td>${r.pe_official == null ? '—' : fx(r.pe_official) + 'x'}</td>
     <td>${paceCell(r)}</td>
@@ -208,6 +210,20 @@ $('#suspects').innerHTML = DATA.filter(r => r.unpriceable).map(r => `<div class=
   <div class="what">${r.flags.map(esc).join('；')}。現價 ${fprice(r.price)}。</div></div>`).join('')
   || '<div class="appitem"><div class="who">—</div><div class="what">目前所有個股都能評價。</div></div>';
 
+const ovs = DATA.filter(r => r.override);
+$('#overrides').innerHTML = ovs.length ? ovs.map(r => {
+  const o = r.override, keys = Object.entries(o.applied || {});
+  const state = o.expired ? '<span class="chip w">已於 ' + esc(o.expires) + ' 到期，已改回官方推算</span>'
+    : (o.expires ? '<span class="chip">' + esc(o.expires) + ' 到期</span>' : '');
+  return `<div class="appitem">
+  <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
+  <div class="what">${esc(o.reason || '(未填理由)')}
+    <br>${keys.length ? keys.map(([k, v]) => `覆寫 <code>${esc(k)}</code> = <code>${esc(v)}</code>`).join('　')
+        : '<i>目前未套用任何欄位</i>'}
+    ${o.auto_eps != null ? `　官方推算原為 <code>${fx(o.auto_eps, 2)}</code>` : ''}
+    <div class="chips">${state}<span class="chip">登錄於 ${esc(o.date || '—')}</span></div></div></div>`;
+}).join('') : '<div class="appitem"><div class="who">—</div><div class="what">目前沒有任何人工校正，所有個股都採用官方推算。</div></div>';
+
 const gaps = DATA.filter(r => r.sheet_gap != null && Math.abs(r.sheet_gap) > 0.35)
   .sort((a, b) => a.sheet_gap - b.sheet_gap);
 $('#pace').innerHTML = gaps.length ? gaps.map(r => `<div class="appitem">
@@ -229,6 +245,18 @@ $('#fixes').innerHTML = DATA.filter(r => r.sector_fixed).map(r => `<div class="a
   <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)}</span></div>
   <div class="what"><code>${esc(r.sheet_sector || '未標註')}</code> <span class="arrow">→</span> <code>${esc(r.sector)}</code>
     　產業基準倍數採 ${r.anchor}x</div></div>`).join('');
+
+/* ── calibration health ─────────────────── */
+(function health() {
+  const k = META.cal ? META.cal.k : null;
+  if (k == null) return;
+  const label = {ok: '校準健康', watch: '留意', anchors_stale: '建議提前重新校準'}[META.drift] || '';
+  $('#health').innerHTML = `<div class="health ${esc(META.drift || 'ok')}">
+    <span class="dot"></span>
+    <span><b>${esc(label)}　校準常數 ×${k.toFixed(3)}</b>　${esc(META.drift_note || '')}
+    <span class="subv" style="display:inline">　產業基準表每季重新校準一次（4／6／9／12 月 15 日），
+    這個常數是兩次校準之間的健康指標。</span></span></div>`;
+})();
 
 /* ── sticky offset ──────────────────────── */
 /* The control bar wraps to 2-3 lines on narrow viewports; a hard-coded sticky

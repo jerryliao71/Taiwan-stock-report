@@ -45,8 +45,9 @@ def _days_since(iso, today):
         return None
 
 
-def build(forecasts, official, nowcast=None, today=None):
+def build(forecasts, official, nowcast=None, overrides=None, today=None):
     today = today or date.today()
+    ov_all = (overrides or {}).get('overrides', {})
     price, opes, aeps = official['price'], official['pe'], official['eps_actual']
     recs = []
 
@@ -63,6 +64,7 @@ def build(forecasts, official, nowcast=None, today=None):
                  price=P, chg=q.get('change'), price_date=q.get('date',''), price_src=q.get('src',''),
                  lo0=(s['pe_band'] or [None,None])[0], hi0=(s['pe_band'] or [None,None])[1])
 
+        r['excluded'] = False
         r['drift'] = (P / s['sheet_price'] - 1) if (P and s['sheet_price']) else None
         op = opes.get(c, {})
         r['pe_official'] = op.get('pe'); r['pb'] = op.get('pb'); r['yield'] = op.get('yield')
@@ -110,6 +112,40 @@ def build(forecasts, official, nowcast=None, today=None):
                 r['base_eps'] = r['base_yr'] = None
                 r['base_src'] = '無'
         r['sheet_eps_same_yr'] = eps.get(r['base_yr']) if r['base_yr'] else None
+
+        # ---- manual correction layer: always wins over the automatic base ----
+        ov = dict(ov_all.get(c) or {})
+        r['override'] = None
+        if ov:
+            exp = ov.get('expires')
+            expired = False
+            if exp:
+                try:
+                    y_, m_, d_ = (int(x) for x in exp.split('-'))
+                    expired = date(y_, m_, d_) < today
+                except Exception:
+                    expired = False
+            applied = {}
+            auto_eps = r['base_eps']
+            if not expired:
+                if ov.get('exclude'):
+                    r['excluded'] = True
+                if ov.get('sector'):
+                    r['sector'] = ov['sector']
+                if ov.get('eps') is not None:
+                    r['base_eps'] = float(ov['eps'])
+                    r['base_yr'] = int(ov.get('eps_year') or r['base_yr'] or 0) or r['base_yr']
+                    r['base_src'] = '人工校正'
+                    applied['eps'] = ov['eps']
+                if ov.get('anchor') is not None:
+                    applied['anchor'] = float(ov['anchor'])
+                if ov.get('pe_mid') is not None:
+                    applied['pe_mid'] = float(ov['pe_mid'])
+                if ov.get('sector'):
+                    applied['sector'] = ov['sector']
+            r['override'] = {'reason': ov.get('reason', ''), 'date': ov.get('date', ''),
+                             'expires': exp or '', 'expired': expired,
+                             'applied': applied, 'auto_eps': auto_eps}
 
         # ---- integrity flags ----
         # The base is now derived from filings, so the old typo hunt against the
@@ -185,7 +221,10 @@ def build(forecasts, official, nowcast=None, today=None):
             gf = min(gf, 1.15)
         r['gf'], r['rf'], r['qf'], r['qnotes'] = gf, rf, qf, qn
 
-        r['anchor'] = NAME_ANCHOR.get(c, ANCHOR.get(r['sector'], 14))
+        r['anchor'] = NAME_ANCHOR.get(c, ANCHOR.get(r['sector'], 19))
+        _ovp = (r['override'] or {}).get('applied', {})
+        if 'anchor' in _ovp:
+            r['anchor'] = _ovp['anchor']
         r['pe_raw'] = r['anchor'] * gf * rf * qf
         r['pe_now'] = (P / r['base_eps']) if (P and r['base_eps']) else None
 
@@ -202,15 +241,20 @@ def build(forecasts, official, nowcast=None, today=None):
         else:
             r['pe_blend'] = r['pe_raw']
 
-    pool = [r for r in recs if r['base_eps'] and r['price'] and not r['unpriceable']]
+    pool = [r for r in recs if r['base_eps'] and r['price']
+            and not r['unpriceable'] and not r.get('excluded')]
     med = st.median([(r['base_eps'] * r['pe_blend']) / r['price'] for r in pool]) if pool else 1.0
     K = CAL_TARGET / med
     cal = {'k': K, 'n': len(pool), 'median_raw_upside': med - 1, 'w_mkt': W_MKT}
 
     for r in recs:
-        pe = max(6.0, min(55.0, r['pe_blend'] * K))
-        if r['sector'] in DEEP_CYCLICAL:
-            pe = min(pe, 17.5)
+        _ovp = (r['override'] or {}).get('applied', {})
+        if 'pe_mid' in _ovp:
+            pe = _ovp['pe_mid']
+        else:
+            pe = max(6.0, min(55.0, r['pe_blend'] * K))
+            if r['sector'] in DEEP_CYCLICAL:
+                pe = min(pe, 17.5)
         r['pe_mid'] = round(pe, 1)
         r['pe_lo'] = round(pe * 0.82 * 2) / 2
         r['pe_hi'] = round(pe * 1.18 * 2) / 2

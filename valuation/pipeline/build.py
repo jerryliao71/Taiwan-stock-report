@@ -68,7 +68,13 @@ def pctf(x, d=0):
 def describe(recs, K):
     for r in recs:
         nc = r['nc']
-        if nc and nc['loss']:
+        o = r.get('override')
+        if o and o['applied']:
+            what = '、'.join(f'{k}={v}' for k, v in o['applied'].items())
+            r['why'] = (f"人工校正（{o['date']}）：{o['reason']}。覆寫內容 {what}"
+                        + (f"，官方推算原為 {o['auto_eps']:.2f} 元" if o.get('auto_eps') else '')
+                        + (f"，{o['expires']} 到期。" if o['expires'] else '。'))
+        elif nc and nc['loss']:
             r['why'] = (f"官方財報顯示 {nc['year']} 年累計至 Q{nc['quarter']} 的每股盈餘為 "
                         f"{nc['eps_ytd']:.2f} 元，公司目前虧損。本益比對虧損公司沒有意義，"
                         '因此不給出合理本益比與目標價。')
@@ -117,8 +123,9 @@ KEEP = ['code', 'name', 'market', 'market_sheet', 'sector', 'sheet_sector', 'sec
         'g2025', 'g2026', 'g2027', 'g2028', 'g_blend', 'base_eps', 'base_yr',
         'anchor', 'gf', 'rf', 'qf', 'pe_now', 'pe_mid', 'pe_lo', 'pe_hi', 'pe_mid0', 'diverge_dir',
         'target', 't_lo', 't_hi', 'upside', 'rating', 'suspect', 'unpriceable', 'low_conf',
-        'show_coef', 'flags', 'why', 'headline', 'act', 'lo0', 'hi0',
-        'nc', 'nc_why', 'base_src', 'g_src', 'sheet_eps_same_yr', 'sheet_gap']
+        'show_coef', 'flags', 'why', 'headline', 'lo0', 'hi0',
+        'nc', 'nc_why', 'base_src', 'g_src', 'sheet_eps_same_yr', 'sheet_gap',
+        'override', 'excluded']
 
 
 def slim(r):
@@ -132,16 +139,16 @@ def slim(r):
             o[f'e{str(y)[2:]}_old'] = o.pop(f'e{y}_old')
         if f'g{y}' in o:
             o[f'g{str(y)[2:]}'] = o.pop(f'g{y}')
-    for k in ('nc', 'act'):
+    for k in ('nc', 'override'):
         if isinstance(o.get(k), dict):
             o[k] = {kk: (round(vv, 4) if isinstance(vv, float) else vv) for kk, vv in o[k].items()}
-    if False and isinstance(o.get('act'), dict):
-        o['act'] = {k: (round(v, 4) if isinstance(v, float) else v) for k, v in o['act'].items()}
     return o
 
 
 def main():
     fc = json.loads((ROOT / 'data' / 'forecasts.json').read_text(encoding='utf-8'))
+    ov_path = ROOT / 'data' / 'overrides.json'
+    ov = json.loads(ov_path.read_text(encoding='utf-8')) if ov_path.exists() else {}
     print('抓取官方資料…')
     off = fetch_official.build()
     (ROOT / 'data' / 'official.json').write_text(
@@ -153,7 +160,11 @@ def main():
     ok_n = sum(1 for v in nowc.values() if v.get('ok'))
     print(f'  可推算 {ok_n}/{len(nowc)} 檔（財報 {len(inc)}、月營收 {len(rev)} 家）')
 
-    recs, cal, K = run_model(fc, off, nowcast=nowc, today=datetime.now(TPE).date())
+    recs, cal, K = run_model(fc, off, nowcast=nowc, overrides=ov,
+                             today=datetime.now(TPE).date())
+    n_ov = sum(1 for r in recs if r.get('override') and not r['override']['expired'])
+    n_exp = sum(1 for r in recs if r.get('override') and r['override']['expired'])
+    print(f'  人工校正 {n_ov} 筆生效、{n_exp} 筆已過期')
     describe(recs, K)
 
     codes = {s['code'] for s in fc['stocks']}
@@ -195,7 +206,23 @@ def main():
         [{'sector': k, 'n': len(v), 'med': round(st.median(v), 4)} for k, v in agg.items() if len(v) >= 2],
         key=lambda x: -x['med'])
 
+    # The calibration constant absorbs whatever the anchor table gets wrong about the
+    # market's overall level. Near 1.0 the anchors are carrying their own weight; drift
+    # far from it means the table itself has gone stale and is due a review, regardless
+    # of where the calendar sits.
+    k = cal['k']
+    drift = ('anchors_stale' if (k < 0.85 or k > 1.20) else
+             'watch' if (k < 0.92 or k > 1.10) else 'ok')
+    drift_note = {
+        'ok': '基準表與市場一致，校準只做微調。',
+        'watch': '校準常數開始偏離 1，下次季度校準時留意產業基準是否需要調整。',
+        'anchors_stale': '校準常數已明顯偏離 1，代表產業基準表跟不上市場水準，建議提前重新校準。',
+    }[drift]
+    print(f'  校準健康度: {drift}（k={k:.3f}）')
+
     meta = {'cal': cal, 'sector_stats': sector_stats, 'freshness': freshness,
+            'drift': drift, 'drift_note': drift_note,
+            'overrides_active': n_ov, 'overrides_expired': n_exp,
             'built': datetime.now(TPE).strftime('%Y-%m-%d %H:%M'),
             'price_date': off['asof']['price'], 'errors': off['errors'],
             'market_corrections': fc.get('market_corrections', {})}
