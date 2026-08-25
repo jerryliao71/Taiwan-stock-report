@@ -218,10 +218,18 @@ def main():
         'watch': '校準常數開始偏離 1，下次季度校準時留意產業基準是否需要調整。',
         'anchors_stale': '校準常數已明顯偏離 1，代表產業基準表跟不上市場水準，建議提前重新校準。',
     }[drift]
-    print(f'  校準健康度: {drift}（k={k:.3f}）')
+    # No scheduler owns this any more -- the page has to carry the reminder itself.
+    # Dates sit at least two weeks past each Taiwan filing deadline (3/31, 5/15,
+    # 8/14, 11/14) so a full quarter of statements is in before anchors are judged.
+    _today = datetime.now(TPE).date()
+    _due = [(4, 15), (6, 1), (9, 1), (12, 1)]
+    _next = next((date(_today.year, m, d) for m, d in _due if date(_today.year, m, d) > _today),
+                 date(_today.year + 1, *_due[0]))
+    cal_due = {'next': _next.isoformat(), 'days': (_next - _today).days}
+    print(f'  校準健康度: {drift}（k={k:.3f}）；下次建議校準 {cal_due["next"]}（{cal_due["days"]} 天後）')
 
     meta = {'cal': cal, 'sector_stats': sector_stats, 'freshness': freshness,
-            'drift': drift, 'drift_note': drift_note,
+            'drift': drift, 'drift_note': drift_note, 'cal_due': cal_due,
             'overrides_active': n_ov, 'overrides_expired': n_exp,
             'built': datetime.now(TPE).strftime('%Y-%m-%d %H:%M'),
             'price_date': off['asof']['price'], 'errors': off['errors'],

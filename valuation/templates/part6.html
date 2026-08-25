@@ -254,8 +254,10 @@ $('#fixes').innerHTML = DATA.filter(r => r.sector_fixed).map(r => `<div class="a
   $('#health').innerHTML = `<div class="health ${esc(META.drift || 'ok')}">
     <span class="dot"></span>
     <span><b>${esc(label)}　校準常數 ×${k.toFixed(3)}</b>　${esc(META.drift_note || '')}
-    <span class="subv" style="display:inline">　產業基準表每季重新校準一次（4／6／9／12 月 15 日），
-    這個常數是兩次校準之間的健康指標。</span></span></div>`;
+    <span class="subv" style="display:inline">　產業基準表每季以
+    <code>/recalibrate-valuation</code> 手動校準一次；這個常數是兩次校準之間的健康指標。
+    ${META.cal_due ? `下次建議校準 <b>${esc(META.cal_due.next)}</b>（${META.cal_due.days} 天後）。` : ''}
+    </span></span></div>`;
 })();
 
 /* ── sticky offset ──────────────────────── */
