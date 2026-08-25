@@ -22,7 +22,13 @@ def pctf(x, d=0):
 
 def describe(recs, K):
     for r in recs:
-        if r['suspect']:
+        if r.get('contradicted'):
+            a = r['act']
+            r['why'] = (f"官方財報顯示 {a['year']} 年累計至 Q{a['quarter']} 的實際 EPS 為 "
+                        f"{a['eps_cum']:.2f} 元，公司仍在虧損，但原表同年度財測為 {a['forecast']:.2f} 元。"
+                        '整套評價建立在財測正確的前提上，此前提已被官方實績推翻，'
+                        '因此模型不給出合理本益比與目標價。請先更新財測再重新評價。')
+        elif r['suspect']:
             r['why'] = ('原表財測在數量級上出現異常，模型不對本檔推導合理本益比，也不給出目標價。'
                         '下方 EPS 序列為原表數值，請先回原始資料源核對後再行評價。')
         elif r['base_eps'] is None:

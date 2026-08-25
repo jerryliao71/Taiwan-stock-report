@@ -78,8 +78,9 @@
 
 <section class="panel">
   <div class="panel-hd"><div>
-    <h2>數據待確認</h2>
-    <p>下列個股的財測在數量級上出現異常，模型不對其給出評等。這些是自動偵測的結果，需要回原始資料源核對。</p>
+    <h2>停止評價的個股</h2>
+    <p>兩種情況模型會拒絕給出目標價：官方財報實績與原表財測<b>直接矛盾</b>（公司實際虧損、財測卻是獲利），
+       或財測在數量級上出現異常。整套評價建立在財測正確的前提上，前提被推翻時，給出目標價只會是誤導。</p>
   </div></div>
   <div class="panel-bd" style="padding:0"><div class="applist" id="suspects"></div></div>
 </section>

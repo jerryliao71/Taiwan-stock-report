@@ -88,7 +88,8 @@ function rowHTML(r, i) {
     <td>${paceCell(r)}</td>
     <td>${fp(r.g_blend)}</td>
     <td>${r.lo0 == null ? '—' : fx(r.lo0, 0) + '–' + fx(r.hi0, 0) + 'x'}</td>
-    <td><b>${fx(r.pe_mid)}x</b><span class="subv">${fx(r.pe_lo)}–${fx(r.pe_hi)}</span>${dv}</td>
+    <td>${r.pe_mid == null ? '—'
+       : `<b>${fx(r.pe_mid)}x</b><span class="subv">${fx(r.pe_lo)}–${fx(r.pe_hi)}</span>${dv}`}</td>
     <td>${r.target == null ? '—' : fprice(r.target)}<span class="subv">${r.t_lo == null ? '' : fprice(r.t_lo) + '–' + fprice(r.t_hi)}</span></td>
     <td class="upcell">${bar}<span class="upv ${t === 'cheap' ? 'c' : t === 'rich' ? 'r' : ''}">${fp(r.upside)}</span></td>
     <td class="l"><span class="pill ${RATING_CLASS[r.rating]}">${esc(r.rating)}</span></td>
@@ -188,7 +189,8 @@ function toggle(tr) {
 }
 
 /* ── appendices ─────────────────────────── */
-$('#suspects').innerHTML = DATA.filter(r => r.suspect).map(r => `<div class="appitem">
+$('#suspects').innerHTML = DATA.filter(r => r.suspect).sort((a, b) =>
+  (b.rating === '財測與實績背離') - (a.rating === '財測與實績背離')).map(r => `<div class="appitem">
   <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
   <div class="what">${r.flags.map(esc).join('；')}。
     現價 ${fprice(r.price)}，基準年 ${r.base_yr ?? '—'} 財測 EPS ${fx(r.base_eps, 2)}。</div></div>`).join('')

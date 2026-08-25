@@ -109,12 +109,20 @@ def build(forecasts, official, today=None):
                 flags.append(f'{y} 為虧損')
         if r['base_eps'] and P and P / r['base_eps'] > 70:
             flags.append(f"{r['base_yr']} 年預估 PE 達 {P/r['base_eps']:.0f}x，股價或財測需確認")
-        if r['act'] and r['act'].get('vs_pace') is not None:
-            v = r['act']['vs_pace']
-            if v < 0.55:
-                flags.append(f"實績進度僅達季節步調的 {v*100:.0f}%，全年財測恐難達成")
+        # A negative actual against a positive full-year forecast is not seasonality,
+        # it is a contradiction: the forecast this whole valuation rests on is wrong.
+        r['contradicted'] = False
+        if r['act'] and r['act']['forecast'] and r['act']['forecast'] > 0:
+            if r['act']['eps_cum'] <= 0:
+                r['contradicted'] = True
+                flags.append(
+                    f"{r['act']['year']} 年累計至 Q{r['act']['quarter']} 實際 EPS 為 "
+                    f"{r['act']['eps_cum']:.2f} 元（虧損），同年度財測卻是 "
+                    f"{r['act']['forecast']:.2f} 元，財測與實績直接矛盾")
+            elif r['act'].get('vs_pace') is not None and r['act']['vs_pace'] < 0.55:
+                flags.append(f"實績進度僅達季節步調的 {r['act']['vs_pace']*100:.0f}%，全年財測恐難達成")
         r['flags'] = flags
-        r['suspect'] = any(('誤植' in f or '需確認' in f) for f in flags)
+        r['suspect'] = r['contradicted'] or any(('誤植' in f or '需確認' in f) for f in flags)
 
         # ---- blended growth -> sustainable growth ----
         parts = [(r['g2026'], .25), (r['g2027'], .45), (r['g2028'], .30)]
@@ -189,7 +197,8 @@ def build(forecasts, official, today=None):
                 r[k] = None
 
         u = r['upside']
-        r['rating'] = ('資料待確認' if r['suspect'] else '無法評價' if u is None else
+        r['rating'] = ('財測與實績背離' if r.get('contradicted') else
+                       '資料待確認' if r['suspect'] else '無法評價' if u is None else
                        '顯著低估' if u >= .30 else '價值浮現' if u >= .10 else
                        '接近合理' if u >= -.10 else '偏貴' if u >= -.25 else '顯著高估')
 

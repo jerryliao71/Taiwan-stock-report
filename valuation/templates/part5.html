@@ -11,9 +11,11 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', 
 
 const RATING_CLASS = {
   '顯著低估': 'r-cheap2', '價值浮現': 'r-cheap1', '接近合理': 'r-fair',
-  '偏貴': 'r-rich1', '顯著高估': 'r-rich2', '資料待確認': 'r-flag', '無法評價': 'r-none'
+  '偏貴': 'r-rich1', '顯著高估': 'r-rich2',
+  '財測與實績背離': 'r-flag', '資料待確認': 'r-flag', '無法評價': 'r-none'
 };
-const RATING_ORDER = ['顯著低估', '價值浮現', '接近合理', '偏貴', '顯著高估', '資料待確認', '無法評價'];
+const RATING_ORDER = ['顯著低估', '價值浮現', '接近合理', '偏貴', '顯著高估',
+                      '財測與實績背離', '資料待確認', '無法評價'];
 const tone = u => u == null ? 'mid' : u >= 0.10 ? 'cheap' : u <= -0.10 ? 'rich' : 'mid';
 const C = {cheap: 'var(--cheap)', rich: 'var(--rich)', mid: 'var(--mid)'};
 
