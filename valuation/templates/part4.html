@@ -49,12 +49,12 @@
       <th class="l" data-k="name">個股<span class="ar">▾</span></th>
       <th class="l" data-k="sector">族群<span class="ar">▾</span></th>
       <th data-k="price">股價<span class="ar">▾</span></th>
-      <th data-k="base_eps">基準 EPS<span class="ar">▾</span></th>
+      <th data-k="base_eps">推算 EPS<span class="ar">▾</span></th>
       <th data-k="pe_now">預估 PE<span class="ar">▾</span></th>
       <th data-k="pe_official">官方 PE<span class="ar">▾</span></th>
-      <th data-k="act_pace">財測達成<span class="ar">▾</span></th>
-      <th data-k="g_blend">加權成長<span class="ar">▾</span></th>
-      <th data-k="pe_mid0">原表 PE<span class="ar">▾</span></th>
+      <th data-k="sheet_gap">vs 人工財測<span class="ar">▾</span></th>
+      <th data-k="g_blend">營收年增<span class="ar">▾</span></th>
+      <th data-k="pe_mid0">人工 PE<span class="ar">▾</span></th>
       <th data-k="pe_mid">本模型 PE<span class="ar">▾</span></th>
       <th data-k="target">目標價<span class="ar">▾</span></th>
       <th data-k="upside">上檔空間<span class="ar">▾</span></th>
@@ -68,10 +68,9 @@
 
 <section class="panel">
   <div class="panel-hd"><div>
-    <h2>財測達成進度</h2>
-    <p>官方累計實際 EPS 對照原表同年度財測。進度 100% 代表已達季節步調
-       （例如上半年財報應完成全年財測的一半）。低於 60% 的個股，全年財測恐怕偏樂觀，
-       估值需要重新檢視；高於 140% 者則可能是財測過於保守。</p>
+    <h2>官方推算 vs 你的人工財測</h2>
+    <p>本頁的估值只用官方推算，這份對照純粹供你檢視——差異超過 35% 代表兩者對同一家公司的看法明顯不同。
+       官方推算偏低通常是實際營收或利潤率不如預期；偏高則可能是人工財測還沒跟上最新的營收動能。</p>
   </div></div>
   <div class="panel-bd" style="padding:0"><div class="applist" id="pace"></div></div>
 </section>
@@ -79,8 +78,8 @@
 <section class="panel">
   <div class="panel-hd"><div>
     <h2>停止評價的個股</h2>
-    <p>兩種情況模型會拒絕給出目標價：官方財報實績與原表財測<b>直接矛盾</b>（公司實際虧損、財測卻是獲利），
-       或財測在數量級上出現異常。整套評價建立在財測正確的前提上，前提被推翻時，給出目標價只會是誤導。</p>
+    <p>本益比對負的每股盈餘沒有意義，因此官方財報顯示目前虧損的公司一律不給合理本益比與目標價。
+       另有少數個股官方 opendata 沒有財報（KY 外國企業與興櫃公司），改以人工財測評價並在該列標示。</p>
   </div></div>
   <div class="panel-bd" style="padding:0"><div class="applist" id="suspects"></div></div>
 </section>
@@ -103,9 +102,10 @@
 </section>
 
 <footer>
-  <b>自動更新</b>　股價、官方本益比與實際累計 EPS 由 GitHub Actions 於台北時間平日 18:20 自 證交所／櫃買中心／公開資訊觀測站 取得，非即時報價。<br>
-  <b>人工維護</b>　2025–2028 年 EPS 財測、原表本益比區間與備註，來源為 台股投資.xlsx；財測無官方資料源，排程不會覆寫。<br>
-  <b>本頁產出</b>　合理本益比模型與逐檔推導、目標價區間、評等、與原表的觀點差異、財測達成進度、數據異常偵測、族群與市場別分類修正。<br>
+  <b>全自動更新</b>　所有數字由 GitHub Actions 於台北時間平日 18:20 自 證交所／櫃買中心／公開資訊觀測站 取得後重算，非即時報價，無人工輸入，無 AI 模型參與。<br>
+  <b>前瞻 EPS</b>　由官方季報累計每股盈餘搭配每月營收推算，非分析師財測、非券商共識、非目標價。<br>
+  <b>僅供對照</b>　「人工 PE」與「vs 人工財測」兩欄來自 台股投資.xlsx，不參與任何計算。<br>
+  <b>本頁產出</b>　合理本益比模型與逐檔推導、目標價區間、評等、族群與市場別分類修正。<br>
   <b>免責</b>　本頁為試算表的重新整理與量化分析，不構成投資建議。所有評價建立在原表財測正確的前提上，且模型未納入資產負債表、現金流、股利、流動性與治理因素。
 </footer>
 </div>

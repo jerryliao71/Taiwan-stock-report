@@ -44,8 +44,7 @@ function sortRows(rows) {
       const r = RATING_ORDER.indexOf(a.rating) - RATING_ORDER.indexOf(b.rating);
       return r * d || a.name.localeCompare(b.name, 'zh-Hant');
     }
-    let x = k === 'act_pace' ? (a.act && a.act.vs_pace) : a[k];
-    let y = k === 'act_pace' ? (b.act && b.act.vs_pace) : b[k];
+    let x = a[k], y = b[k];
     if (typeof x === 'string' || typeof y === 'string')
       return String(x ?? '').localeCompare(String(y ?? ''), 'zh-Hant') * d;
     if (x == null && y == null) return 0;
@@ -57,16 +56,22 @@ function sortRows(rows) {
 
 /* ── row rendering ──────────────────────── */
 const MAXUP = 1.5;
+/* revenue arrives in NT$ thousands */
+const fmtRev = v => v == null ? '—'
+  : v >= 1e8 ? (v / 1e8).toFixed(1) + ' 兆'
+  : v >= 1e4 ? (v / 1e4).toFixed(1) + ' 億'
+  : Math.round(v).toLocaleString('en-US') + ' 千';
 
-/* Actual cumulative EPS vs where the year's forecast should stand by this quarter.
-   100% = exactly on the seasonal pace, not 100% of the full-year number. */
+/* Official derivation against the sheet's hand-kept forecast. Comparison only --
+   the sheet never enters the valuation. */
 function paceCell(r) {
-  const a = r.act;
-  if (!a || a.vs_pace == null) return '<span class="subv" style="display:inline">—</span>';
-  const v = a.vs_pace;
-  const cls = v < 0.6 ? 'r' : v > 1.4 ? 'c' : '';
-  return `<span class="upv ${cls}">${(v * 100).toFixed(0)}%</span>` +
-         `<span class="subv">${a.year}Q${a.quarter} 累計 ${fx(a.eps_cum, 2)}</span>`;
+  if (r.sheet_gap == null) {
+    return `<span class="subv" style="display:inline">${r.base_src === '原表財測' ? '改用人工財測' : '—'}</span>`;
+  }
+  const v = r.sheet_gap;
+  const cls = Math.abs(v) > 0.35 ? (v > 0 ? 'c' : 'r') : '';
+  return `<span class="upv ${cls}">${v >= 0 ? '+' : ''}${(v * 100).toFixed(0)}%</span>` +
+         `<span class="subv">人工 ${fx(r.sheet_eps_same_yr, 2)}</span>`;
 }
 function rowHTML(r, i) {
   const t = tone(r.upside), col = t === 'cheap' ? 'var(--cheap)' : t === 'rich' ? 'var(--rich)' : 'var(--mid)';
@@ -82,7 +87,8 @@ function rowHTML(r, i) {
         <span class="tk">${esc(r.code)}</span></td>
     <td class="l"><span class="sect">${esc(r.sector)}</span>${r.sector_fixed ? '<span class="fixmark" title="本頁重新分類">✎</span>' : ''}</td>
     <td>${fprice(r.price)}${r.chg != null ? `<span class="chg ${r.chg >= 0 ? 'u' : 'd'}">${r.chg >= 0 ? '+' : ''}${fx(r.chg, 2)}%</span>` : ''}</td>
-    <td>${fx(r.base_eps, 2)}<span class="subv">${r.base_yr ?? ''}</span></td>
+    <td>${fx(r.base_eps, 2)}<span class="subv">${r.base_yr ?? ''}${
+        r.base_src === '原表財測' ? ' 人工' : ''}${r.low_conf ? ' ⚠' : ''}</span></td>
     <td>${r.pe_now == null ? '—' : fx(r.pe_now) + 'x'}</td>
     <td>${r.pe_official == null ? '—' : fx(r.pe_official) + 'x'}</td>
     <td>${paceCell(r)}</td>
@@ -111,7 +117,9 @@ function detailHTML(r) {
   const eps = [
     [2024, r.e24, null, null], [2025, r.e25, r.e25_old, r.g25], [2026, r.e26, r.e26_old, r.g26],
     [2027, r.e27, r.e27_old, r.g27], [2028, r.e28, r.e28_old, r.g28]
-  ].map(a => epsCell(a[0], a[1], a[2], a[3], a[0] === r.base_yr)).join('');
+    /* only flag a base year here when the sheet is actually the source; the
+       official derivation has its own block above */
+  ].map(a => epsCell(a[0], a[1], a[2], a[3], r.base_src === '原表財測' && a[0] === r.base_yr)).join('');
 
   let bars = '';
   if (r.base_eps && r.price) {
@@ -146,15 +154,21 @@ function detailHTML(r) {
       <div class="chips">${chips}</div>
     </div>
     <div>
-      ${r.act && r.act.forecast ? `<h4>官方實績對照</h4>
-      <div class="why" style="margin-bottom:16px">${r.act.year} 年累計至 Q${r.act.quarter} 的官方基本 EPS 為
-        <b style="color:var(--ink)">${fx(r.act.eps_cum, 2)}</b> 元，同年度原表財測
-        <b style="color:var(--ink)">${fx(r.act.forecast, 2)}</b> 元，已完成
-        <b style="color:var(--ink)">${(r.act.progress * 100).toFixed(0)}%</b>；
-        季節步調應為 ${(r.act.pace * 100).toFixed(0)}%，相對達成
-        <b style="color:var(--ink)">${(r.act.vs_pace * 100).toFixed(0)}%</b>。
-        <span class="subv" style="display:inline">資料日期 ${esc(r.act.date || '—')}</span></div>` : ''}
-      <h4>EPS 財測序列（元）</h4>
+      ${r.nc ? `<h4>官方推算過程</h4>
+      <div class="why" style="margin-bottom:16px">
+        ${r.nc.year} 年累計至 Q${r.nc.quarter} 的官方基本 EPS <b style="color:var(--ink)">${fx(r.nc.eps_ytd, 2)}</b> 元，
+        同期營收 <b style="color:var(--ink)">${fmtRev(r.nc.sales_ytd)}</b>；
+        累計至 ${r.nc.rev_month} 月營收 <b style="color:var(--ink)">${fmtRev(r.nc.rev_cum)}</b>，
+        最近兩個月平均 <b style="color:var(--ink)">${fmtRev(r.nc.run_rate)}</b>／月，
+        推估全年營收 <b style="color:var(--ink)">${fmtRev(r.nc.fy_rev)}</b>
+        （為同期的 <b style="color:var(--ink)">${fx(r.nc.scale, 2)}</b> 倍）。
+        全年 EPS ≈ ${fx(r.nc.eps_ytd, 2)} × ${fx(r.nc.scale, 2)} =
+        <b style="color:var(--ink)">${fx(r.nc.fy_eps, 2)}</b> 元；
+        再以營收年增 ${fp(r.nc.rev_yoy)}（阻尼後 ${fp(r.nc.g_damped)}）推進一年，
+        基準 EPS = <b style="color:var(--ink)">${fx(r.nc.next_eps, 2)}</b> 元。
+        ${r.nc.net_margin != null ? `期間淨利率 ${fp(r.nc.net_margin, 1)}。` : ''}
+      </div>` : ''}
+      <h4>原表人工財測序列（元）· 僅供對照</h4>
       <div class="epsgrid">${eps}</div>
       <h4 style="margin-top:20px">股價區間比較</h4>
       ${bars || '<div class="why">缺少可用財測，無法定價。</div>'}
@@ -189,27 +203,21 @@ function toggle(tr) {
 }
 
 /* ── appendices ─────────────────────────── */
-$('#suspects').innerHTML = DATA.filter(r => r.suspect).sort((a, b) =>
-  (b.rating === '財測與實績背離') - (a.rating === '財測與實績背離')).map(r => `<div class="appitem">
+$('#suspects').innerHTML = DATA.filter(r => r.unpriceable).map(r => `<div class="appitem">
   <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
-  <div class="what">${r.flags.map(esc).join('；')}。
-    現價 ${fprice(r.price)}，基準年 ${r.base_yr ?? '—'} 財測 EPS ${fx(r.base_eps, 2)}。</div></div>`).join('')
-  + DATA.filter(r => r.rating === '無法評價').map(r => `<div class="appitem">
-  <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
-  <div class="what">原表未填任何年度 EPS 財測，無法定價${r.note ? `（原表備註：${esc(r.note)}）` : ''}。</div></div>`).join('');
+  <div class="what">${r.flags.map(esc).join('；')}。現價 ${fprice(r.price)}。</div></div>`).join('')
+  || '<div class="appitem"><div class="who">—</div><div class="what">目前所有個股都能評價。</div></div>';
 
-const paced = DATA.filter(r => r.act && r.act.vs_pace != null)
-  .sort((a, b) => a.act.vs_pace - b.act.vs_pace);
-const notable = [...paced.filter(r => r.act.vs_pace < 0.6),
-                 ...paced.filter(r => r.act.vs_pace > 1.4).reverse()];
-$('#pace').innerHTML = notable.length ? notable.map(r => `<div class="appitem">
+const gaps = DATA.filter(r => r.sheet_gap != null && Math.abs(r.sheet_gap) > 0.35)
+  .sort((a, b) => a.sheet_gap - b.sheet_gap);
+$('#pace').innerHTML = gaps.length ? gaps.map(r => `<div class="appitem">
   <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
-  <div class="what">${r.act.year}Q${r.act.quarter} 累計 EPS <code>${fx(r.act.eps_cum, 2)}</code>
-    ，同年度財測 <code>${fx(r.act.forecast, 2)}</code>，相對季節步調達成
-    <code>${(r.act.vs_pace * 100).toFixed(0)}%</code>　${r.act.vs_pace < 0.6
-      ? '<span class="arrow">▾</span> 進度落後，全年財測可能偏樂觀'
-      : '<span class="arrow">▴</span> 進度超前，財測可能偏保守'}</div></div>`).join('')
-  : '<div class="appitem"><div class="who">—</div><div class="what">目前沒有明顯偏離季節步調的個股。</div></div>';
+  <div class="what">官方推算 <code>${fx(r.base_eps, 2)}</code> vs 人工財測
+    <code>${fx(r.sheet_eps_same_yr, 2)}</code>，差
+    <code>${r.sheet_gap >= 0 ? '+' : ''}${(r.sheet_gap * 100).toFixed(0)}%</code>　${r.sheet_gap < 0
+      ? '<span class="arrow">▾</span> 實際營收與利潤率不如人工財測預期'
+      : '<span class="arrow">▴</span> 營收動能高於人工財測，人工數字可能已過時'}</div></div>`).join('')
+  : '<div class="appitem"><div class="who">—</div><div class="what">目前沒有差異超過 35% 的個股。</div></div>';
 
 $('#freshness').innerHTML = (META.freshness || []).map(f => `<div class="appitem">
   <div class="who">${esc(f.label)}</div>

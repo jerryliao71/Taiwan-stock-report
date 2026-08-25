@@ -8,18 +8,22 @@ rendered page for the reasoning behind each coefficient.
 import math, statistics as st
 from datetime import date
 
+# Fair multiple for a company in this industry growing ~15%/yr, expressed against
+# the forward EPS this pipeline derives from official filings. Higher than a
+# textbook trailing PE because that base is one damped year ahead, not trailing.
 ANCHOR = {
- 'IC設計':18,'晶圓代工':18,'廠務':14,'封裝':14,'封測':14,'半導體設備':18,'半導體材料':17,
- '半導體耗材':17,'半導體通路':12,'檢測分析':18,'國防':20,'航太':16,'被動元件':15,'PCB':14,
- 'CCL':16,'CCL材料':15,'PCB設備材料':15,'網通':14,'光通':22,'電源供應':19,'電池模組':15,
- '功率元件':15,'散熱':19,'記憶體':8,'記憶體模組':10,'伺服器組裝':12,'伺服器零組件':17,
- '連接器':19,'線束連接器':18,'機構件':12,'品牌PC':11,'面板':11,'石化':12,'碳素化工':12,
- '紡織':10,'自行車':11,'車用零件':12,'營建工程':10,'其他':14,
+ 'IC設計':24.5,'晶圓代工':24.5,'廠務':19,'封裝':19,'封測':19,'半導體設備':24.5,'半導體材料':23,
+ '半導體耗材':23,'半導體通路':16,'檢測分析':24.5,'國防':27,'航太':21.5,'被動元件':20,'PCB':19,
+ 'CCL':21.5,'CCL材料':20,'PCB設備材料':20,'網通':19,'光通':29.5,'電源供應':25.5,'電池模組':20,
+ '功率元件':20,'散熱':25.5,'記憶體':11,'記憶體模組':13.5,'伺服器組裝':16,'伺服器零組件':23,
+ '連接器':25.5,'線束連接器':24.5,'機構件':16,'品牌PC':15,'面板':15,'石化':16,'碳素化工':16,
+ '紡織':13.5,'自行車':15,'車用零件':16,'營建工程':13.5,'其他':19,
 }
+# Per-name overrides where the industry anchor misses franchise quality or risk.
 NAME_ANCHOR = {
- '2330':20,'2303':11,'2454':19,'3443':28,'3661':24,'5274':28,'2345':20,'2383':20,
- '3017':20,'6805':20,'2317':13,'2382':12,'3231':11,'3706':10,'6488':16,'2059':18,
- '8299':8,'2344':8,'2337':8,'8150':10,'2451':9,'5289':10,'6415':20,'3533':19,
+ '2330':27,'2303':15,'2454':25.5,'3443':38,'3661':32.5,'5274':38,'2345':27,'2383':27,
+ '3017':27,'6805':27,'2317':17.5,'2382':16,'3231':15,'3706':13.5,'6488':21.5,'2059':24.5,
+ '8299':11,'2344':11,'2337':11,'8150':13.5,'2451':12,'5289':13.5,'6415':27,'3533':25.5,
 }
 DEEP_CYCLICAL = {'記憶體','記憶體模組','面板','石化'}
 W_MKT = 0.25          # weight given to the price's own implied multiple
@@ -41,7 +45,7 @@ def _days_since(iso, today):
         return None
 
 
-def build(forecasts, official, today=None):
+def build(forecasts, official, nowcast=None, today=None):
     today = today or date.today()
     price, opes, aeps = official['price'], official['pe'], official['eps_actual']
     recs = []
@@ -84,50 +88,75 @@ def build(forecasts, official, today=None):
                 # >1 means the year is already running ahead of the full-year forecast
                 r['act']['vs_pace'] = r['act']['progress'] / r['act']['pace']
 
-        # ---- base year: 2027 forward, same basis as the sheet ----
-        for y in (2027, 2026, 2025):
-            if eps.get(y) and eps[y] > 0:
-                r['base_eps'], r['base_yr'] = eps[y], y
-                break
+        # ---- valuation base: annualised official run-rate, not anyone's forecast ----
+        nc = (nowcast or {}).get(c)
+        r['nc'] = nc if (nc and nc.get('ok')) else None
+        r['nc_why'] = None if r['nc'] else (nc or {}).get('why', '未取得官方推算')
+        if r['nc'] and r['nc']['fy_eps'] > 0:
+            # forward one year, same basis the sector anchors were set on: the
+            # annualised run-rate carried forward by damped revenue momentum
+            r['base_eps'] = r['nc']['next_eps']
+            r['base_yr'] = r['nc']['year'] + 1
+            r['base_src'] = '官方推算'
+        elif r['nc'] and r['nc']['fy_eps'] <= 0:
+            r['base_eps'], r['base_yr'], r['base_src'] = None, r['nc']['year'], '官方推算'
         else:
-            r['base_eps'] = r['base_yr'] = None
+            # only the handful with no official filings fall back to the sheet
+            for y in (2027, 2026, 2025):
+                if eps.get(y) and eps[y] > 0:
+                    r['base_eps'], r['base_yr'], r['base_src'] = eps[y], y, '原表財測'
+                    break
+            else:
+                r['base_eps'] = r['base_yr'] = None
+                r['base_src'] = '無'
+        r['sheet_eps_same_yr'] = eps.get(r['base_yr']) if r['base_yr'] else None
 
         # ---- integrity flags ----
+        # The base is now derived from filings, so the old typo hunt against the
+        # sheet no longer gates the valuation. What can still go wrong is the
+        # annualisation itself, and that is what these check.
         flags = []
-        if r['base_eps'] is None:
-            flags.append('原表未填任何年度財測')
-        for y in (2026, 2027):
-            n_, o_ = eps.get(y), old.get(y)
-            if n_ and o_ and o_ > 0 and (n_ / o_ > 4 or n_ / o_ < 0.25):
-                flags.append(f'{y} 財測較舊值變動 {n_/o_:.1f}x，疑似誤植')
-        for y in (2026, 2027):
-            g = r[f'g{y}']
-            if g is not None and g > 5:
-                flags.append(f'{y} EPS 年增 {g*100:.0f}%，基期極低或誤植')
-        for y in (2024, 2025, 2026):
-            if eps.get(y) is not None and eps[y] <= 0:
-                flags.append(f'{y} 為虧損')
-        if r['base_eps'] and P and P / r['base_eps'] > 70:
-            flags.append(f"{r['base_yr']} 年預估 PE 達 {P/r['base_eps']:.0f}x，股價或財測需確認")
-        # A negative actual against a positive full-year forecast is not seasonality,
-        # it is a contradiction: the forecast this whole valuation rests on is wrong.
-        r['contradicted'] = False
-        if r['act'] and r['act']['forecast'] and r['act']['forecast'] > 0:
-            if r['act']['eps_cum'] <= 0:
-                r['contradicted'] = True
-                flags.append(
-                    f"{r['act']['year']} 年累計至 Q{r['act']['quarter']} 實際 EPS 為 "
-                    f"{r['act']['eps_cum']:.2f} 元（虧損），同年度財測卻是 "
-                    f"{r['act']['forecast']:.2f} 元，財測與實績直接矛盾")
-            elif r['act'].get('vs_pace') is not None and r['act']['vs_pace'] < 0.55:
-                flags.append(f"實績進度僅達季節步調的 {r['act']['vs_pace']*100:.0f}%，全年財測恐難達成")
-        r['flags'] = flags
-        r['suspect'] = r['contradicted'] or any(('誤植' in f or '需確認' in f) for f in flags)
+        nc = r['nc']
+        r['low_conf'] = False
 
-        # ---- blended growth -> sustainable growth ----
-        parts = [(r['g2026'], .25), (r['g2027'], .45), (r['g2028'], .30)]
-        parts = [(g, w) for g, w in parts if g is not None]
-        g = sum(x * w for x, w in parts) / sum(w for _, w in parts) if parts else None
+        if nc and nc['loss']:
+            flags.append(f"{nc['year']} 年累計至 Q{nc['quarter']} 實際 EPS 為 "
+                         f"{nc['eps_ytd']:.2f} 元，公司仍在虧損，無法以本益比評價")
+        if r['base_eps'] is None and not (nc and nc['loss']):
+            flags.append(r['nc_why'] or '無可用的評價基礎')
+        if nc and nc['ok'] and nc['scale'] > 3.0:
+            r['low_conf'] = True
+            flags.append(f"近月營收年化後為已實現期間的 {nc['scale']:.1f} 倍，"
+                         '推算高度依賴最近兩個月的營收，可信度較低')
+        if r['base_src'] == '原表財測':
+            flags.append(f"官方無最新財報（{r['nc_why']}），改用原表人工財測")
+        if r['base_eps'] and P and P / r['base_eps'] > 70:
+            flags.append(f"推算本益比達 {P/r['base_eps']:.0f}x，獲利基期可能偏低")
+
+        # sheet forecast is now only a cross-check, never an input
+        r['sheet_gap'] = None
+        se = r['sheet_eps_same_yr']
+        if r['base_src'] == '官方推算' and se and se > 0 and r['base_eps']:
+            r['sheet_gap'] = r['base_eps'] / se - 1
+            if abs(r['sheet_gap']) > 0.35:
+                flags.append(f"官方推算較原表人工財測{'高' if r['sheet_gap']>0 else '低'} "
+                             f"{abs(r['sheet_gap'])*100:.0f}%，人工財測可能需更新")
+
+        r['flags'] = flags
+        # nothing is withheld for a suspected typo any more; only a genuine
+        # inability to price -- a loss, or no usable base at all.
+        r['suspect'] = False
+        r['unpriceable'] = (nc and nc['loss']) or r['base_eps'] is None
+
+        # ---- growth: official cumulative revenue YoY, falling back to the sheet ----
+        if r['nc'] and r['nc']['rev_yoy'] is not None:
+            g = r['nc']['rev_yoy']
+            r['g_src'] = '官方營收年增'
+        else:
+            parts = [(r['g2026'], .25), (r['g2027'], .45), (r['g2028'], .30)]
+            parts = [(x, w) for x, w in parts if x is not None]
+            g = sum(x * w for x, w in parts) / sum(w for _, w in parts) if parts else None
+            r['g_src'] = '原表財測' if g is not None else '無'
         r['g_blend'] = g
         if g is None:
             gs = 0.18
@@ -173,15 +202,15 @@ def build(forecasts, official, today=None):
         else:
             r['pe_blend'] = r['pe_raw']
 
-    pool = [r for r in recs if r['base_eps'] and r['price'] and not r['suspect']]
+    pool = [r for r in recs if r['base_eps'] and r['price'] and not r['unpriceable']]
     med = st.median([(r['base_eps'] * r['pe_blend']) / r['price'] for r in pool]) if pool else 1.0
     K = CAL_TARGET / med
     cal = {'k': K, 'n': len(pool), 'median_raw_upside': med - 1, 'w_mkt': W_MKT}
 
     for r in recs:
-        pe = max(5.0, min(45.0, r['pe_blend'] * K))
+        pe = max(6.0, min(55.0, r['pe_blend'] * K))
         if r['sector'] in DEEP_CYCLICAL:
-            pe = min(pe, 13.0)
+            pe = min(pe, 17.5)
         r['pe_mid'] = round(pe, 1)
         r['pe_lo'] = round(pe * 0.82 * 2) / 2
         r['pe_hi'] = round(pe * 1.18 * 2) / 2
@@ -192,13 +221,13 @@ def build(forecasts, official, today=None):
             r['upside'] = r['target'] / r['price'] - 1
         else:
             r['target'] = r['t_lo'] = r['t_hi'] = r['upside'] = None
-        if r['suspect'] or r['base_eps'] is None:
+        if r['unpriceable']:
             for k in ('target', 't_lo', 't_hi', 'upside', 'pe_mid', 'pe_lo', 'pe_hi'):
                 r[k] = None
 
         u = r['upside']
-        r['rating'] = ('財測與實績背離' if r.get('contradicted') else
-                       '資料待確認' if r['suspect'] else '無法評價' if u is None else
+        r['rating'] = ('虧損中' if (r['nc'] and r['nc']['loss']) else
+                       '無法評價' if u is None else
                        '顯著低估' if u >= .30 else '價值浮現' if u >= .10 else
                        '接近合理' if u >= -.10 else '偏貴' if u >= -.25 else '顯著高估')
 
@@ -211,5 +240,5 @@ def build(forecasts, official, today=None):
         else:
             r['pe_mid0'] = (r['lo0'] + r['hi0']) / 2 if (r['lo0'] and r['hi0']) else None
             r['diverge_dir'] = None
-        r['show_coef'] = not r['suspect'] and r['base_eps'] is not None
+        r['show_coef'] = not r['unpriceable']
     return recs, cal, K

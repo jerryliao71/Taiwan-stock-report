@@ -10,6 +10,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fetch_official
+import nowcast as NC
+from fetchlib import fetch_json
 from model import build as run_model
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,22 +67,24 @@ def pctf(x, d=0):
 
 def describe(recs, K):
     for r in recs:
-        if r.get('contradicted'):
-            a = r['act']
-            r['why'] = (f"官方財報顯示 {a['year']} 年累計至 Q{a['quarter']} 的實際 EPS 為 "
-                        f"{a['eps_cum']:.2f} 元，公司仍在虧損，但原表同年度財測為 {a['forecast']:.2f} 元。"
-                        '整套評價建立在財測正確的前提上，此前提已被官方實績推翻，'
-                        '因此模型不給出合理本益比與目標價。請先更新財測再重新評價。')
-        elif r['suspect']:
-            r['why'] = ('原表財測在數量級上出現異常，模型不對本檔推導合理本益比，也不給出目標價。'
-                        '下方 EPS 序列為原表數值，請先回原始資料源核對後再行評價。')
+        nc = r['nc']
+        if nc and nc['loss']:
+            r['why'] = (f"官方財報顯示 {nc['year']} 年累計至 Q{nc['quarter']} 的每股盈餘為 "
+                        f"{nc['eps_ytd']:.2f} 元，公司目前虧損。本益比對虧損公司沒有意義，"
+                        '因此不給出合理本益比與目標價。')
         elif r['base_eps'] is None:
-            r['why'] = '原表未填任何年度 EPS 財測，缺少定價基礎。'
+            r['why'] = (r['nc_why'] or '缺少可用的評價基礎') + '，且原表亦無可用財測，無法定價。'
         else:
-            bits = [f"產業基準 {r['anchor']}x（{r['sector']}）"]
-            bits.append(f"加權成長 {pctf(r['g_blend'])}→可持續成長採 {pctf(r['g_sus'])}，成長係數 {r['gf']:.2f}"
+            bits = []
+            if nc:
+                bits.append(f"以官方 {nc['year']} 年累計至 Q{nc['quarter']} 的 EPS {nc['eps_ytd']:.2f} 元，"
+                            f"按 {nc['rev_ym'][:3]}/{nc['rev_month']:02d} 月營收年化為全年 {nc['fy_eps']:.2f} 元")
+            else:
+                bits.append(f"官方無財報，沿用原表 {r['base_yr']} 年財測 {r['base_eps']:.2f} 元")
+            bits.append(f"產業基準 {r['anchor']}x（{r['sector']}）")
+            bits.append(f"{r.get('g_src','成長')} {pctf(r['g_blend'])}→可持續成長採 {pctf(r['g_sus'])}，成長係數 {r['gf']:.2f}"
                         if r['g_blend'] is not None else '無成長資料，成長係數採中性')
-            if r['revision'] is not None and abs(r['revision']) > 0.03:
+            if False and r['revision'] is not None and abs(r['revision']) > 0.03:
                 bits.append(f"財測{'上修' if r['revision']>0 else '下修'} {pctf(abs(r['revision']))}，修正係數 {r['rf']:.2f}")
             if r['qnotes']:
                 bits.append(f"品質調整 {r['qf']:.2f}（{'、'.join(r['qnotes'])}）")
@@ -112,8 +116,9 @@ KEEP = ['code', 'name', 'market', 'market_sheet', 'sector', 'sheet_sector', 'sec
         'e2024', 'e2025', 'e2025_old', 'e2026', 'e2026_old', 'e2027', 'e2027_old', 'e2028', 'e2028_old',
         'g2025', 'g2026', 'g2027', 'g2028', 'g_blend', 'base_eps', 'base_yr',
         'anchor', 'gf', 'rf', 'qf', 'pe_now', 'pe_mid', 'pe_lo', 'pe_hi', 'pe_mid0', 'diverge_dir',
-        'target', 't_lo', 't_hi', 'upside', 'rating', 'suspect', 'show_coef', 'flags',
-        'why', 'headline', 'act', 'lo0', 'hi0']
+        'target', 't_lo', 't_hi', 'upside', 'rating', 'suspect', 'unpriceable', 'low_conf',
+        'show_coef', 'flags', 'why', 'headline', 'act', 'lo0', 'hi0',
+        'nc', 'nc_why', 'base_src', 'g_src', 'sheet_eps_same_yr', 'sheet_gap']
 
 
 def slim(r):
@@ -127,7 +132,10 @@ def slim(r):
             o[f'e{str(y)[2:]}_old'] = o.pop(f'e{y}_old')
         if f'g{y}' in o:
             o[f'g{str(y)[2:]}'] = o.pop(f'g{y}')
-    if isinstance(o.get('act'), dict):
+    for k in ('nc', 'act'):
+        if isinstance(o.get(k), dict):
+            o[k] = {kk: (round(vv, 4) if isinstance(vv, float) else vv) for kk, vv in o[k].items()}
+    if False and isinstance(o.get('act'), dict):
         o['act'] = {k: (round(v, 4) if isinstance(v, float) else v) for k, v in o['act'].items()}
     return o
 
@@ -139,7 +147,13 @@ def main():
     (ROOT / 'data' / 'official.json').write_text(
         json.dumps(off, ensure_ascii=False, indent=1), encoding='utf-8')
 
-    recs, cal, K = run_model(fc, off, today=datetime.now(TPE).date())
+    print('推算官方前瞻 EPS…')
+    inc, rev, nc_err = NC.collect(fetch_json)
+    nowc = {s['code']: NC.estimate(s['code'], inc, rev) for s in fc['stocks']}
+    ok_n = sum(1 for v in nowc.values() if v.get('ok'))
+    print(f'  可推算 {ok_n}/{len(nowc)} 檔（財報 {len(inc)}、月營收 {len(rev)} 家）')
+
+    recs, cal, K = run_model(fc, off, nowcast=nowc, today=datetime.now(TPE).date())
     describe(recs, K)
 
     codes = {s['code'] for s in fc['stocks']}
@@ -150,15 +164,26 @@ def main():
     np_, miss_p = cov(off['price'])
     ne, miss_e = cov(off['pe'])
     na, miss_a = cov(off['eps_actual'])
+    _nc_ok = [r for r in recs if r.get('nc')]
+    nc_ok = len(_nc_ok)
+    nc_miss = sorted(r['name'] for r in recs if not r.get('nc'))
+    nc_month = ''
+    if _nc_ok:
+        y = _nc_ok[0]['nc'].get('rev_ym', '')
+        nc_month = f'{int(y[:3]) + 1911}-{y[-2:]}' if len(y) >= 5 and y[:3].isdigit() else y
+
     freshness = [
         {'label': '收盤價 / 漲跌', 'date': off['asof']['price'], 'covered': np_, 'total': len(codes),
          'missing': miss_p, 'note': '上市取證交所每日成交行情，上櫃取櫃買中心，興櫃取當日加權平均成交價。'},
         {'label': '官方本益比 / 股價淨值比 / 殖利率', 'date': off['asof']['pe'], 'covered': ne, 'total': len(codes),
          'missing': miss_e, 'note': '交易所以近四季實際 EPS 計算，與本頁的預估本益比口徑不同，不可混用。'},
-        {'label': '實際累計 EPS', 'date': off['asof']['eps'], 'covered': na, 'total': len(codes),
-         'missing': miss_a, 'note': 'KY 外國企業與興櫃公司的綜合損益表未納入官方 opendata，故無實績可對照。'},
-        {'label': 'EPS 財測（2025–2028）', 'date': fc.get('sheet_basis', ''), 'covered': len(codes), 'total': len(codes),
-         'missing': [], 'note': '無官方來源，人工維護於 valuation/data/forecasts.json，排程不會覆寫。'},
+        {'label': '累計每股盈餘、營收、稅後淨利', 'date': off['asof']['eps'], 'covered': na, 'total': len(codes),
+         'missing': miss_a, 'note': '每季財報公布後更新，是前瞻 EPS 推算的獲利基礎。'},
+        {'label': '每月營收（前瞻 EPS 的推進來源）', 'date': nc_month, 'covered': nc_ok, 'total': len(codes),
+         'missing': nc_miss, 'note': '已過月份為公布數字；剩餘月份採最近兩個月平均當執行率。'
+                                     'KY 外國企業與興櫃公司未納入官方 opendata，該 8 檔改用人工財測。'},
+        {'label': '人工財測（僅供對照，不參與計算）', 'date': fc.get('sheet_basis', ''), 'covered': len(codes),
+         'total': len(codes), 'missing': [], 'note': '來源為 台股投資.xlsx，排程不會讀取也不會覆寫它做估值。'},
     ]
 
     agg = {}
@@ -179,9 +204,10 @@ def main():
     body = '\n'.join((tpl / f'part{i}.html').read_text(encoding='utf-8') for i in range(1, 7))
     html = wrap_document(body)
     html = html.replace('__PRICE_DATE__', off['asof']['price'] or '—')
+    html = html.replace('__CAL_K__', f"{cal['k']:.3f}")
     html = html.replace('__DATA__', json.dumps([slim(r) for r in recs], ensure_ascii=False, separators=(',', ':')))
     html = html.replace('__META__', json.dumps(meta, ensure_ascii=False, separators=(',', ':')))
-    for ph in ('__DATA__', '__META__', '__PRICE_DATE__'):
+    for ph in ('__DATA__', '__META__', '__PRICE_DATE__', '__CAL_K__'):
         assert ph not in html, f'unreplaced placeholder {ph}'
 
     out = ROOT / 'dist'
