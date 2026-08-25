@@ -31,6 +31,12 @@ jobs:
         run: npm ci
       - name: Fetch official TWSE, TPEx and MOPS data
         run: npm run update:data
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build valuation dashboard
+        run: npm run build:valuation
       - name: Build static dashboard
         run: npm run build:github
       - name: Configure Pages

@@ -1,0 +1,238 @@
+<script>
+/* ── filters & sort ─────────────────────── */
+const state = {q: '', mkt: '', sector: '', rating: '', div: false, stale: false, key: 'upside', dir: -1};
+
+(function fillSelects() {
+  const secs = [...new Set(DATA.map(r => r.sector))].sort((a, b) => a.localeCompare(b, 'zh-Hant'));
+  $('#fsector').insertAdjacentHTML('beforeend', secs.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join(''));
+  $('#frating').insertAdjacentHTML('beforeend', RATING_ORDER.filter(r => DATA.some(d => d.rating === r))
+    .map(r => `<option value="${esc(r)}">${esc(r)}</option>`).join(''));
+})();
+
+$('#q').addEventListener('input', e => { state.q = e.target.value.trim(); render(); });
+$('#fsector').addEventListener('change', e => { state.sector = e.target.value; render(); });
+$('#frating').addEventListener('change', e => { state.rating = e.target.value; render(); });
+$('#fdiv').addEventListener('change', e => { state.div = e.target.checked; render(); });
+$('#fstale').addEventListener('change', e => { state.stale = e.target.checked; render(); });
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  state.mkt = b.dataset.mkt; render();
+}));
+document.querySelectorAll('thead th[data-k]').forEach(th => th.addEventListener('click', () => {
+  const k = th.dataset.k;
+  if (state.key === k) state.dir *= -1;
+  else { state.key = k; state.dir = (k === 'name' || k === 'sector' || k === 'rating') ? 1 : -1; }
+  render();
+}));
+
+function filtered() {
+  const q = state.q.toLowerCase();
+  return DATA.filter(r =>
+    (!q || r.code.toLowerCase().includes(q) || r.name.toLowerCase().includes(q)) &&
+    (!state.mkt || r.market === state.mkt) &&
+    (!state.sector || r.sector === state.sector) &&
+    (!state.rating || r.rating === state.rating) &&
+    (!state.div || (r.diverge_dir && r.diverge_dir !== '看法接近')) &&
+    (!state.stale || !r.stale)
+  );
+}
+
+function sortRows(rows) {
+  const k = state.key, d = state.dir;
+  return rows.slice().sort((a, b) => {
+    if (k === 'rating') {
+      const r = RATING_ORDER.indexOf(a.rating) - RATING_ORDER.indexOf(b.rating);
+      return r * d || a.name.localeCompare(b.name, 'zh-Hant');
+    }
+    let x = k === 'act_pace' ? (a.act && a.act.vs_pace) : a[k];
+    let y = k === 'act_pace' ? (b.act && b.act.vs_pace) : b[k];
+    if (typeof x === 'string' || typeof y === 'string')
+      return String(x ?? '').localeCompare(String(y ?? ''), 'zh-Hant') * d;
+    if (x == null && y == null) return 0;
+    if (x == null) return 1;          /* nulls always sink */
+    if (y == null) return -1;
+    return (x - y) * d;
+  });
+}
+
+/* ── row rendering ──────────────────────── */
+const MAXUP = 1.5;
+
+/* Actual cumulative EPS vs where the year's forecast should stand by this quarter.
+   100% = exactly on the seasonal pace, not 100% of the full-year number. */
+function paceCell(r) {
+  const a = r.act;
+  if (!a || a.vs_pace == null) return '<span class="subv" style="display:inline">—</span>';
+  const v = a.vs_pace;
+  const cls = v < 0.6 ? 'r' : v > 1.4 ? 'c' : '';
+  return `<span class="upv ${cls}">${(v * 100).toFixed(0)}%</span>` +
+         `<span class="subv">${a.year}Q${a.quarter} 累計 ${fx(a.eps_cum, 2)}</span>`;
+}
+function rowHTML(r, i) {
+  const t = tone(r.upside), col = t === 'cheap' ? 'var(--cheap)' : t === 'rich' ? 'var(--rich)' : 'var(--mid)';
+  const stripe = r.suspect ? 'var(--warn)' : r.upside == null ? 'var(--line-2)' : col;
+  const w = r.upside == null ? 0 : Math.min(50, Math.abs(r.upside) / MAXUP * 50);
+  const bar = r.upside == null ? '' :
+    `<span class="upbar" style="background:${col};${r.upside >= 0 ? 'left:50%' : 'right:50%'};width:${w.toFixed(1)}%"></span>`;
+  const dv = r.diverge_dir && r.diverge_dir !== '看法接近'
+    ? `<span class="subv">${esc(r.diverge_dir)}</span>` : '';
+  return `<tr class="row" data-i="${i}" tabindex="0" aria-expanded="false">
+    <td class="stripe" style="background:${stripe}"></td>
+    <td class="l"><span class="nm">${esc(r.name)}</span><span class="mk">${esc(r.market)}</span>
+        <span class="tk">${esc(r.code)}</span></td>
+    <td class="l"><span class="sect">${esc(r.sector)}</span>${r.sector_fixed ? '<span class="fixmark" title="本頁重新分類">✎</span>' : ''}</td>
+    <td>${fprice(r.price)}${r.chg != null ? `<span class="chg ${r.chg >= 0 ? 'u' : 'd'}">${r.chg >= 0 ? '+' : ''}${fx(r.chg, 2)}%</span>` : ''}</td>
+    <td>${fx(r.base_eps, 2)}<span class="subv">${r.base_yr ?? ''}</span></td>
+    <td>${r.pe_now == null ? '—' : fx(r.pe_now) + 'x'}</td>
+    <td>${r.pe_official == null ? '—' : fx(r.pe_official) + 'x'}</td>
+    <td>${paceCell(r)}</td>
+    <td>${fp(r.g_blend)}</td>
+    <td>${r.lo0 == null ? '—' : fx(r.lo0, 0) + '–' + fx(r.hi0, 0) + 'x'}</td>
+    <td><b>${fx(r.pe_mid)}x</b><span class="subv">${fx(r.pe_lo)}–${fx(r.pe_hi)}</span>${dv}</td>
+    <td>${r.target == null ? '—' : fprice(r.target)}<span class="subv">${r.t_lo == null ? '' : fprice(r.t_lo) + '–' + fprice(r.t_hi)}</span></td>
+    <td class="upcell">${bar}<span class="upv ${t === 'cheap' ? 'c' : t === 'rich' ? 'r' : ''}">${fp(r.upside)}</span></td>
+    <td class="l"><span class="pill ${RATING_CLASS[r.rating]}">${esc(r.rating)}</span></td>
+    <td>${esc(r.upd_iso || '未填')}${r.stale ? '<span class="stale" title="財測更新逾半年">●</span>' : ''}</td>
+  </tr>`;
+}
+
+function epsCell(y, nv, ov, g, isBase) {
+  const cls = ['epsc']; if (y <= 2025) cls.push('act'); if (isBase) cls.push('base');
+  return `<div class="${cls.join(' ')}">
+    <div class="y">${y}${isBase ? ' 基準' : ''}</div>
+    <div class="e">${nv == null ? '—' : fx(nv, 2)}</div>
+    ${ov != null ? `<div class="o">舊 ${fx(ov, 2)}</div>` : '<div class="o">&nbsp;</div>'}
+    <div class="g ${g == null ? '' : g >= 0 ? 'g-u' : 'g-d'}">${g == null ? '&nbsp;' : fp(g)}</div>
+  </div>`;
+}
+
+function detailHTML(r) {
+  const eps = [
+    [2024, r.e24, null, null], [2025, r.e25, r.e25_old, r.g25], [2026, r.e26, r.e26_old, r.g26],
+    [2027, r.e27, r.e27_old, r.g27], [2028, r.e28, r.e28_old, r.g28]
+  ].map(a => epsCell(a[0], a[1], a[2], a[3], a[0] === r.base_yr)).join('');
+
+  let bars = '';
+  if (r.base_eps && r.price) {
+    const o_lo = r.lo0 ? r.lo0 * r.base_eps : null, o_hi = r.hi0 ? r.hi0 * r.base_eps : null;
+    const hi = Math.max(r.price, r.t_hi ?? 0, o_hi ?? 0) * 1.12;
+    const P = v => Math.max(0, Math.min(100, v / hi * 100));
+    const seg = (lo, h, c, mark) => `<div class="track">
+        <span class="fill" style="left:${P(lo).toFixed(1)}%;width:${(P(h) - P(lo)).toFixed(1)}%;background:${c};opacity:.34"></span>
+        ${mark != null ? `<span class="mk" style="left:${P(mark).toFixed(1)}%"></span>` : ''}</div>`;
+    bars = `<div class="valbars">
+      <div class="vb"><span class="lab">現價</span>
+        <div class="track"><span class="mk" style="left:${P(r.price).toFixed(1)}%"></span></div>
+        <span class="n">${fprice(r.price)}</span></div>
+      ${o_lo ? `<div class="vb"><span class="lab">原表區間</span>${seg(o_lo, o_hi, 'var(--ink-3)', r.ref0)}
+        <span class="n">${fprice(r.ref0)}</span></div>` : ''}
+      ${r.target != null ? `<div class="vb"><span class="lab">本模型</span>${seg(r.t_lo, r.t_hi, tone(r.upside) === 'rich' ? 'var(--rich)' : 'var(--cheap)', r.target)}
+        <span class="n">${fprice(r.target)}</span></div>` : ''}</div>`;
+  }
+
+  const chips = (r.show_coef ? [
+    `產業基準 ${r.anchor}x`, `成長 ×${fx(r.gf, 2)}`, `修正 ×${fx(r.rf, 2)}`, `品質 ×${fx(r.qf, 2)}`
+  ] : []).map(c => `<span class="chip">${esc(c)}</span>`).join('') +
+    (r.flags || []).map(f => `<span class="chip w">${esc(f)}</span>`).join('') +
+    (r.note ? `<span class="chip">原表備註：${esc(r.note)}</span>` : '') +
+    (r.sector_fixed ? `<span class="chip">族群由「${esc(r.sheet_sector || '未標')}」修正為「${esc(r.sector)}」</span>` : '');
+
+  return `<tr class="detail"><td colspan="15"><div class="det">
+    <div>
+      <div class="head">${esc(r.headline)}</div>
+      <h4>本益比推導</h4>
+      <div class="why">${esc(r.why)}</div>
+      <div class="chips">${chips}</div>
+    </div>
+    <div>
+      ${r.act && r.act.forecast ? `<h4>官方實績對照</h4>
+      <div class="why" style="margin-bottom:16px">${r.act.year} 年累計至 Q${r.act.quarter} 的官方基本 EPS 為
+        <b style="color:var(--ink)">${fx(r.act.eps_cum, 2)}</b> 元，同年度原表財測
+        <b style="color:var(--ink)">${fx(r.act.forecast, 2)}</b> 元，已完成
+        <b style="color:var(--ink)">${(r.act.progress * 100).toFixed(0)}%</b>；
+        季節步調應為 ${(r.act.pace * 100).toFixed(0)}%，相對達成
+        <b style="color:var(--ink)">${(r.act.vs_pace * 100).toFixed(0)}%</b>。
+        <span class="subv" style="display:inline">資料日期 ${esc(r.act.date || '—')}</span></div>` : ''}
+      <h4>EPS 財測序列（元）</h4>
+      <div class="epsgrid">${eps}</div>
+      <h4 style="margin-top:20px">股價區間比較</h4>
+      ${bars || '<div class="why">缺少可用財測，無法定價。</div>'}
+    </div>
+  </div></td></tr>`;
+}
+
+function render() {
+  const rows = sortRows(filtered());
+  $('#tbody').innerHTML = rows.map((r, i) => rowHTML(r, DATA.indexOf(r))).join('');
+  $('#count').textContent = `顯示 ${rows.length} / ${DATA.length} 檔`;
+  $('#empty').hidden = rows.length > 0;
+  document.querySelectorAll('thead th[data-k]').forEach(th => {
+    if (th.dataset.k === state.key) { th.setAttribute('data-dir', state.dir); th.querySelector('.ar').textContent = state.dir > 0 ? '▴' : '▾'; }
+    else th.removeAttribute('data-dir');
+  });
+}
+
+/* expand / collapse */
+$('#tbody').addEventListener('click', e => toggle(e.target.closest('tr.row')));
+$('#tbody').addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e.target.closest('tr.row')); }
+});
+function toggle(tr) {
+  if (!tr) return;
+  const open = tr.classList.contains('open');
+  if (open) { tr.classList.remove('open'); tr.setAttribute('aria-expanded', 'false'); tr.nextElementSibling?.remove(); }
+  else {
+    tr.classList.add('open'); tr.setAttribute('aria-expanded', 'true');
+    tr.insertAdjacentHTML('afterend', detailHTML(DATA[+tr.dataset.i]));
+  }
+}
+
+/* ── appendices ─────────────────────────── */
+$('#suspects').innerHTML = DATA.filter(r => r.suspect).map(r => `<div class="appitem">
+  <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
+  <div class="what">${r.flags.map(esc).join('；')}。
+    現價 ${fprice(r.price)}，基準年 ${r.base_yr ?? '—'} 財測 EPS ${fx(r.base_eps, 2)}。</div></div>`).join('')
+  + DATA.filter(r => r.rating === '無法評價').map(r => `<div class="appitem">
+  <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
+  <div class="what">原表未填任何年度 EPS 財測，無法定價${r.note ? `（原表備註：${esc(r.note)}）` : ''}。</div></div>`).join('');
+
+const paced = DATA.filter(r => r.act && r.act.vs_pace != null)
+  .sort((a, b) => a.act.vs_pace - b.act.vs_pace);
+const notable = [...paced.filter(r => r.act.vs_pace < 0.6),
+                 ...paced.filter(r => r.act.vs_pace > 1.4).reverse()];
+$('#pace').innerHTML = notable.length ? notable.map(r => `<div class="appitem">
+  <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)} · ${esc(r.market)}</span></div>
+  <div class="what">${r.act.year}Q${r.act.quarter} 累計 EPS <code>${fx(r.act.eps_cum, 2)}</code>
+    ，同年度財測 <code>${fx(r.act.forecast, 2)}</code>，相對季節步調達成
+    <code>${(r.act.vs_pace * 100).toFixed(0)}%</code>　${r.act.vs_pace < 0.6
+      ? '<span class="arrow">▾</span> 進度落後，全年財測可能偏樂觀'
+      : '<span class="arrow">▴</span> 進度超前，財測可能偏保守'}</div></div>`).join('')
+  : '<div class="appitem"><div class="who">—</div><div class="what">目前沒有明顯偏離季節步調的個股。</div></div>';
+
+$('#freshness').innerHTML = (META.freshness || []).map(f => `<div class="appitem">
+  <div class="who">${esc(f.label)}</div>
+  <div class="what">資料日期 <code>${esc(f.date || '無')}</code>　覆蓋 <code>${f.covered}/${f.total}</code> 檔
+    ${f.missing && f.missing.length ? `　未涵蓋：${f.missing.map(esc).join('、')}` : ''}
+    ${f.note ? `<br>${esc(f.note)}` : ''}</div></div>`).join('');
+
+$('#fixes').innerHTML = DATA.filter(r => r.sector_fixed).map(r => `<div class="appitem">
+  <div class="who">${esc(r.name)}<span class="tk">${esc(r.code)}</span></div>
+  <div class="what"><code>${esc(r.sheet_sector || '未標註')}</code> <span class="arrow">→</span> <code>${esc(r.sector)}</code>
+    　產業基準倍數採 ${r.anchor}x</div></div>`).join('');
+
+/* ── sticky offset ──────────────────────── */
+/* The control bar wraps to 2-3 lines on narrow viewports; a hard-coded sticky
+   offset for the table header hides the top rows behind it. Measure instead. */
+const ctrlEl = $('#controls'), wrapEl = document.querySelector('.tablewrap');
+const syncOffset = () => {
+  document.documentElement.style.setProperty('--ctrlh', ctrlEl.offsetHeight + 'px');
+  document.documentElement.style.setProperty('--tw', wrapEl.clientWidth + 'px');
+};
+if (window.ResizeObserver) new ResizeObserver(syncOffset).observe(ctrlEl);
+addEventListener('resize', syncOffset);
+syncOffset();
+
+/* ── go ─────────────────────────────────── */
+drawScatter(); drawSectors(); render();
+addEventListener('resize', () => { clearTimeout(window._rz); window._rz = setTimeout(() => { drawScatter(); drawSectors(); }, 180); });
+</script>

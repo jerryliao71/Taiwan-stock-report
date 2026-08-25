@@ -1,0 +1,137 @@
+<style>
+/* ── expanded detail ──────────────────────── */
+tr.detail>td{padding:0;background:var(--surface-2);border-bottom:1px solid var(--line-2)}
+.det{padding:20px 22px 22px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;
+  /* the table is min-width:1180px and scrolls horizontally; without this the detail
+     panel inherits that width and its content sits off-screen on narrow viewports */
+  position:sticky;left:0;width:var(--tw,100%);max-width:var(--tw,100%)}
+@media(max-width:820px){.det{grid-template-columns:1fr;gap:22px}}
+/* grid/flex children default to min-width:auto and refuse to shrink below their
+   content, which pushes the bars and chips past the pinned panel edge */
+.det>div,.vb,.vb .track{min-width:0}
+.det h4{font-family:var(--disp);font-size:12px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 9px;font-weight:600}
+.det .why{font-size:13.5px;color:var(--ink-2);line-height:1.72}
+.det .head{font-size:14px;color:var(--ink);margin-bottom:14px;font-weight:500;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-family:var(--mono);font-size:11px;padding:3px 8px;background:var(--surface);
+  border:1px solid var(--line-2);color:var(--ink-2);overflow-wrap:anywhere}
+.chip.w{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+.epsgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:4px}
+@media(max-width:560px){.epsgrid{grid-template-columns:repeat(3,1fr)}}
+.epsc{background:var(--surface);padding:9px 8px;text-align:center}
+.epsc .y{font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.05em}
+.epsc .e{font-family:var(--mono);font-size:15px;font-weight:600;margin:3px 0 1px}
+.epsc .o{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+.epsc .g{font-family:var(--mono);font-size:10px}
+.epsc.act{background:var(--surface-3)}
+.epsc.base{box-shadow:inset 0 -2px 0 var(--accent)}
+.g-u{color:var(--cheap)} .g-d{color:var(--rich)}
+.valbars{margin-top:6px}
+.vb{display:flex;align-items:center;gap:10px;margin-bottom:7px;font-size:12px}
+.vb .lab{width:76px;color:var(--ink-2);flex:none;font-size:12px}
+.vb .track{flex:1;height:16px;background:var(--surface);border:1px solid var(--line);position:relative}
+.vb .fill{position:absolute;top:0;bottom:0}
+.vb .mk{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.vb .n{width:74px;text-align:right;font-family:var(--mono);font-size:12px;flex:none}
+
+/* ── appendix ─────────────────────────────── */
+.applist{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.appitem{background:var(--surface);padding:13px 18px;display:grid;
+  grid-template-columns:150px 1fr;gap:16px;align-items:baseline}
+@media(max-width:700px){.appitem{grid-template-columns:1fr;gap:4px}}
+.appitem .who{font-weight:500;font-size:14px}
+.appitem .who .tk{display:block}
+.appitem .what{font-size:13px;color:var(--ink-2);line-height:1.6}
+.appitem .what code{font-family:var(--mono);font-size:12px;background:var(--surface-2);padding:1px 5px}
+.arrow{color:var(--accent);font-family:var(--mono)}
+.srcwrap{overflow-x:auto;margin:12px 0 4px}
+.srctbl{border-collapse:collapse;width:100%;min-width:520px;font-size:13px}
+.srctbl th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:7px 10px;border-bottom:1px solid var(--line-2)}
+.srctbl td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top}
+.srctbl code{font-family:var(--mono);font-size:11.5px;background:var(--surface-2);padding:1px 5px;color:var(--ink)}
+.srctbl tr td:first-child{color:var(--ink)}
+footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--ink-3);line-height:1.7}
+footer b{color:var(--ink-2);font-weight:500}
+.empty{padding:52px 20px;text-align:center;color:var(--ink-3);font-size:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header class="mast">
+  <div class="mast-top">
+    <div>
+      <span class="eyebrow">財測本益比評價 · 官方價格 __PRICE_DATE__ · 自動更新</span>
+      <h1>台股財測評價台</h1>
+    </div>
+    <button class="themebtn" id="tbtn" type="button">切換深淺色</button>
+  </div>
+  <p class="sub">
+    <b>125 檔</b>個股，股價與實際 EPS 每個交易日收盤後自 <b>證交所、櫃買中心、公開資訊觀測站</b>自動更新；
+    財測 EPS 無官方來源，維持人工維護。合理本益比不採人工設定，改以<b>產業基準 × 成長 × 財測修正 × 品質</b>
+    推導後對全市場校準，使評等聚焦於<b>相對排序</b>而非絕對多空。所有假設與係數逐檔列示。
+  </p>
+  <div class="kpis" id="kpis"></div>
+</header>
+
+<details class="method">
+  <summary>本益比怎麼估出來的 — 模型、係數與已知限制</summary>
+  <div class="method-bd">
+    <p>原表在 J、K 兩欄用人工設定的本益比上下限乘以隔年 EPS 得到參考價。本頁保留同一個骨架
+    （<b>合理股價 = 基準年 EPS × 合理本益比</b>），但把「合理本益比」從人工輸入換成可稽核的推導。基準年一律取 <b>2027 年財測</b>，
+    缺值時依序退回 2026、2025，與原表的取值邏輯一致。</p>
+
+    <div class="steps">
+      <div class="step"><span class="k">係數一</span><div class="t">產業基準倍數</div>
+        <div class="d">依台股各族群長期常見的預估本益比設定中樞，例如伺服器組裝 12x、封測 14x、散熱 19x、光通 22x、記憶體 8x。
+        另對 24 檔龍頭或體質特殊者設個股基準。</div></div>
+      <div class="step"><span class="k">係數二</span><div class="t">可持續成長</div>
+        <div class="d">加權成長率取 2026／2027／2028 年增率（權重 25／45／30）。
+        超過 20% 的部分只採計 35%，上限 42%——全書中位數成長高達 50%，那是循環高點的樂觀值，市場不會照單全收。</div></div>
+      <div class="step"><span class="k">係數三</span><div class="t">財測修正動能</div>
+        <div class="d">比較新舊財測，上修給溢價、下修給折價，但只做 ±8% 的微調——成長率本身已經反映大部分修正，權重再高就是重複計算。</div></div>
+      <div class="step"><span class="k">係數四</span><div class="t">獲利品質折價</div>
+        <div class="d">近年出現虧損 ×0.85、獲利波動劇烈 ×0.92、註記景氣循環股 ×0.90、深度循環產業（記憶體、面板、石化）再 ×0.92 且本益比封頂 13x。</div></div>
+      <div class="step"><span class="k">收斂一</span><div class="t">市場共識權重</div>
+        <div class="d">以對數平均把模型倍數向<b>現價隱含倍數</b>拉回 25%。一檔股票在 6x 還掛著 +150% 的成長財測，
+        那是市場在說它不信這份財測；完全不理會市價的模型會把這種訊號當成便宜。</div></div>
+      <div class="step"><span class="k">收斂二</span><div class="t">全市場校準</div>
+        <div class="d">最後把整條倍數向量乘上單一常數，使<b>中位數個股的上檔空間落在 +12%</b>。
+        這不改變任何相對排序，只避免全盤性的偏誤被誤讀成「整個台股低估 40%」。</div></div>
+    </div>
+
+    <div class="formula">合理本益比 = clamp( exp( 0.75·ln(基準×成長×修正×品質) + 0.25·ln(現價隱含PE) ) × 1.125 , 5x , 45x )</div>
+
+    <p>評等分界：上檔空間 ≥ +30% 為顯著低估、+10~30% 價值浮現、±10% 接近合理、−10~−25% 偏貴、≤ −25% 顯著高估。
+    目標價欄位同時給出 <b>×0.82 ~ ×1.18</b> 的倍數區間對應的股價帶，單一數字不該被當成點預測。</p>
+
+    <h3 style="font-family:var(--disp);font-size:14px;margin:26px 0 10px">資料來源與更新方式</h3>
+    <div class="srcwrap"><table class="srctbl">
+      <thead><tr><th>欄位</th><th>來源</th><th>更新</th></tr></thead>
+      <tbody>
+        <tr><td>上市收盤價、漲跌</td><td>證交所 <code>exchangeReport/STOCK_DAY_ALL</code></td><td rowspan="3">每交易日收盤後</td></tr>
+        <tr><td>上櫃收盤價</td><td>櫃買中心 <code>tpex_mainboard_quotes</code></td></tr>
+        <tr><td>興櫃參考價</td><td>櫃買中心 <code>tpex_esb_latest_statistics</code></td></tr>
+        <tr><td>官方本益比、股價淨值比、殖利率</td><td>證交所 <code>BWIBBU_ALL</code>／櫃買 <code>peratio_analysis</code></td><td>每交易日</td></tr>
+        <tr><td>實際累計 EPS</td><td>公開資訊觀測站綜合損益表 <code>t187ap06_L_ci</code>／<code>mopsfin_t187ap06_O_ci</code></td><td>每季財報公布後</td></tr>
+        <tr><td><b>財測 EPS（2025–2028）</b></td><td><b>無官方來源，人工維護</b></td><td><b>手動</b></td></tr>
+      </tbody></table></div>
+
+    <div class="caveat" style="border-color:var(--accent);background:var(--accent-soft)">
+    <b>為什麼財測不能自動更新。</b>
+    台灣已取消強制財務預測，證交所的財測資料集 <code>t187ap15_L</code> 全市場只涵蓋 6 家公司
+    （中華電、聯發科、中工、文曄、大聯大、遠傳），本表 125 檔中僅聯發科一檔在內。
+    因此 2027／2028 年的 EPS 財測沒有任何官方來源可取用，只能沿用你自行維護的數字。
+    排程更新的是股價、官方本益比與<b>實際</b>累計 EPS；財測欄位永遠不會被自動覆寫。
+    這也代表：<b>財測放著不更新，估值就會隨著股價變動而失真</b>，本頁以「財測更新日」與「實績達成進度」兩個欄位提醒你哪幾檔該回頭檢視。</div>
+
+    <div class="caveat"><b>這個模型不是什麼。</b>
+    它是規則式的橫斷面框架，不是逐家公司的基本面研究——它沒有讀過任何一份財報、法說會或產業供需。
+    它完全承接原表的 EPS 財測，財測錯了結論就跟著錯；其中 8 檔已被自動標記為數據待確認。
+    模型刻意納入市價作為 25% 的先驗，因此在判斷「市場是否整體錯價」這件事上必然偏保守。
+    請把它當成<b>排序與差異偵測工具</b>：它最有價值的輸出是「哪幾檔我的看法和你原本的設定明顯不同」，而不是目標價本身。</div>
+  </div>
+</details>

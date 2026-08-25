@@ -1,0 +1,165 @@
+<script>
+const DATA = __DATA__, META = __META__;
+const $ = s => document.querySelector(s);
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+/* ── formatting ─────────────────────────── */
+const fx = (v, d = 1) => v == null ? '—' : v.toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d});
+const fp = (v, d = 0) => v == null ? '—' : (v >= 0 ? '+' : '') + (v * 100).toFixed(d) + '%';
+const fprice = v => v == null ? '—' : v >= 1000 ? Math.round(v).toLocaleString('en-US') : fx(v, 1);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+const RATING_CLASS = {
+  '顯著低估': 'r-cheap2', '價值浮現': 'r-cheap1', '接近合理': 'r-fair',
+  '偏貴': 'r-rich1', '顯著高估': 'r-rich2', '資料待確認': 'r-flag', '無法評價': 'r-none'
+};
+const RATING_ORDER = ['顯著低估', '價值浮現', '接近合理', '偏貴', '顯著高估', '資料待確認', '無法評價'];
+const tone = u => u == null ? 'mid' : u >= 0.10 ? 'cheap' : u <= -0.10 ? 'rich' : 'mid';
+const C = {cheap: 'var(--cheap)', rich: 'var(--rich)', mid: 'var(--mid)'};
+
+/* ── theme ──────────────────────────────── */
+const tbtn = $('#tbtn');
+tbtn.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const sysDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const nowDark = cur ? cur === 'dark' : sysDark;
+  document.documentElement.setAttribute('data-theme', nowDark ? 'light' : 'dark');
+});
+
+/* ── KPI strip ──────────────────────────── */
+(function kpis() {
+  const ok = DATA.filter(r => r.upside != null && !r.suspect);
+  const ups = ok.map(r => r.upside).sort((a, b) => a - b);
+  const med = ups[Math.floor(ups.length / 2)];
+  const cheap = DATA.filter(r => r.rating === '顯著低估').length;
+  const rich = DATA.filter(r => r.rating === '顯著高估').length;
+  const div = DATA.filter(r => r.diverge_dir && r.diverge_dir !== '看法接近').length;
+  const flagged = DATA.filter(r => r.suspect).length;
+  const stale = DATA.filter(r => r.stale).length;
+  const cells = [
+    ['追蹤標的', DATA.length + '', '上市 81 · 上櫃 44'],
+    ['中位數上檔空間', fp(med), '模型校準目標 +12%'],
+    ['顯著低估 / 顯著高估', cheap + ' / ' + rich, '門檻 ±30% 與 −25%'],
+    ['與原表觀點分歧', div + '', '倍數差異超過 25%'],
+    ['數據待確認', flagged + '', '財測數量級異常'],
+    ['財測更新逾半年', stale + '', '需重新檢視']
+  ];
+  $('#kpis').innerHTML = cells.map(c =>
+    `<div class="kpi"><span class="l">${c[0]}</span><span class="v">${esc(c[1])}</span><span class="n">${esc(c[2])}</span></div>`
+  ).join('');
+})();
+
+/* ── tooltip ────────────────────────────── */
+const tip = $('#tip');
+function showTip(html, ev) {
+  tip.innerHTML = html; tip.style.opacity = '1';
+  const r = tip.getBoundingClientRect();
+  let x = ev.clientX + 14, y = ev.clientY + 14;
+  if (x + r.width > innerWidth - 8) x = ev.clientX - r.width - 14;
+  if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - 14;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+const hideTip = () => tip.style.opacity = '0';
+
+/* ── scatter ────────────────────────────── */
+function drawScatter() {
+  const W = 700, H = 430, M = {t: 14, r: 16, b: 42, l: 52};
+  const pts = DATA.filter(r => !r.suspect && r.pe_now != null && r.g_blend != null);
+  const xmin = -0.2, xmax = 1.5, ymin = 4, ymax = 90;
+  const X = g => M.l + (Math.min(xmax, Math.max(xmin, g)) - xmin) / (xmax - xmin) * (W - M.l - M.r);
+  const Y = p => M.t + (Math.log(ymax) - Math.log(Math.min(ymax, Math.max(ymin, p)))) / (Math.log(ymax) - Math.log(ymin)) * (H - M.t - M.b);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="個股成長率與本益比散布圖">`;
+
+  [5, 10, 20, 40, 80].forEach(p => {
+    s += `<line class="gridline" x1="${M.l}" y1="${Y(p).toFixed(1)}" x2="${W - M.r}" y2="${Y(p).toFixed(1)}"/>`;
+    s += `<text class="axtext" x="${M.l - 8}" y="${(Y(p) + 3.5).toFixed(1)}" text-anchor="end">${p}x</text>`;
+  });
+  [[-0.2, '\u2264\u221220%'], [0, '0%'], [.25, '25%'], [.5, '50%'], [.75, '75%'],
+   [1, '100%'], [1.25, '125%'], [1.5, '\u2265150%']].forEach(([g, lab]) => {
+    s += `<text class="axtext" x="${X(g).toFixed(1)}" y="${H - M.b + 16}" text-anchor="middle">${lab}</text>`;
+  });
+  s += `<line class="axline" x1="${M.l}" y1="${H - M.b}" x2="${W - M.r}" y2="${H - M.b}"/>`;
+  s += `<line class="axline" x1="${M.l}" y1="${M.t}" x2="${M.l}" y2="${H - M.b}"/>`;
+  s += `<text class="axtitle" x="${(M.l + W - M.r) / 2}" y="${H - 6}" text-anchor="middle">加權成長率</text>`;
+  s += `<text class="axtitle" transform="translate(13,${(M.t + H - M.b) / 2}) rotate(-90)" text-anchor="middle">現價 / 基準年財測 PE</text>`;
+
+  [[1, 'PEG 1.0'], [0.5, 'PEG 0.5']].forEach(([k, lab]) => {
+    const seg = [];
+    for (let g = 0.05; g <= xmax; g += 0.02) {
+      const pe = k * g * 100;
+      if (pe >= ymin && pe <= ymax) seg.push(`${X(g).toFixed(1)},${Y(pe).toFixed(1)}`);
+    }
+    if (seg.length > 1) {
+      s += `<polyline class="peg" points="${seg.join(' ')}"/>`;
+      const last = seg[seg.length - 1].split(',');
+      s += `<text class="peglab" x="${(+last[0] - 4).toFixed(1)}" y="${(+last[1] - 6).toFixed(1)}" text-anchor="end">${lab}</text>`;
+    }
+  });
+
+  pts.sort((a, b) => Math.abs(a.upside) - Math.abs(b.upside)).forEach((r, i) => {
+    const rad = 3.4 + Math.min(6, Math.abs(r.upside) * 7);
+    const cx = X(r.g_blend), cy = Y(r.pe_now), col = C[tone(r.upside)];
+    const over = r.g_blend > xmax, under = r.g_blend < xmin;
+    if (over || under) {
+      const d = over ? 1 : -1, a = rad * 1.15;
+      s += `<path class="dot" data-i="${DATA.indexOf(r)}" style="fill:${col};fill-opacity:.82"
+            d="M ${(cx - d * a).toFixed(1)} ${(cy - a).toFixed(1)} L ${(cx + d * a * 0.9).toFixed(1)} ${cy.toFixed(1)} L ${(cx - d * a).toFixed(1)} ${(cy + a).toFixed(1)} Z"/>`;
+    } else {
+      s += `<circle class="dot" data-i="${DATA.indexOf(r)}" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${rad.toFixed(1)}" style="fill:${col};fill-opacity:.82"/>`;
+    }
+  });
+  s += '</svg>';
+  $('#scatter').innerHTML = s;
+
+  $('#scatter').querySelectorAll('.dot').forEach(d => {
+    d.addEventListener('mousemove', ev => {
+      const r = DATA[+d.dataset.i];
+      showTip(`<div class="tn">${esc(r.name)} <span class="tk">${esc(r.code)}</span></div>
+        <div class="tr"><span>現價 PE</span><b>${fx(r.pe_now)}x</b></div>
+        <div class="tr"><span>加權成長</span><b>${fp(r.g_blend)}${(r.g_blend > 1.5 || r.g_blend < -0.2) ? ' ↗超出座標' : ''}</b></div>
+        <div class="tr"><span>本模型 PE</span><b>${fx(r.pe_mid)}x</b></div>
+        <div class="tr"><span>上檔空間</span><b>${fp(r.upside)}</b></div>`, ev);
+    });
+    d.addEventListener('mouseleave', hideTip);
+    d.addEventListener('click', () => {
+      const r = DATA[+d.dataset.i];
+      $('#q').value = r.code; state.q = r.code; render();
+      $('#controls').scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
+}
+
+/* ── sector bars ────────────────────────── */
+function drawSectors() {
+  const S = META.sector_stats, BH = 19, GAP = 5, M = {t: 8, r: 46, b: 26, l: 84};
+  const W = 460, H = M.t + S.length * (BH + GAP) + M.b;
+  const lim = Math.max(...S.map(d => Math.abs(d.med))) * 1.08;
+  const zero = M.l + (W - M.l - M.r) / 2;
+  const half = (W - M.l - M.r) / 2;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="各族群中位數上檔空間長條圖">`;
+  [-lim, -lim / 2, 0, lim / 2, lim].forEach(v => {
+    const x = zero + v / lim * half;
+    s += `<line class="${v === 0 ? 'axline' : 'gridline'}" x1="${x.toFixed(1)}" y1="${M.t}" x2="${x.toFixed(1)}" y2="${H - M.b + 2}"/>`;
+    s += `<text class="axtext" x="${x.toFixed(1)}" y="${H - M.b + 15}" text-anchor="middle">${(v * 100).toFixed(0)}%</text>`;
+  });
+  S.forEach((d, i) => {
+    const y = M.t + i * (BH + GAP), w = Math.abs(d.med) / lim * half;
+    const x = d.med >= 0 ? zero : zero - w;
+    const col = C[tone(d.med)];
+    s += `<g class="sbar" data-s="${esc(d.sector)}">
+      <rect x="${M.l - 82}" y="${y}" width="${W - M.l + 82}" height="${BH}" fill="transparent"/>
+      <text class="sbarlab" x="${M.l - 8}" y="${y + BH / 2 + 4}" text-anchor="end">${esc(d.sector)}</text>
+      <rect x="${x.toFixed(1)}" y="${y + 2}" width="${Math.max(1.5, w).toFixed(1)}" height="${BH - 4}" style="fill:${col};fill-opacity:.78" rx="1.5"/>
+      <text class="sbarval" x="${(d.med >= 0 ? x + w + 6 : x - 6).toFixed(1)}" y="${y + BH / 2 + 4}" text-anchor="${d.med >= 0 ? 'start' : 'end'}">${fp(d.med)}</text>
+      <title>${esc(d.sector)}：${d.n} 檔，中位數上檔空間 ${fp(d.med)}</title></g>`;
+  });
+  s += '</svg>';
+  $('#sectorbars').innerHTML = s;
+  $('#sectorbars').querySelectorAll('.sbar').forEach(g => {
+    g.addEventListener('click', () => {
+      $('#fsector').value = g.dataset.s; state.sector = g.dataset.s; render();
+      $('#controls').scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
+}
+</script>

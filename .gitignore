@@ -38,3 +38,8 @@ next-env.d.ts
 /outputs/
 /work/
 *.tsbuildinfo
+
+# valuation pipeline: fetched snapshot and rendered page are rebuilt every run
+/valuation/dist/
+/valuation/data/official.json
+__pycache__/

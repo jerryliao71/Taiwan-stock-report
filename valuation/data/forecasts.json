@@ -1,0 +1,3106 @@
+{
+ "_comment": "財測 EPS 無官方來源（台灣已取消強制財測，t187ap15_L 全市場僅 6 家）。此檔為手動維護的輸入，請直接編輯後 commit；排程只會更新股價與官方實績，不會覆寫這裡的數字。",
+ "source": "台股投資.xlsx（工作表「台股」）",
+ "imported": "2026-08-26",
+ "sheet_basis": "2026-08-19",
+ "market_corrections": {
+  "6409": "上市",
+  "6826": "興櫃",
+  "7853": "興櫃"
+ },
+ "stocks": [
+  {
+   "code": "2454",
+   "name": "聯發科",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "IC設計",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 66.92,
+    "2025": 65.88,
+    "2026": 73.92,
+    "2027": 155.4,
+    "2028": 269.41
+   },
+   "eps_old": {
+    "2025": 75.13,
+    "2026": 74.12,
+    "2027": 97.65,
+    "2028": 177.38
+   },
+   "pe_band": [
+    18.0,
+    40.0
+   ],
+   "note": "",
+   "updated": "2026-08-04",
+   "sheet_price": 3765.0
+  },
+  {
+   "code": "2436",
+   "name": "偉詮電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "IC設計",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 1.57,
+    "2025": 3.02,
+    "2026": 4.61,
+    "2027": 6.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    16.0,
+    26.0
+   ],
+   "note": "",
+   "updated": "2026-05-28",
+   "sheet_price": 63.2
+  },
+  {
+   "code": "3443",
+   "name": "創意",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "IC設計",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 25.75,
+    "2025": 27.95,
+    "2026": 44.04,
+    "2027": 124.37,
+    "2028": 189.5
+   },
+   "eps_old": {
+    "2026": 43.0
+   },
+   "pe_band": [
+    30.0,
+    40.0
+   ],
+   "note": "",
+   "updated": "2026-06-24",
+   "sheet_price": 5365.0
+  },
+  {
+   "code": "3661",
+   "name": "世芯-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "IC設計",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 81.34,
+    "2025": 69.2,
+    "2026": 127.76,
+    "2027": 168.28
+   },
+   "eps_old": {
+    "2025": 81.08,
+    "2026": 134.75
+   },
+   "pe_band": [
+    22.0,
+    40.0
+   ],
+   "note": "",
+   "updated": "2026-03-06",
+   "sheet_price": 3735.0
+  },
+  {
+   "code": "6531",
+   "name": "愛普",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "IC設計",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 9.73,
+    "2025": 7.73,
+    "2026": 15.2,
+    "2027": 24.12
+   },
+   "eps_old": {
+    "2026": 10.96,
+    "2027": 17.36
+   },
+   "pe_band": [
+    30.0,
+    40.0
+   ],
+   "note": "",
+   "updated": "2026-08-07",
+   "sheet_price": 845.0
+  },
+  {
+   "code": "2379",
+   "name": "瑞昱",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "IC設計",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 29.82,
+    "2025": 28.77,
+    "2026": 33.3,
+    "2027": 36.0
+   },
+   "eps_old": {
+    "2026": 33.51
+   },
+   "pe_band": [
+    13.0,
+    23.0
+   ],
+   "note": "",
+   "updated": "2026-05-04",
+   "sheet_price": 716.0
+  },
+  {
+   "code": "6719",
+   "name": "力智",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "IC設計",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 2.42,
+    "2025": 6.58,
+    "2026": 9.44,
+    "2027": 11.88
+   },
+   "eps_old": {},
+   "pe_band": [
+    17.0,
+    27.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 191.5
+  },
+  {
+   "code": "2330",
+   "name": "台積電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "晶圓代工",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 45.25,
+    "2025": 66.2,
+    "2026": 109.8,
+    "2027": 148.6,
+    "2028": 210.6
+   },
+   "eps_old": {
+    "2025": 59.18,
+    "2026": 61.8,
+    "2027": 130.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-07-18",
+   "sheet_price": 2375.0
+  },
+  {
+   "code": "2303",
+   "name": "聯電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "IC設計",
+   "sector": "晶圓代工",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 3.76,
+    "2025": 3.31,
+    "2026": 7.35,
+    "2027": 6.77
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-07-30",
+   "sheet_price": 123.5
+  },
+  {
+   "code": "2404",
+   "name": "漢唐",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "廠務",
+   "sector": "廠務",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 32.94,
+    "2025": 48.08,
+    "2026": 75.0,
+    "2027": 95.0
+   },
+   "eps_old": {
+    "2026": 82.5,
+    "2027": 110.0
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 1065.0
+  },
+  {
+   "code": "6944",
+   "name": "兆聯實業",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "廠務",
+   "sector": "廠務",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 22.33,
+    "2025": 32.29,
+    "2026": 42.5,
+    "2027": 55.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    12.0,
+    22.0
+   ],
+   "note": "",
+   "updated": "2026-04-17",
+   "sheet_price": 705.0
+  },
+  {
+   "code": "6937",
+   "name": "天虹",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "廠務",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 6.03,
+    "2025": 5.5,
+    "2026": 8.5
+   },
+   "eps_old": {
+    "2025": 7.5,
+    "2026": 8.5
+   },
+   "pe_band": [
+    30.0,
+    50.0
+   ],
+   "note": "",
+   "updated": "2026-07-20",
+   "sheet_price": 260.5
+  },
+  {
+   "code": "6830",
+   "name": "汎銓",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "廠務",
+   "sector": "檢測分析",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 1.34,
+    "2025": 6.7,
+    "2026": 9.84
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "",
+   "sheet_price": 446.5
+  },
+  {
+   "code": "3711",
+   "name": "日月光",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "封裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 7.52,
+    "2025": 8.9,
+    "2026": 14.5,
+    "2027": 28.5,
+    "2028": 36.6
+   },
+   "eps_old": {
+    "2027": 20.7
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-07-02",
+   "sheet_price": 592.0
+  },
+  {
+   "code": "6239",
+   "name": "力成",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "封裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 9.09,
+    "2025": 7.48,
+    "2026": 13.69,
+    "2027": 17.94
+   },
+   "eps_old": {
+    "2025": 11.83,
+    "2026": 9.43,
+    "2027": 20.08
+   },
+   "pe_band": [
+    12.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-07-30",
+   "sheet_price": 269.5
+  },
+  {
+   "code": "2441",
+   "name": "超豐",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "封裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 4.39,
+    "2025": 4.31,
+    "2026": 7.33,
+    "2027": 10.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    6.0,
+    16.0
+   ],
+   "note": "",
+   "updated": "2026-07-30",
+   "sheet_price": 113.5
+  },
+  {
+   "code": "3413",
+   "name": "京鼎",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 25.22,
+    "2025": 21.47,
+    "2026": 22.8
+   },
+   "eps_old": {},
+   "pe_band": [
+    9.0,
+    15.0
+   ],
+   "note": "",
+   "updated": "2025-12-26",
+   "sheet_price": 284.5
+  },
+  {
+   "code": "2449",
+   "name": "京元電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "封裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 6.36,
+    "2025": 9.1,
+    "2026": 10.07,
+    "2027": 14.66
+   },
+   "eps_old": {
+    "2026": 10.0,
+    "2027": 14.4
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-05-11",
+   "sheet_price": 239.0
+  },
+  {
+   "code": "2360",
+   "name": "致茂",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 12.49,
+    "2025": 20.3,
+    "2026": 39.87,
+    "2027": 55.57,
+    "2028": 65.07
+   },
+   "eps_old": {
+    "2026": 26.86
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-05-04",
+   "sheet_price": 2070.0
+  },
+  {
+   "code": "2467",
+   "name": "志聖",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 4.8,
+    "2025": 5.5,
+    "2026": 15.5,
+    "2027": 20.5
+   },
+   "eps_old": {
+    "2026": 8.5
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-07-20",
+   "sheet_price": 533.0
+  },
+  {
+   "code": "1560",
+   "name": "中砂",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "半導體材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 7.1,
+    "2025": 8.74,
+    "2026": 14.27,
+    "2027": 18.93
+   },
+   "eps_old": {
+    "2025": 8.12,
+    "2026": 11.63
+   },
+   "pe_band": [
+    20.0,
+    35.0
+   ],
+   "note": "",
+   "updated": "2026-05-17",
+   "sheet_price": 680.0
+  },
+  {
+   "code": "5434",
+   "name": "崇越",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "封裝",
+   "sector": "半導體通路",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 18.88,
+    "2025": 21.59,
+    "2026": 26.87,
+    "2027": 30.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-06-24",
+   "sheet_price": 521.0
+  },
+  {
+   "code": "5222",
+   "name": "全訊",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "國防",
+   "sector": "國防",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 4.84,
+    "2025": 2.72,
+    "2026": 4.06,
+    "2027": 6.16
+   },
+   "eps_old": {
+    "2025": 2.93,
+    "2026": 4.05,
+    "2027": 6.54
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-04-08",
+   "sheet_price": 105.5
+  },
+  {
+   "code": "3004",
+   "name": "豐達科",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "航太",
+   "sector": "航太",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 6.88,
+    "2025": 5.95,
+    "2026": 8.64,
+    "2027": 11.0
+   },
+   "eps_old": {
+    "2026": 6.76
+   },
+   "pe_band": [
+    15.0,
+    21.0
+   ],
+   "note": "",
+   "updated": "2026-05-10",
+   "sheet_price": 120.0
+  },
+  {
+   "code": "8016",
+   "name": "矽創",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "航太",
+   "sector": "IC設計",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 15.39,
+    "2025": 14.53,
+    "2026": 20.49,
+    "2027": 22.98
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-07-10",
+   "sheet_price": 295.5
+  },
+  {
+   "code": "2327",
+   "name": "國巨",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "被動元件",
+   "sector": "被動元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 38.13,
+    "2025": 11.51,
+    "2026": 18.95,
+    "2027": 27.53,
+    "2028": 47.26
+   },
+   "eps_old": {
+    "2025": 11.06,
+    "2026": 17.07,
+    "2027": 30.0,
+    "2028": 46.9
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-19",
+   "sheet_price": 551.0
+  },
+  {
+   "code": "2472",
+   "name": "立隆電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "被動元件",
+   "sector": "被動元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 7.01,
+    "2025": 8.03,
+    "2026": 10.23,
+    "2027": 16.11
+   },
+   "eps_old": {
+    "2026": 10.5,
+    "2027": 15.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-06-02",
+   "sheet_price": 220.0
+  },
+  {
+   "code": "2492",
+   "name": "華新科",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "被動元件",
+   "sector": "被動元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 6.15,
+    "2025": 4.74,
+    "2026": 5.76,
+    "2027": 10.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-05-29",
+   "sheet_price": 265.0
+  },
+  {
+   "code": "3026",
+   "name": "禾伸堂",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "被動元件",
+   "sector": "被動元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 5.87,
+    "2025": 6.58,
+    "2026": 15.11,
+    "2027": 38.09,
+    "2028": 70.0
+   },
+   "eps_old": {
+    "2026": 10.86,
+    "2027": 16.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-19",
+   "sheet_price": 643.0
+  },
+  {
+   "code": "6449",
+   "name": "鈺邦",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "被動元件",
+   "sector": "被動元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 6.08,
+    "2025": 7.38,
+    "2026": 11.14,
+    "2027": 18.0
+   },
+   "eps_old": {
+    "2025": 7.45,
+    "2026": 11.88
+   },
+   "pe_band": [
+    12.0,
+    22.0
+   ],
+   "note": "",
+   "updated": "2026-05-31",
+   "sheet_price": 210.5
+  },
+  {
+   "code": "3665",
+   "name": "貿聯-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "被動元件",
+   "sector": "線束連接器",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 25.41,
+    "2025": 46.5,
+    "2026": 71.9,
+    "2027": 101.9
+   },
+   "eps_old": {
+    "2025": 38.0,
+    "2026": 62.0,
+    "2027": 85.06
+   },
+   "pe_band": [
+    15.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-04-08",
+   "sheet_price": 2050.0
+  },
+  {
+   "code": "3563",
+   "name": "牧德",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "被動元件",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 5.52,
+    "2025": 15.8,
+    "2026": 21.0,
+    "2027": 33.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-07-02",
+   "sheet_price": 665.0
+  },
+  {
+   "code": "2493",
+   "name": "揚博",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB設備材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 6.05,
+    "2025": 4.36,
+    "2026": 9.0,
+    "2027": 15.0,
+    "2028": 20.0
+   },
+   "eps_old": {
+    "2026": 7.5,
+    "2027": 9.5
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-07-15",
+   "sheet_price": 174.0
+  },
+  {
+   "code": "3167",
+   "name": "大量",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 1.48,
+    "2025": 8.13,
+    "2026": 19.53,
+    "2027": 30.59
+   },
+   "eps_old": {},
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-04-07",
+   "sheet_price": 665.0
+  },
+  {
+   "code": "7795",
+   "name": "長廣",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 4.22,
+    "2025": 3.11,
+    "2026": 4.473,
+    "2027": 17.053,
+    "2028": 22.759
+   },
+   "eps_old": {},
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-06-29",
+   "sheet_price": 568.0
+  },
+  {
+   "code": "3037",
+   "name": "欣興",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 3.34,
+    "2025": 4.38,
+    "2026": 21.9,
+    "2027": 30.65
+   },
+   "eps_old": {
+    "2025": 3.25,
+    "2026": 9.27,
+    "2027": 27.5
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-07-30",
+   "sheet_price": 1075.0
+  },
+  {
+   "code": "2313",
+   "name": "華通",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 4.7,
+    "2025": 5.51,
+    "2026": 6.81,
+    "2027": 14.24,
+    "2028": 17.0
+   },
+   "eps_old": {
+    "2025": 5.6,
+    "2026": 6.38
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-07-21",
+   "sheet_price": 212.5
+  },
+  {
+   "code": "4958",
+   "name": "臻鼎-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 9.67,
+    "2025": 8.7,
+    "2026": 14.02,
+    "2027": 20.68,
+    "2028": 40.58
+   },
+   "eps_old": {
+    "2025": 10.83,
+    "2026": 10.31,
+    "2027": 18.0
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-08-13",
+   "sheet_price": 435.5
+  },
+  {
+   "code": "3715",
+   "name": "定穎",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 3.78,
+    "2025": 3.67,
+    "2026": 5.94,
+    "2027": 17.89
+   },
+   "eps_old": {
+    "2025": 4.33,
+    "2026": 7.5,
+    "2027": 12.5
+   },
+   "pe_band": [
+    10.0,
+    18.0
+   ],
+   "note": "",
+   "updated": "2026-06-02",
+   "sheet_price": 108.0
+  },
+  {
+   "code": "2368",
+   "name": "金像電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "PCB",
+   "sector": "PCB",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 11.4,
+    "2025": 17.5,
+    "2026": 38.3,
+    "2027": 55.1
+   },
+   "eps_old": {
+    "2025": 14.7,
+    "2026": 20.5
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-08-13",
+   "sheet_price": 948.0
+  },
+  {
+   "code": "2383",
+   "name": "台光電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "CCL",
+   "sector": "CCL",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 27.6,
+    "2025": 45.48,
+    "2026": 113.09,
+    "2027": 227.75,
+    "2028": 286.42
+   },
+   "eps_old": {
+    "2025": 41.5,
+    "2026": 51.3,
+    "2027": 110.97,
+    "2028": 221.53
+   },
+   "pe_band": [
+    25.0,
+    35.0
+   ],
+   "note": "",
+   "updated": "2026-07-30",
+   "sheet_price": 5430.0
+  },
+  {
+   "code": "4764",
+   "name": "雙鍵",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "CCL",
+   "sector": "CCL材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 0.27,
+    "2025": 0.61,
+    "2026": 8.28,
+    "2027": 20.21
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "",
+   "sheet_price": 206.5
+  },
+  {
+   "code": "5243",
+   "name": "乙盛-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "CCL",
+   "sector": "機構件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 3.36,
+    "2025": 4.4,
+    "2026": 7.59,
+    "2027": 10.03
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    15.0
+   ],
+   "note": "",
+   "updated": "2026-07-16",
+   "sheet_price": 89.3
+  },
+  {
+   "code": "4906",
+   "name": "正文",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "網通",
+   "sector": "網通",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 1.56,
+    "2025": -0.23,
+    "2026": 0.4
+   },
+   "eps_old": {
+    "2025": 1.93,
+    "2026": 1.55
+   },
+   "pe_band": [
+    14.0,
+    20.0
+   ],
+   "note": "景氣循環股",
+   "updated": "2026-05-31",
+   "sheet_price": 34.0
+  },
+  {
+   "code": "6285",
+   "name": "啟碁",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "網通",
+   "sector": "網通",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 7.26,
+    "2025": 5.36,
+    "2026": 11.01,
+    "2027": 13.0,
+    "2028": 16.39
+   },
+   "eps_old": {
+    "2025": 7.24,
+    "2026": 7.3
+   },
+   "pe_band": [
+    12.0,
+    20.0
+   ],
+   "note": "景氣循環股",
+   "updated": "2026-06-02",
+   "sheet_price": 230.5
+  },
+  {
+   "code": "5388",
+   "name": "中磊",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "網通",
+   "sector": "網通",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 7.74,
+    "2025": 5.29,
+    "2026": 4.37
+   },
+   "eps_old": {
+    "2025": 3.78,
+    "2026": 6.18
+   },
+   "pe_band": [
+    10.0,
+    17.0
+   ],
+   "note": "",
+   "updated": "2026-03-29",
+   "sheet_price": 77.6
+  },
+  {
+   "code": "2345",
+   "name": "智邦",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "網通",
+   "sector": "網通",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 21.49,
+    "2025": 47.13,
+    "2026": 80.5,
+    "2027": 111.9,
+    "2028": 154.0
+   },
+   "eps_old": {
+    "2025": 35.51,
+    "2026": 47.2,
+    "2027": 80.0,
+    "2028": 147.13
+   },
+   "pe_band": [
+    23.5,
+    35.0
+   ],
+   "note": "",
+   "updated": "2026-07-02",
+   "sheet_price": 2070.0
+  },
+  {
+   "code": "2455",
+   "name": "全新",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "光通",
+   "sector": "光通",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 3.63,
+    "2025": 2.97,
+    "2026": 5.55,
+    "2027": 8.55,
+    "2028": 10.5
+   },
+   "eps_old": {
+    "2026": 4.73,
+    "2027": 7.23
+   },
+   "pe_band": [
+    20.0,
+    40.0
+   ],
+   "note": "",
+   "updated": "2026-08-04",
+   "sheet_price": 381.5
+  },
+  {
+   "code": "6257",
+   "name": "矽格",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "光通",
+   "sector": "封測",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 5.89,
+    "2025": 6.14,
+    "2026": 10.38,
+    "2027": 14.05,
+    "2028": 18.0
+   },
+   "eps_old": {
+    "2026": 7.74,
+    "2027": 11.26
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-13",
+   "sheet_price": 197.5
+  },
+  {
+   "code": "2308",
+   "name": "台達電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "電源供應",
+   "sector": "電源供應",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 13.56,
+    "2025": 23.14,
+    "2026": 43.68,
+    "2027": 79.56,
+    "2028": 120.0
+   },
+   "eps_old": {
+    "2025": 18.1,
+    "2026": 24.2,
+    "2027": 60.3,
+    "2028": 109.42
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-07-31",
+   "sheet_price": 1735.0
+  },
+  {
+   "code": "2301",
+   "name": "光寶科",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "電源供應",
+   "sector": "電源供應",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 5.21,
+    "2025": 6.82,
+    "2026": 10.38,
+    "2027": 16.5,
+    "2028": 19.91
+   },
+   "eps_old": {
+    "2025": 6.43,
+    "2026": 8.98,
+    "2027": 12.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-07-31",
+   "sheet_price": 287.0
+  },
+  {
+   "code": "6412",
+   "name": "群電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "電源供應",
+   "sector": "電源供應",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 8.24,
+    "2025": 5.2,
+    "2026": 9.3
+   },
+   "eps_old": {
+    "2025": 7.06
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-02-06",
+   "sheet_price": 77.7
+  },
+  {
+   "code": "6781",
+   "name": "AES-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "電源供應",
+   "sector": "電源供應",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 25.39,
+    "2025": 38.2,
+    "2026": 51.38,
+    "2027": 73.01
+   },
+   "eps_old": {
+    "2026": 52.5,
+    "2027": 68.45
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-19",
+   "sheet_price": 1045.0
+  },
+  {
+   "code": "6525",
+   "name": "捷敏-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "電源供應",
+   "sector": "封測",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 5.15,
+    "2025": 5.88,
+    "2026": 8.52,
+    "2027": 9.75
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 137.0
+  },
+  {
+   "code": "7788",
+   "name": "松川精密",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "電源供應",
+   "sector": "連接器",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 6.95,
+    "2025": 3.63,
+    "2026": 12.48,
+    "2027": 16.29
+   },
+   "eps_old": {
+    "2026": 7.74,
+    "2027": 12.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-13",
+   "sheet_price": 253.0
+  },
+  {
+   "code": "2481",
+   "name": "強茂",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "功率元件",
+   "sector": "功率元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 2.4,
+    "2025": 3.12,
+    "2026": 4.59,
+    "2027": 6.5
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-05-28",
+   "sheet_price": 134.0
+  },
+  {
+   "code": "6415",
+   "name": "矽力-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "功率元件",
+   "sector": "功率元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 5.95,
+    "2025": 6.4,
+    "2026": 10.0,
+    "2027": 16.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "",
+   "sheet_price": 450.0
+  },
+  {
+   "code": "8261",
+   "name": "富鼎",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "功率元件",
+   "sector": "功率元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 4.8,
+    "2025": 5.73,
+    "2026": 7.81,
+    "2027": 10.62
+   },
+   "eps_old": {
+    "2027": 12.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 177.5
+  },
+  {
+   "code": "2351",
+   "name": "順德",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "功率元件",
+   "sector": "功率元件",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 3.71,
+    "2025": 1.66,
+    "2026": 6.9,
+    "2027": 9.61
+   },
+   "eps_old": {
+    "2026": 6.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-13",
+   "sheet_price": 200.5
+  },
+  {
+   "code": "3533",
+   "name": "嘉澤",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "功率元件",
+   "sector": "連接器",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 82.77,
+    "2025": 70.17,
+    "2026": 85.21,
+    "2027": 124.99
+   },
+   "eps_old": {},
+   "pe_band": [
+    13.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-04",
+   "sheet_price": 1610.0
+  },
+  {
+   "code": "3017",
+   "name": "奇鋐",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "散熱",
+   "sector": "散熱",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 21.21,
+    "2025": 49.8,
+    "2026": 105.02,
+    "2027": 154.6
+   },
+   "eps_old": {
+    "2025": 46.51,
+    "2026": 63.26,
+    "2027": 120.0
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-08-13",
+   "sheet_price": 2855.0
+  },
+  {
+   "code": "6805",
+   "name": "富世達",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "散熱",
+   "sector": "散熱",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 17.9,
+    "2025": 30.77,
+    "2026": 60.25,
+    "2027": 94.22
+   },
+   "eps_old": {
+    "2026": 54.76
+   },
+   "pe_band": [
+    17.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-08-07",
+   "sheet_price": 1710.0
+  },
+  {
+   "code": "8996",
+   "name": "高力",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "散熱",
+   "sector": "散熱",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 6.56,
+    "2025": 9.07,
+    "2026": 23.05,
+    "2027": 42.75,
+    "2028": 73.84
+   },
+   "eps_old": {
+    "2026": 33.9,
+    "2027": 63.73,
+    "2028": 90.0
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-06-18",
+   "sheet_price": 1145.0
+  },
+  {
+   "code": "2357",
+   "name": "華碩",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "散熱",
+   "sector": "品牌PC",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 42.27,
+    "2025": 52.06,
+    "2026": 55.4
+   },
+   "eps_old": {},
+   "pe_band": [
+    7.0,
+    18.0
+   ],
+   "note": "",
+   "updated": "2025-08-29",
+   "sheet_price": 923.0
+  },
+  {
+   "code": "2344",
+   "name": "華邦電",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "記憶體",
+   "sector": "記憶體",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 0.14,
+    "2025": 0.5,
+    "2026": 19.0,
+    "2027": 28.0
+   },
+   "eps_old": {
+    "2025": 0.2,
+    "2026": 1.5,
+    "2027": 2.5
+   },
+   "pe_band": [
+    5.0,
+    10.0
+   ],
+   "note": "無法評估PE範圍",
+   "updated": "2026-08-07",
+   "sheet_price": 177.0
+  },
+  {
+   "code": "2451",
+   "name": "創見",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "記憶體",
+   "sector": "記憶體模組",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 5.39,
+    "2025": 9.58,
+    "2026": 14.23
+   },
+   "eps_old": {},
+   "pe_band": [
+    11.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2025-11-07",
+   "sheet_price": 316.0
+  },
+  {
+   "code": "2337",
+   "name": "旺宏",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "記憶體",
+   "sector": "記憶體",
+   "sector_fixed": false,
+   "eps": {
+    "2024": -1.73,
+    "2025": -1.77,
+    "2026": 5.0,
+    "2027": 15.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    5.0,
+    15.0
+   ],
+   "note": "",
+   "updated": "2026-07-30",
+   "sheet_price": 124.0
+  },
+  {
+   "code": "8150",
+   "name": "南茂",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "記憶體",
+   "sector": "記憶體",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 1.95,
+    "2025": 0.7,
+    "2026": 3.82,
+    "2027": 6.47
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-07-10",
+   "sheet_price": 87.7
+  },
+  {
+   "code": "2059",
+   "name": "川湖",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "記憶體",
+   "sector": "伺服器零組件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 64.59,
+    "2025": 92.71,
+    "2026": 187.07
+   },
+   "eps_old": {
+    "2025": 85.91,
+    "2026": 127.43
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-05-10",
+   "sheet_price": 14410.0
+  },
+  {
+   "code": "2317",
+   "name": "鴻海",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "伺服器組裝",
+   "sector": "伺服器組裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 11.01,
+    "2025": 14.33,
+    "2026": 17.94,
+    "2027": 21.46
+   },
+   "eps_old": {
+    "2025": 14.68,
+    "2026": 19.23,
+    "2027": 25.0
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-05-28",
+   "sheet_price": 243.5
+  },
+  {
+   "code": "3231",
+   "name": "緯創",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "伺服器組裝",
+   "sector": "伺服器組裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 6.11,
+    "2025": 9.34,
+    "2026": 12.29,
+    "2027": 12.68
+   },
+   "eps_old": {
+    "2026": 14.22
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2025-12-26",
+   "sheet_price": 175.5
+  },
+  {
+   "code": "2382",
+   "name": "廣達",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "伺服器組裝",
+   "sector": "伺服器組裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 15.49,
+    "2025": 19.45,
+    "2026": 24.86
+   },
+   "eps_old": {
+    "2025": 17.66,
+    "2026": 20.0
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-04-10",
+   "sheet_price": 325.0
+  },
+  {
+   "code": "3706",
+   "name": "神達",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "伺服器組裝",
+   "sector": "伺服器組裝",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 3.28,
+    "2025": 6.5,
+    "2026": 9.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    9.0,
+    18.0
+   ],
+   "note": "",
+   "updated": "2025-07-23",
+   "sheet_price": 92.1
+  },
+  {
+   "code": "3376",
+   "name": "新日興",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "伺服器組裝",
+   "sector": "伺服器零組件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 7.15,
+    "2025": 1.63,
+    "2026": 9.49,
+    "2027": 16.73
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-06-17",
+   "sheet_price": 186.5
+  },
+  {
+   "code": "6505",
+   "name": "台塑化",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "伺服器組裝",
+   "sector": "石化",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 0.63,
+    "2025": 1.49,
+    "2026": 7.31,
+    "2027": 3.97
+   },
+   "eps_old": {},
+   "pe_band": [
+    14.0,
+    22.0
+   ],
+   "note": "",
+   "updated": "2026-07-20",
+   "sheet_price": 69.9
+  },
+  {
+   "code": "1723",
+   "name": "中碳",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "伺服器組裝",
+   "sector": "碳素化工",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 0.2,
+    "2025": 2.65,
+    "2026": 5.21
+   },
+   "eps_old": {},
+   "pe_band": [
+    16.0,
+    23.0
+   ],
+   "note": "",
+   "updated": "2026-03-29",
+   "sheet_price": 88.4
+  },
+  {
+   "code": "6768",
+   "name": "志強-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "紡織",
+   "sector": "紡織",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 8.15,
+    "2025": 7.37,
+    "2026": 8.29
+   },
+   "eps_old": {
+    "2025": 10.32
+   },
+   "pe_band": [
+    10.0,
+    16.0
+   ],
+   "note": "",
+   "updated": "2025-11-05",
+   "sheet_price": 65.9
+  },
+  {
+   "code": "6890",
+   "name": "來億-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "紡織",
+   "sector": "紡織",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 16.13,
+    "2025": 13.02,
+    "2026": 9.71
+   },
+   "eps_old": {
+    "2026": 16.97
+   },
+   "pe_band": [
+    9.0,
+    18.0
+   ],
+   "note": "",
+   "updated": "2026-05-17",
+   "sheet_price": 163.5
+  },
+  {
+   "code": "9802",
+   "name": "鈺齊-KY",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "紡織",
+   "sector": "紡織",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 7.23,
+    "2025": 8.66
+   },
+   "eps_old": {},
+   "pe_band": [
+    9.0,
+    15.0
+   ],
+   "note": "",
+   "updated": "2025-06-12",
+   "sheet_price": 72.2
+  },
+  {
+   "code": "9914",
+   "name": "美利達",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "自行車",
+   "sector": "自行車",
+   "sector_fixed": false,
+   "eps": {
+    "2024": -2.34,
+    "2025": 5.8,
+    "2026": 6.06
+   },
+   "eps_old": {
+    "2025": 5.32
+   },
+   "pe_band": [
+    8.0,
+    15.0
+   ],
+   "note": "",
+   "updated": "2026-07-18",
+   "sheet_price": 84.5
+  },
+  {
+   "code": "5306",
+   "name": "桂盟",
+   "market": "上市",
+   "market_sheet": "上市",
+   "sheet_sector": "自行車",
+   "sector": "自行車",
+   "sector_fixed": false,
+   "eps": {
+    "2024": 7.27,
+    "2025": 7.46,
+    "2026": 8.04
+   },
+   "eps_old": {
+    "2025": 7.65
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-02-25",
+   "sheet_price": 94.6
+  },
+  {
+   "code": "3680",
+   "name": "家登",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體耗材",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 12.32,
+    "2025": 9.43,
+    "2026": 14.91,
+    "2027": 18.74
+   },
+   "eps_old": {
+    "2025": 18.61,
+    "2026": 12.49,
+    "2027": 20.0
+   },
+   "pe_band": [
+    25.0,
+    40.0
+   ],
+   "note": "",
+   "updated": "2026-07-04",
+   "sheet_price": 464.5
+  },
+  {
+   "code": "3211",
+   "name": "順達",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "電池模組",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 17.59,
+    "2025": 8.95,
+    "2026": 13.06,
+    "2027": 19.81
+   },
+   "eps_old": {},
+   "pe_band": [
+    12.0,
+    24.0
+   ],
+   "note": "",
+   "updated": "2026-04-24",
+   "sheet_price": 385.0
+  },
+  {
+   "code": "4931",
+   "name": "新盛力",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "電池模組",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 2.5,
+    "2025": 3.13,
+    "2026": 9.28,
+    "2027": 21.43
+   },
+   "eps_old": {
+    "2026": 7.73,
+    "2027": 12.56
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 267.0
+  },
+  {
+   "code": "6409",
+   "name": "旭隼",
+   "market": "上市",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "電源供應",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 48.13,
+    "2025": 40.23,
+    "2026": 30.79,
+    "2027": 40.45
+   },
+   "eps_old": {},
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-06-24",
+   "sheet_price": 977.0
+  },
+  {
+   "code": "4772",
+   "name": "台特化",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 2.74
+   },
+   "eps_old": {},
+   "pe_band": null,
+   "note": "無法評估PE範圍",
+   "updated": "",
+   "sheet_price": 273.0
+  },
+  {
+   "code": "3324",
+   "name": "雙鴻",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "散熱",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 21.23,
+    "2025": 27.72,
+    "2026": 64.06,
+    "2027": 96.82
+   },
+   "eps_old": {
+    "2025": 23.96,
+    "2026": 42.56
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-06-19",
+   "sheet_price": 1075.0
+  },
+  {
+   "code": "6275",
+   "name": "元山",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "散熱",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 2.87,
+    "2025": 2.81,
+    "2026": 1.91,
+    "2027": 3.39
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-07-07",
+   "sheet_price": 48.6
+  },
+  {
+   "code": "3357",
+   "name": "台慶科",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "被動元件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 7.33,
+    "2025": 10.33,
+    "2026": 13.42,
+    "2027": 17.0
+   },
+   "eps_old": {
+    "2026": 11.85
+   },
+   "pe_band": [
+    13.0,
+    23.0
+   ],
+   "note": "",
+   "updated": "2026-04-27",
+   "sheet_price": 212.0
+  },
+  {
+   "code": "3675",
+   "name": "德微",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "功率元件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 8.34,
+    "2025": 2.67,
+    "2026": 10.49,
+    "2027": 15.33
+   },
+   "eps_old": {},
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 311.0
+  },
+  {
+   "code": "3081",
+   "name": "聯亞",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "光通",
+   "sector_fixed": true,
+   "eps": {
+    "2024": -0.59,
+    "2025": 4.66,
+    "2026": 20.03,
+    "2027": 46.67,
+    "2028": 65.0
+   },
+   "eps_old": {
+    "2026": 12.05,
+    "2027": 40.0
+   },
+   "pe_band": [
+    30.0,
+    50.0
+   ],
+   "note": "",
+   "updated": "2026-08-13",
+   "sheet_price": 2540.0
+  },
+  {
+   "code": "3105",
+   "name": "穩懋",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "光通",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 1.81,
+    "2025": 4.0,
+    "2026": 7.78,
+    "2027": 13.0
+   },
+   "eps_old": {
+    "2026": 6.08
+   },
+   "pe_band": [
+    25.0,
+    40.0
+   ],
+   "note": "",
+   "updated": "2026-07-25",
+   "sheet_price": 524.0
+  },
+  {
+   "code": "4749",
+   "name": "新應材",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 8.5,
+    "2025": 11.23,
+    "2026": 17.62,
+    "2027": 23.86
+   },
+   "eps_old": {},
+   "pe_band": [
+    25.0,
+    45.0
+   ],
+   "note": "",
+   "updated": "2026-06-23",
+   "sheet_price": 877.0
+  },
+  {
+   "code": "3131",
+   "name": "弘塑",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 29.07,
+    "2025": 42.5,
+    "2026": 64.16,
+    "2027": 109.67
+   },
+   "eps_old": {
+    "2025": 39.65,
+    "2026": 57.5,
+    "2027": 145.0
+   },
+   "pe_band": [
+    20.0,
+    35.0
+   ],
+   "note": "",
+   "updated": "2026-07-10",
+   "sheet_price": 3000.0
+  },
+  {
+   "code": "3455",
+   "name": "由田",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 3.38,
+    "2025": 5.5,
+    "2026": 8.5
+   },
+   "eps_old": {
+    "2025": 10.0
+   },
+   "pe_band": [
+    9.0,
+    18.0
+   ],
+   "note": "",
+   "updated": "2026-04-08",
+   "sheet_price": 270.0
+  },
+  {
+   "code": "3551",
+   "name": "世禾",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "廠務",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 6.63,
+    "2025": 8.36,
+    "2026": 9.92,
+    "2027": 12.45
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-05-28",
+   "sheet_price": 217.5
+  },
+  {
+   "code": "3485",
+   "name": "敘豐",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 7.14,
+    "2025": 5.9,
+    "2026": 9.0,
+    "2027": 19.0
+   },
+   "eps_old": {
+    "2026": 18.96,
+    "2027": 25.0
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-19",
+   "sheet_price": 222.0
+  },
+  {
+   "code": "6664",
+   "name": "群翊",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 16.97,
+    "2025": 15.06,
+    "2026": 21.0,
+    "2027": 27.0
+   },
+   "eps_old": {
+    "2026": 19.0
+   },
+   "pe_band": [
+    10.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-04-28",
+   "sheet_price": 424.0
+  },
+  {
+   "code": "7853",
+   "name": "政美應用",
+   "market": "興櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2026": 6.5
+   },
+   "eps_old": {
+    "2026": 6.5
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-07-30",
+   "sheet_price": 111.0
+  },
+  {
+   "code": "3491",
+   "name": "昇達科",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "網通",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 8.59
+   },
+   "eps_old": {},
+   "pe_band": [
+    22.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "",
+   "sheet_price": 394.0
+  },
+  {
+   "code": "6488",
+   "name": "環球晶",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 21.06,
+    "2025": 15.29,
+    "2026": 32.89,
+    "2027": 75.0,
+    "2028": 131.04
+   },
+   "eps_old": {},
+   "pe_band": [
+    17.0,
+    27.0
+   ],
+   "note": "",
+   "updated": "2026-07-02",
+   "sheet_price": 1485.0
+  },
+  {
+   "code": "6584",
+   "name": "南俊國際",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "其他",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 2.94,
+    "2025": 5.62,
+    "2026": 15.67
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2025-11-20",
+   "sheet_price": 317.0
+  },
+  {
+   "code": "4991",
+   "name": "環宇-KY",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "光通",
+   "sector_fixed": true,
+   "eps": {
+    "2025": 0.14,
+    "2026": 6.77,
+    "2027": 16.25,
+    "2028": 30.0
+   },
+   "eps_old": {
+    "2026": 6.21,
+    "2027": 16.97
+   },
+   "pe_band": [
+    20.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 554.0
+  },
+  {
+   "code": "5289",
+   "name": "宜鼎",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "記憶體模組",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 12.2,
+    "2025": 21.72,
+    "2026": 367.43,
+    "2027": 335.31
+   },
+   "eps_old": {},
+   "pe_band": [
+    5.0,
+    15.0
+   ],
+   "note": "",
+   "updated": "2026-07-10",
+   "sheet_price": 1530.0
+  },
+  {
+   "code": "2221",
+   "name": "大甲",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "車用零件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 2.02,
+    "2025": 2.31,
+    "2026": 3.66,
+    "2027": 5.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-06-19",
+   "sheet_price": 52.8
+  },
+  {
+   "code": "6826",
+   "name": "和淞",
+   "market": "興櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 28.11,
+    "2025": 27.33,
+    "2026": 32.5,
+    "2027": 47.5
+   },
+   "eps_old": {
+    "2027": 50.0
+   },
+   "pe_band": [
+    10.0,
+    22.0
+   ],
+   "note": "",
+   "updated": "2026-08-11",
+   "sheet_price": 631.0
+  },
+  {
+   "code": "5536",
+   "name": "聖暉",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "廠務",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 21.09,
+    "2025": 28.42,
+    "2026": 56.23,
+    "2027": 72.1
+   },
+   "eps_old": {
+    "2026": 57.8,
+    "2027": 71.4
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-06-04",
+   "sheet_price": 1140.0
+  },
+  {
+   "code": "5274",
+   "name": "信驊",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "IC設計",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 68.04,
+    "2025": 103.92,
+    "2026": 176.1,
+    "2027": 251.95
+   },
+   "eps_old": {},
+   "pe_band": [
+    30.0,
+    50.0
+   ],
+   "note": "",
+   "updated": "2026-06-07",
+   "sheet_price": 12950.0
+  },
+  {
+   "code": "6894",
+   "name": "衛司特",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "廠務",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 8.5,
+    "2025": 11.87,
+    "2026": 20.51,
+    "2027": 30.0
+   },
+   "eps_old": {
+    "2026": 14.79
+   },
+   "pe_band": [
+    19.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-03-16",
+   "sheet_price": 331.0
+  },
+  {
+   "code": "3587",
+   "name": "閎康",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "檢測分析",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 10.39,
+    "2025": 6.1,
+    "2026": 12.72,
+    "2027": 20.0
+   },
+   "eps_old": {
+    "2025": 6.86
+   },
+   "pe_band": [
+    15.0,
+    26.0
+   ],
+   "note": "",
+   "updated": "2026-05-24",
+   "sheet_price": 342.0
+  },
+  {
+   "code": "6274",
+   "name": "台燿",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "CCL",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 9.5,
+    "2025": 11.81,
+    "2026": 36.43,
+    "2027": 67.49
+   },
+   "eps_old": {
+    "2025": 11.71,
+    "2026": 16.0,
+    "2027": 28.7
+   },
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-04",
+   "sheet_price": 1340.0
+  },
+  {
+   "code": "6727",
+   "name": "亞泰金屬",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 5.69,
+    "2025": 6.8,
+    "2026": 15.09,
+    "2027": 40.0
+   },
+   "eps_old": {
+    "2027": 20.66
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-04-27",
+   "sheet_price": 367.5
+  },
+  {
+   "code": "5425",
+   "name": "台半",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "功率元件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 1.87,
+    "2025": 1.66,
+    "2026": 4.73,
+    "2027": 7.95
+   },
+   "eps_old": {
+    "2026": 4.16,
+    "2027": 6.0
+   },
+   "pe_band": [
+    10.0,
+    20.0
+   ],
+   "note": "",
+   "updated": "2026-06-12",
+   "sheet_price": 88.8
+  },
+  {
+   "code": "6913",
+   "name": "鴻呈",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "其他",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 4.78,
+    "2025": 7.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    21.5,
+    35.0
+   ],
+   "note": "",
+   "updated": "2025-07-31",
+   "sheet_price": 153.5
+  },
+  {
+   "code": "8027",
+   "name": "鈦昇",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體設備",
+   "sector_fixed": true,
+   "eps": {
+    "2024": -0.51,
+    "2025": 0.5,
+    "2026": 3.5,
+    "2027": 7.5
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    30.0
+   ],
+   "note": "",
+   "updated": "2025-12-22",
+   "sheet_price": 215.5
+  },
+  {
+   "code": "7712",
+   "name": "博盛半導體",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "功率元件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 8.39,
+    "2025": 5.42,
+    "2026": 8.24,
+    "2027": 9.54,
+    "2028": 11.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-06-18",
+   "sheet_price": 180.0
+  },
+  {
+   "code": "8042",
+   "name": "金山電",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "被動元件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 0.6,
+    "2025": 0.89,
+    "2026": 5.15,
+    "2027": 9.14
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-05-13",
+   "sheet_price": 117.5
+  },
+  {
+   "code": "6173",
+   "name": "信昌電",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "被動元件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 2.91,
+    "2025": 3.26,
+    "2026": 6.18,
+    "2027": 12.0
+   },
+   "eps_old": {},
+   "pe_band": [
+    15.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-05-25",
+   "sheet_price": 194.0
+  },
+  {
+   "code": "8069",
+   "name": "元太",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "面板",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 7.75,
+    "2025": 9.14,
+    "2026": 10.2,
+    "2027": 11.45
+   },
+   "eps_old": {
+    "2025": 10.5,
+    "2026": 11.5
+   },
+   "pe_band": [
+    14.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-03-13",
+   "sheet_price": 195.5
+  },
+  {
+   "code": "1785",
+   "name": "光洋科",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "半導體材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 3.21,
+    "2025": 3.14,
+    "2026": 10.17,
+    "2027": 13.68
+   },
+   "eps_old": {
+    "2026": 8.0,
+    "2027": 11.0
+   },
+   "pe_band": [
+    10.0,
+    18.0
+   ],
+   "note": "",
+   "updated": "2026-06-29",
+   "sheet_price": 104.5
+  },
+  {
+   "code": "8299",
+   "name": "群聯",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "記憶體",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 38.95,
+    "2025": 41.98,
+    "2026": 401.94,
+    "2027": 374.8
+   },
+   "eps_old": {
+    "2025": 23.53,
+    "2026": 34.94,
+    "2027": 79.16
+   },
+   "pe_band": [
+    6.0,
+    14.0
+   ],
+   "note": "",
+   "updated": "2026-06-19",
+   "sheet_price": 2400.0
+  },
+  {
+   "code": "8255",
+   "name": "朋程",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "功率元件",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 8.24,
+    "2025": 5.55,
+    "2026": 6.3
+   },
+   "eps_old": {
+    "2025": 7.89
+   },
+   "pe_band": [
+    17.5,
+    26.0
+   ],
+   "note": "",
+   "updated": "2025-09-04",
+   "sheet_price": 118.0
+  },
+  {
+   "code": "8358",
+   "name": "金居",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "CCL材料",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 3.65,
+    "2025": 4.2,
+    "2026": 9.5,
+    "2027": 16.0
+   },
+   "eps_old": {
+    "2026": 9.5,
+    "2027": 17.0
+   },
+   "pe_band": [
+    10.0,
+    25.0
+   ],
+   "note": "",
+   "updated": "2026-08-11",
+   "sheet_price": 289.0
+  },
+  {
+   "code": "8086",
+   "name": "宏捷科",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "光通",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 2.65,
+    "2025": 3.36,
+    "2026": 5.63,
+    "2027": 6.54
+   },
+   "eps_old": {},
+   "pe_band": [
+    24.0,
+    34.0
+   ],
+   "note": "",
+   "updated": "2026-05-12",
+   "sheet_price": 155.0
+  },
+  {
+   "code": "8936",
+   "name": "國統",
+   "market": "上櫃",
+   "market_sheet": "上櫃",
+   "sheet_sector": "",
+   "sector": "營建工程",
+   "sector_fixed": true,
+   "eps": {
+    "2024": 3.37,
+    "2025": 4.08,
+    "2026": 4.3
+   },
+   "eps_old": {},
+   "pe_band": [
+    10.0,
+    18.0
+   ],
+   "note": "",
+   "updated": "2026-06-24",
+   "sheet_price": 57.8
+  }
+ ]
+}

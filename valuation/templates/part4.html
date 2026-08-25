@@ -1,0 +1,111 @@
+<section class="panel">
+  <div class="panel-hd">
+    <div>
+      <h2>市場地圖</h2>
+      <p>橫軸是財測隱含的加權成長率，縱軸是現價對基準年財測的本益比（對數刻度）。
+         虛線是 PEG = 1.0 與 0.5 的參考線——落在線下方代表市場付的倍數低於成長速度。
+         成長率超出座標範圍的 10 檔以箭頭標記在邊界上，實際數值見浮動說明。</p>
+    </div>
+  </div>
+  <div class="maps">
+    <div class="map">
+      <h3>成長率 × 本益比</h3>
+      <p class="cap">每一點是一檔個股，顏色為本模型評價方向。已排除 8 檔數據待確認與 2 檔無財測者。</p>
+      <div id="scatter"></div>
+      <div class="legend">
+        <span><i style="background:var(--cheap)"></i>模型評價高於市價</span>
+        <span><i style="background:var(--mid)"></i>接近合理</span>
+        <span><i style="background:var(--rich)"></i>市價高於模型評價</span>
+        <span><i class="ln"></i>PEG 參考線</span>
+        <span><i style="background:var(--ink-3);border-radius:0;clip-path:polygon(0 0,100% 50%,0 100%)"></i>成長率超出座標</span>
+      </div>
+    </div>
+    <div class="map">
+      <h3>族群中位數上檔空間</h3>
+      <p class="cap">僅列入樣本數 ≥ 2 的族群。長條由零基準線向兩側展開。</p>
+      <div id="sectorbars"></div>
+    </div>
+  </div>
+</section>
+
+<div class="controls" id="controls">
+  <input type="search" id="q" placeholder="搜尋代碼或名稱…" aria-label="搜尋代碼或名稱">
+  <div class="seg" role="group" aria-label="市場別">
+    <button type="button" data-mkt="" aria-pressed="true">全部</button>
+    <button type="button" data-mkt="上市" aria-pressed="false">上市</button>
+    <button type="button" data-mkt="上櫃" aria-pressed="false">上櫃</button>
+  </div>
+  <select id="fsector" aria-label="族群"><option value="">所有族群</option></select>
+  <select id="frating" aria-label="評等"><option value="">所有評等</option></select>
+  <label class="chk"><input type="checkbox" id="fdiv"> 只看與原表分歧</label>
+  <label class="chk"><input type="checkbox" id="fstale"> 隱藏財測過舊</label>
+  <span class="count" id="count"></span>
+</div>
+
+<div class="tablewrap">
+  <table id="tbl">
+    <thead><tr>
+      <th class="stripe" aria-hidden="true"></th>
+      <th class="l" data-k="name">個股<span class="ar">▾</span></th>
+      <th class="l" data-k="sector">族群<span class="ar">▾</span></th>
+      <th data-k="price">股價<span class="ar">▾</span></th>
+      <th data-k="base_eps">基準 EPS<span class="ar">▾</span></th>
+      <th data-k="pe_now">預估 PE<span class="ar">▾</span></th>
+      <th data-k="pe_official">官方 PE<span class="ar">▾</span></th>
+      <th data-k="act_pace">財測達成<span class="ar">▾</span></th>
+      <th data-k="g_blend">加權成長<span class="ar">▾</span></th>
+      <th data-k="pe_mid0">原表 PE<span class="ar">▾</span></th>
+      <th data-k="pe_mid">本模型 PE<span class="ar">▾</span></th>
+      <th data-k="target">目標價<span class="ar">▾</span></th>
+      <th data-k="upside">上檔空間<span class="ar">▾</span></th>
+      <th class="l" data-k="rating">評等<span class="ar">▾</span></th>
+      <th data-k="stale_days">財測更新<span class="ar">▾</span></th>
+    </tr></thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+<div class="empty" id="empty" hidden>沒有符合條件的個股。</div>
+
+<section class="panel">
+  <div class="panel-hd"><div>
+    <h2>財測達成進度</h2>
+    <p>官方累計實際 EPS 對照原表同年度財測。進度 100% 代表已達季節步調
+       （例如上半年財報應完成全年財測的一半）。低於 60% 的個股，全年財測恐怕偏樂觀，
+       估值需要重新檢視；高於 140% 者則可能是財測過於保守。</p>
+  </div></div>
+  <div class="panel-bd" style="padding:0"><div class="applist" id="pace"></div></div>
+</section>
+
+<section class="panel">
+  <div class="panel-hd"><div>
+    <h2>數據待確認</h2>
+    <p>下列個股的財測在數量級上出現異常，模型不對其給出評等。這些是自動偵測的結果，需要回原始資料源核對。</p>
+  </div></div>
+  <div class="panel-bd" style="padding:0"><div class="applist" id="suspects"></div></div>
+</section>
+
+<section class="panel">
+  <div class="panel-hd"><div>
+    <h2>族群分類修正</h2>
+    <p>原表的族群欄只標註每個區塊的第一列，往下沿用時會把區塊尾端的個股歸錯類。
+       下列分類為本頁重新指定，僅影響模型採用的產業基準倍數——若你不同意任何一項，該檔的評價需要重算。</p>
+  </div></div>
+  <div class="panel-bd" style="padding:0"><div class="applist" id="fixes"></div></div>
+</section>
+
+<section class="panel">
+  <div class="panel-hd"><div>
+    <h2>本次更新的資料時效</h2>
+    <p>HTTP 回應成功不等於資料是今天的——交易所各有各的發布節奏，這裡列出每個來源實際攜帶的日期。</p>
+  </div></div>
+  <div class="panel-bd" style="padding:0"><div class="applist" id="freshness"></div></div>
+</section>
+
+<footer>
+  <b>自動更新</b>　股價、官方本益比與實際累計 EPS 由 GitHub Actions 於台北時間平日 18:20 自 證交所／櫃買中心／公開資訊觀測站 取得，非即時報價。<br>
+  <b>人工維護</b>　2025–2028 年 EPS 財測、原表本益比區間與備註，來源為 台股投資.xlsx；財測無官方資料源，排程不會覆寫。<br>
+  <b>本頁產出</b>　合理本益比模型與逐檔推導、目標價區間、評等、與原表的觀點差異、財測達成進度、數據異常偵測、族群與市場別分類修正。<br>
+  <b>免責</b>　本頁為試算表的重新整理與量化分析，不構成投資建議。所有評價建立在原表財測正確的前提上，且模型未納入資產負債表、現金流、股利、流動性與治理因素。
+</footer>
+</div>
+<div id="tip" role="status" aria-live="polite"></div>
