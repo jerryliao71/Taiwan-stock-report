@@ -11,7 +11,7 @@
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern gh-pages-dist",
     "update:data": "tsx scripts/update-static-data.mts",
-    "build:github": "vite build --config vite.github.config.ts && tsx scripts/copy-legacy-reports.mts && tsx scripts/copy-valuation.mts",
+    "build:github": "vite build --config vite.github.config.ts && tsx scripts/copy-legacy-reports.mts && tsx scripts/arrange-pages.mts",
     "preview:github": "vite preview --config vite.github.config.ts",
     "build:valuation": "python3 valuation/pipeline/build.py"
   },

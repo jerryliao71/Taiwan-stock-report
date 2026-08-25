@@ -4,7 +4,7 @@
 Output: valuation/dist/index.html (self-contained, no runtime network calls).
 Run from anywhere:  python3 valuation/pipeline/build.py
 """
-import json, sys
+import json, re, sys
 from datetime import date, datetime, timezone, timedelta
 from pathlib import Path
 
@@ -14,6 +14,49 @@ from model import build as run_model
 
 ROOT = Path(__file__).resolve().parents[1]
 TPE = timezone(timedelta(hours=8))
+
+
+CANONICAL = 'https://jerryliao71.github.io/Taiwan-stock-report/'
+DESCRIPTION = ('125 檔台股的財測本益比評價：股價與官方實績每個交易日自證交所、櫃買中心、'
+               '公開資訊觀測站更新，合理本益比以規則式模型推導並逐檔列出假設。')
+
+
+def wrap_document(body):
+    """Wrap the templates into a standalone HTML document.
+
+    The templates are fragments -- they carry <title>, the font <link>s and their
+    <style> blocks inline, because they were first written for a host that supplied
+    the <head>. Served directly from Pages there is no such host, and a page with no
+    charset renders as mojibake and with no viewport does not scale on phones. Hoist
+    the head-only elements out of the fragment and emit a real document around it.
+    """
+    head_parts = []
+
+    def take(pattern):
+        nonlocal body
+        for m in re.findall(pattern, body, flags=re.S | re.I):
+            head_parts.append(m)
+        body = re.sub(pattern, '', body, flags=re.S | re.I)
+
+    take(r'<title>.*?</title>')
+    take(r'<link\b[^>]*>')
+    take(r'<style\b[^>]*>.*?</style>')
+
+    head = '\n'.join(head_parts)
+    return (
+        '<!doctype html>\n<html lang="zh-Hant">\n<head>\n'
+        '<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        f'<meta name="description" content="{DESCRIPTION}">\n'
+        '<meta name="color-scheme" content="light dark">\n'
+        f'<link rel="canonical" href="{CANONICAL}">\n'
+        '<meta property="og:type" content="website">\n'
+        '<meta property="og:locale" content="zh_TW">\n'
+        '<meta property="og:title" content="台股財測評價台">\n'
+        f'<meta property="og:description" content="{DESCRIPTION}">\n'
+        f'<meta property="og:url" content="{CANONICAL}">\n'
+        f'{head}\n</head>\n<body>\n{body.strip()}\n</body>\n</html>\n'
+    )
 
 
 def pctf(x, d=0):
@@ -133,7 +176,8 @@ def main():
             'market_corrections': fc.get('market_corrections', {})}
 
     tpl = ROOT / 'templates'
-    html = '\n'.join((tpl / f'part{i}.html').read_text(encoding='utf-8') for i in range(1, 7))
+    body = '\n'.join((tpl / f'part{i}.html').read_text(encoding='utf-8') for i in range(1, 7))
+    html = wrap_document(body)
     html = html.replace('__PRICE_DATE__', off['asof']['price'] or '—')
     html = html.replace('__DATA__', json.dumps([slim(r) for r in recs], ensure_ascii=False, separators=(',', ':')))
     html = html.replace('__META__', json.dumps(meta, ensure_ascii=False, separators=(',', ':')))
